@@ -1,0 +1,46 @@
+body {
+ 
+  font:  "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.LogoIcon{
+  height:30px ;
+  width: 30px;
+}
+
+/* Header */
+header{
+  display: flex;
+  background-color: #C693DE;
+  color: black;
+  height: 50px;
+}
+
+header ul{
+  display: flex;
+  list-style-type: none ;
+  padding-left: 10%;
+  padding-top: 10px ;
+}
+header ul li {
+  flex-basis: 100px;
+  flex-grow: 0;
+}
+.right{
+  padding-left: 50%;
+  flex-grow: 1;  
+}
+
+header ul li a{
+  text-decoration: none;
+  color: black;
+}
+
+/* Footer */
+
+
+
+
+
+
+
