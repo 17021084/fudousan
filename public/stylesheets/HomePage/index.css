@@ -1,0 +1,53 @@
+.index {
+	padding: 50px 10%;
+}
+
+.HomeBlock {
+	width: 370px;
+	height: 450px;
+	background-color: #ededed;
+	margin: auto;
+	margin-top: 30px;
+	margin-left: 30px;
+	box-shadow: 1px 1px #ddd9d9;
+	border-radius: 5%;
+}
+
+.pagination {
+	padding: 50px 0px;
+	margin-left: 40%;
+}
+
+.HomeImage {
+	padding-top: 1px;
+	padding-left: 0px;
+	width: 100%;
+	height: 200px;
+	display: block;
+}
+
+/* News block */
+.NewsBlock {
+	width: 370px;
+	height: 450px;
+	background-color: #ededed;
+	margin: auto;
+	margin-top: 30px;
+	margin-left: 30px;
+	box-shadow: 1px 1px #ddd9d9;
+	border-radius: 5%;
+}
+.NewsImage {
+	padding-top: 1px;
+	padding-left: 0px;
+	width: 100%;
+	height: 200px;
+	display: block;
+}
+
+.brief{
+    height:fit-content;
+    width: fit-content;
+    display: inline-block;
+
+}

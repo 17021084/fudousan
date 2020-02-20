@@ -8,18 +8,25 @@ body {
   width: 30px;
 }
 
+
+.BigIcon{
+  height:40px ;
+  width: 40px;
+}
+
 /* Header */
 header{
   display: flex;
   background-color: #C693DE;
   color: black;
+  padding-left: 10%;
   height: 50px;
 }
 
 header ul{
   display: flex;
   list-style-type: none ;
-  padding-left: 10%;
+  
   padding-top: 10px ;
 }
 header ul li {
@@ -38,8 +45,17 @@ header ul li a{
 
 /* Footer */
 
+footer{
+  background-color: #C693DE;
+  padding-left: 15%;
+  padding-right: 10%;
+  padding-top: 30px;
+}
 
-
+footer .row .col-lg-6 ul{
+  list-style-type: none;
+  padding-left: 10%;
+}
 
 
 
