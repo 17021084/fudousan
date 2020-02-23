@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    
+    <title>List Home</title>
+    
+    
+    <link rel="stylesheet" href="../../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../../public/stylesheets/HomePage/HomeList.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+   
+
+
+
+</head>
+<body>
+    <!-- header -->
+   <div class="header" >
+       <header>
+            <ul >
+                <li >
+                    <a class="" href="#">
+                        <img class="LogoIcon" src="../../public/images/icon/040-home.svg" alt="icon" > 
+                    </a>
+                </li>
+                <li  >
+                    <a  href="#">Home</a>   
+                </li>
+               
+                <li style="margin-right:1px  ;" >
+                    <a  href="#">List Home </a>
+                </li>
+                <li >
+                    <a  href="#">News </a>
+                </li>
+                
+                <li  class="right">
+                    <a  href="#"> <button type="button" class="btn btn-warning btn-sm">Login</button> </a>
+                </li>
+                
+            </ul>
+
+            
+
+       </header>
+   </div>
+
+
+   
+   <div class="ListHome">
+   
+   <!-- find  -->
+    <div class=NewPostTitle>
+        <h1>   What  are you finding.....? </h1>
+            <hr>
+    </div>
+    <div class="Find">
+     
+        <!--    YearBuilt	            Area	                        Floor	                   Parkinglot(Basement)         	                          
+                	TimeToBusStop	                TimeToSubway	                     APT	                                Manager		
+                Parkinglot(Ground)      FacilitiesNearBy(PublicOffice)   	 FacilitiesNearBy(Hospital)	            FacilitiesNearBy(Dpartmentstore)	
+                FacilitiesNearBy(Mall)	FacilitiesNearBy(ETC)	        FacilitiesNearBy(Park)	            
+                
+                SchoolNearBy(Elementary)	            SchoolNearBy(Middle)
+                SchoolNearBy(High)	    SchoolNearBy(University)	    FacilitiesInApt     	  
+                           FacilitiesNearBy(Total)	            
+                           SchoolNearBy(Total)
+                 Elevators
+               
+                
+            
+             AptManageType	
+            HeatingType
+            SubwayStation
+            HallwayType
+
+
+            SalePrice 
+            -->
+
+
+
+        <form action="FindForm">
+            <div class="row">
+                <!-- 1st col -->
+                    <div class="col-md-2">                     
+                        
+                        <label for="YearBuilt">Year Built</label>
+                          <input type="text"
+                            class="form-control" name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="2000">
+                          <small id="YearBuilt" class="form-text text-muted">Help text</small>
+                        
+                          <label for="HeatingType">HeatingType</label>
+                          <input type="text"
+                            class="form-control" name="HeatingType" id="HeatingType" aria-describedby="HeatingType" placeholder="1000">
+                          <small id="HeatingType" class="form-text text-muted">Help text</small>
+                         
+                          <label for="SchoolNearBy(University)">SchoolNearBy</label>
+                          <input type="text"
+                            class="form-control" name="SchoolNearBy(University)" id="SchoolNearBy(University)" aria-describedby="SchoolNearBy(University)" placeholder="1000">
+                          <small id="SchoolNearBy(University)" class="form-text text-muted">University</small>                
+                       
+                          <label for="Parkinglot(Basement)">Parkinglot</label>
+                          <input type="text"
+                            class="form-control" name="Parkinglot(Basement)" id="Parkinglot(Basement)" aria-describedby="Parkinglot(Basement)" placeholder="Parkinglot(Basement)">
+                          <small id="Parkinglot(Basement)" class="form-text text-muted">Basement</small>
+                                     
+                          <button type="button" class="btn btn-danger">Find !!</button>
+                    </div>
+                 <!-- 2nd col  -->
+                 <div class="col-md-2">                     
+                        
+                  
+                      <label for="APT">APT</label>
+                      <input type="text"
+                        class="form-control" name="APT" id="APT" aria-describedby="APT" placeholder="100">
+                      <small id="APT" class="form-text text-muted">Help text</small>
+                      <label for="HallwayType">HallwayType</label>
+                      <input type="text"
+                        class="form-control" name="HallwayType" id="HallwayType" aria-describedby="HallwayType" placeholder="10">
+                      <small id="HallwayType" class="form-text text-muted">Help text</small>
+                      <label for="SchoolNearBy(Middle)">SchoolNearBy</label>
+                      <input type="text"
+                        class="form-control" name="SchoolNearBy(Middle)" id="SchoolNearBy(Middle)" aria-describedby="SchoolNearBy(Middle)" placeholder="100">
+                      <small id="SchoolNearBy(Middle)" class="form-text text-muted">Middle</small>
+                    
+                      <label for="Parkinglot(Ground)">Parkinglot</label>
+                      <input type="text"
+                        class="form-control" name="Parkinglot(Ground)" id="Parkinglot(Ground)" aria-describedby="Parkinglot(Ground)" placeholder="1000">
+                      <small id="Parkinglot(Ground)" class="form-text text-muted">Ground</small>
+                   
+                      <label for="FacilitiesNearBy(Park)">FacilitiesNearBy<br> </label>
+                    <input type="text"
+                        class="form-control" name="FacilitiesNearBy(Park)" id="FacilitiesNearBy(Park)" aria-describedby="FacilitiesNearBy(Park)" placeholder="3123">
+                    <small id="FacilitiesNearBy(Park)" class="form-text text-muted">Park</small>
+                                            
+                </div>   
+
+                <!-- 3rd col  -->
+                <div class="col-md-2">                     
+                                      
+                    <label for="Area">Area</label>
+                    <input type="text"
+                      class="form-control" name="Area" id="Area" aria-describedby="Area" placeholder="100">
+                    <small id="Area" class="form-text text-muted">Help text</small>
+                    <label for="AptManageType">AptManageType</label>
+                    <input type="text"
+                      class="form-control" name="AptManageType" id="AptManageType" aria-describedby="AptManageType" placeholder="100">
+                    <small id="AptManageType" class="form-text text-muted">Help text</small>
+                  
+                    
+                    
+                    <label for="FacilitiesNearBy(Mall)">FacilitiesNearBy(Mall)</label>
+                    <input type="text"
+                        class="form-control" name="FacilitiesNearBy(Mall)" id="FacilitiesNearBy(Mall)" aria-describedby="FacilitiesNearBy(Mall)" placeholder="1000">
+                    <small id="FacilitiesNearBy(Mall)" class="form-text text-muted">Help text</small>
+                    
+                    <label for="FacilitiesNearBy(ETC)">FacilitiesNearBy</label>
+                    <input type="text"
+                        class="form-control" name="FacilitiesNearBy(ETC)" id="FacilitiesNearBy(ETC)" aria-describedby="FacilitiesNearBy(ETC)" placeholder="1000">
+                    <small id="FacilitiesNearBy(ETC)" class="form-text text-muted">ETC</small>
+                
+                   
+                </div>   
+                  <!-- 4th col -->
+                  <div class="col-md-2">                     
+                    <label for="Manager">Manager</label>
+                    <input type="text"
+                      class="form-control" name="Manager" id="Manager" aria-describedby="Manager" placeholder="1000">
+                    <small id="Manager" class="form-text text-muted">Help text</small>
+                  
+                    <label for="FacilitiesInApt">FacilitiesInApt</label>
+                      <input type="text"
+                        class="form-control" name="FacilitiesInApt" id="FacilitiesInApt" aria-describedby="FacilitiesInApt" placeholder="10">
+                      <small id="FacilitiesInApt" class="form-text text-muted">Help text</small>
+                      
+                      <label for=" SchoolNearBy(Elementary)"> SchoolNearBy </label>
+                      <input type="text"
+                        class="form-control" name=" SchoolNearBy(Elementary)" id=" SchoolNearBy(Elementary)" aria-describedby=" SchoolNearBy(Elementary)" placeholder="2000">
+                      <small id=" SchoolNearBy(Elementary)" class="form-text text-muted">Elementary</small>
+                     
+                     
+                    
+                     
+                      <label for="FacilitiesNearBy(Total)">FacilitiesNearBy</label>
+                      <input type="text"
+                        class="form-control" name="FacilitiesNearBy(Total)" id="FacilitiesNearBy(Total)" aria-describedby="FacilitiesNearBy(Total)" placeholder="10">
+                      <small id="FacilitiesNearBy(Total)" class="form-text text-muted">Total</small>
+                   
+                                             
+                </div>    
+                 <!-- 5th col -->
+                 <div class="col-md-2">                     
+                  
+                    <label for="Floor">Floor</label>
+                    <input type="text"
+                      class="form-control" name="Floor" id="Floor" aria-describedby="Floor" placeholder="1000">
+                    <small id="Floor" class="form-text text-muted">Help text</small>
+                    <label for="SubwayStation">SubwayStation</label>
+                    <input type="text"
+                      class="form-control" name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="10">
+                    <small id="SubwayStation" class="form-text text-muted">Help text</small>
+                    
+                    <label for="SchoolNearBy(Total)">SchoolNearBy</label>
+                      <input type="text"
+                        class="form-control" name="SchoolNearBy(Total)" id="SchoolNearBy(Total)" aria-describedby="SchoolNearBy(Total)" placeholder="2000">
+                      <small id="SchoolNearBy(Total)" class="form-text text-muted">Total</small>
+                    
+                     
+                     
+                      <label for="FacilitiesNearBy(Dpartmentstore)">FacilitiesNearBy </label>
+                      <input type="text"
+                          class="form-control" name="FacilitiesNearBy(Dpartmentstore)" id="FacilitiesNearBy(Dpartmentstore)" aria-describedby="FacilitiesNearBy(Dpartmentstore)" placeholder="100">
+                      <small id="FacilitiesNearBy(Dpartmentstore)" class="form-text text-muted">Dpartmentstore</small>
+                      
+                     
+                     
+                   
+                    
+                                             
+                </div>
+
+                 <!-- 6th col -->
+                 <div class="col-md-2">                     
+                    <label for="TimeToBusStop">TimeToBusStop</label>
+                    <input type="text"
+                      class="form-control" name="TimeToBusStop" id="TimeToBusStop" aria-describedby="TimeToBusStop" placeholder="10">
+                    <small id="TimeToBusStop" class="form-text text-muted">Help text</small>   
+                    <label for="TimeToSubway">TimeToSubway</label>
+                    <input type="text"
+                      class="form-control" name="TimeToSubway" id="TimeToSubway" aria-describedby="TimeToSubway" placeholder="2">
+                    <small id="TimeToSubway" class="form-text text-muted">Help text</small>
+                    <label for="FacilitiesNearBy(Hospital)">FacilitiesNearBy</label>
+                    <input type="text"
+                        class="form-control" name="FacilitiesNearBy(Hospital)" id="FacilitiesNearBy(Hospital)" aria-describedby="FacilitiesNearBy(Hospital)" placeholder="2">
+                    <small id="FacilitiesNearBy(Hospital)" class="form-text text-muted">Hospital</small>
+                    <label for="FacilitiesNearBy(PublicOffice)">FacilitiesNearBy   </label>
+                    <input type="text"
+                      class="form-control" name="FacilitiesNearBy(PublicOffice)" id="FacilitiesNearBy(PublicOffice)" aria-describedby="FacilitiesNearBy(PublicOffice)" placeholder="">
+                    <small id="FacilitiesNearBy(PublicOffice)" class="form-text text-muted">PublicOffice</small>
+                                               
+                 
+                  
+                </div>
+
+                
+            </div>
+           
+        </form>
+
+    </div>
+
+    <!-- list  -->
+        <div class=NewPostTitle>
+            <h1>   List </h1>
+                <hr>
+        </div>
+
+        <div  class="information">
+            <div class="row">
+                
+                <div class="col-xl-5">
+                    <div class="MainHomeImage">
+                        <a href="http://"> 
+                            <img style=" height : 200px ; width:fit-content ;border-radius: 5%;" src="https://picsum.photos/id/100/500/500" class= "img-thumbnail" alt="Responsive image">
+                        </a>                 
+                    </div>                                      
+                </div>
+
+                <div class="col-xl-7">
+                    
+                    <h3 style="text-align: center;" > Title of news blablalbalbalbla</h3>
+                    
+                        <div class="row">
+                            <div class="col-xl-6 HomeLocation">
+                    
+                                <img class="BigIcon" src="../../public/images/icon/location.svg" alt="Location"> <b style="font-size: smaller;"> KimJungkun-Busan </b></img>
+                            </div>
+                            
+                            <div class="col-xl-6 HomeOwner" style="margin:8px 0px 8px 0px ;" >                
+                                <img class="BigIcon" src="../../public/images/icon/owner.svg" alt="HomeOwner"> <i style="font-size: smaller;" > Do Quang Trung </i></img>
+                            </div>
+                           
+                            
+                           
+                            <div class="col-xl-6 HomeLocation"  style="margin:8px 0px 8px 0px ;" >
+                                <img class="BigIcon" src="../../public/images/icon/area.svg" alt="area"> <b>2000</b></img>
+                                
+                            </div>
+                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
+                                <img class="BigIcon" src="../../public/images/icon/calendar.svg" alt="calendar"> <b>2008</b></img>
+                                
+                            </div>
+                         
+                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
+                                Purpose <br>
+                                <span style="color: red;">for Sale</span>
+                            </div>
+                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;"> 
+                                <img class="BigIcon" src="../../public/images/icon/cost.svg" alt="cost"> <b>20000000</b> $</img>
+                               
+                            </div>
+                            <div style="margin:auto" >
+                                <a href="http://"><button type="button"  class="btn btn-warning">View Details</button></a>
+
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+       
+        </div>
+
+   </div>
+   
+
+
+   <!-- footer -->
+   <div class ="footer">
+        <footer>
+            
+                <div class="row">
+                    <div class="col-lg-6">
+                       <ul>
+                           <li><a style=" font-size: medium;" href="http://"> <img src="../../public/images/icon/google-drive.svg" class="BigIcon" alt="Drive icon"> Document</a></li>
+                           <li>
+                               <a style=" font-size: medium;" href="https://github.com/17021084/fudousan"> <img src="../../public/images/icon/github.svg" class="BigIcon" alt="github"> </a>
+                               <a style=" font-size: medium;" href="https://www.facebook.com/profile.php?id=100009755466855"> <img src="../../public/images/icon/facebook.svg" class="BigIcon" alt="facebook"> </a>
+                            
+                            </li>
+                           
+                       </ul>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><img src="../../public/images/icon/gmail.svg" class="BigIcon" alt="Drive icon"> dotrunghg1999@gmail.com</li>
+                            <li>
+                                <img src="../../public/images/icon/copyright-guidelines.svg" class="BigIcon" alt="copyright"> Do Quang Trung-K62j-UET-VNU
+                                     
+                             </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+
+        </footer>
+   </div>
+
+
+    <!-- include jquery and bootstap -->
+    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
+    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

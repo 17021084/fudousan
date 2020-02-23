@@ -1,0 +1,75 @@
+.HomeDetails {
+	padding: 50px 10%;
+}
+
+
+/* div grap img */
+.HomeImage {	
+	width: 300px;
+	height: 500px;
+    display: block;
+}
+.HomeImage img {	
+	padding-left: 40%;
+}
+
+/*  carousel background*/
+.CarouselBg{
+    background-color:#ededed;
+}
+
+/* previous and next button*/
+.CarouselButton{
+    background-color: #ff5151;
+  
+}
+
+
+/* home detail */
+#homeDetails{
+
+    padding-left: 0px    ;
+    padding-right: 0px    ;
+    padding-bottom: 10px;
+    background-color:#ededed;
+    border-radius: 2%;
+}
+
+.DetailHeader{
+    width: 100%;
+    background-color: #c4c4c4;
+    padding: 20px ;
+    
+}
+
+.Construction{
+    margin: auto;
+    width: 680px;
+}
+
+
+.Facilities {
+    margin: auto;
+    width: 550px;
+}
+
+
+
+/* Book Meeting */
+#BookMeeting{   
+    background-color:#ededed;
+    border-radius: 10px;
+}
+/* form */
+#BookMeeting form{   
+    padding-top: 30px ;
+    padding-bottom: 20px ;
+
+}
+
+.Loan{
+    padding: 5% 5%;
+    background-color:#ededed;
+
+
+}
