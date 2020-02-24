@@ -127,15 +127,25 @@ function covertToMultilDimesionArray(arrObj) {
     let results=[];
     return new Promise( (resolve , reject)=>{
       fs.createReadStream(path).pipe(csv()).on('data' ,(data) => results.push(data)).on('end',  (err) => {
+        
           if (err) reject(err);
           //format
           let matrixObj= covertToMultilDimesionArray(results);     
+
+          // average
+          let averageArray = matrixObj.average;
+
           let income = sliceMatrix(matrixObj.matrix,0,matrixObj.matrix[0].length-1);
           // //outcome matrix is last comlumn
           let outcome = sliceMatrix(matrixObj.matrix,matrixObj.matrix[0].length-1,matrixObj.matrix[0].length);
            // //build model
            let mlr = new MLR(income, outcome);
-          return resolve(mlr);
+          return resolve( {
+              model:mlr,
+              average :averageArray
+
+          });
+
           
       });
     });

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    
+    <title> Update n Delete Home</title>
+    
+    
+    <link rel="stylesheet" href="../../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../../public/stylesheets/User/Post_Update_DeleteHome.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+   
+
+
+
+</head>
+<body>
+  
+
+
+
+   <div class="HomeForm">
+        <!-- title -->
+        <h3 style="text-align:center"> Your Home </h3>
+         <hr> <br>
+        <!-- /title -->
+
+        <form action="" method="post"  id="form">
+                <div class="form-group HomeName">
+                    <h4 style="text-align: center;"> <label for="HomeName">Your Home Name</label> </h4>
+                    
+                    <input type="text"
+                            class="form-control" name="HomeName" id="HomeName" aria-describedby="HomeName" placeholder="">
+                    <small id="HomeName" class="form-text text-muted">Simple name please !1 ^^</small>
+
+                    <br><br>
+                    <div class="check">
+                      <h4 style="text-align: center;"> Purpose </h4>
+                      <br>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="purpose" id="" value="ForRent"> For Rent 
+                      </label>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="purpose" id="" value="ForSale"> For Sale 
+                      </label>
+    
+                    </div>     
+                
+                
+                </div>
+
+                
+
+
+                <!-- title -->
+                <h5 > Type </h5>
+                <hr> <br>
+                <!-- /title -->
+
+                <!-- type -->
+                <div class="row type">
+                
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="HallWay">Hall way</label>
+                        <input type="text"
+                            class="form-control" name="HallWay" id="HallWay" aria-describedby="HallWay" placeholder="">
+                        <small id="HallWay" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                        <label for="ApartmentType">Apartment Type</label>
+                        <input type="text"
+                            class="form-control" name="ApartmentType" id="ApartmentType" aria-describedby="ApartmentType" placeholder="">
+                        <small id="ApartmentType" class="form-text text-muted">Help text</small>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="Heating">Heating</label>
+                        <input type="text"
+                            class="form-control" name="Heating" id="Heating" aria-describedby="Heating" placeholder="">
+                        <small id="Heating" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                        <label for="SubwayStation">Subway station</label>
+                        <input type="text"
+                            class="form-control" name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="">
+                        <small id="SubwayStation" class="form-text text-muted">Help text</small>
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+                <!--/type -->
+
+                <!-- title -->
+                <h5 > Image </h5>
+                        <hr> <br>
+                <!-- /title -->
+
+                <div class="row image">
+                    
+                        <!-- img1  -->
+                        <div class="col-xl-6" >
+                            
+                            <div class="form-group" name="ImageInput">
+                                 <label for="Image">Image 1</label>
+                                  <input type="text" class="form-control" name="Image1" id="Image1" aria-describedby="Image" placeholder="">
+                                  <small id="Image" class="form-text text-muted">Link </small>
+                            </div>              
+                            <img id="PreviewImage1" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                    
+                        </div>
+                     
+
+                        
+                </div>
+
+                <!-- title -->
+                    <br><br>
+                <h3 style="text-align:center"> Information for statiscs </h3>
+                <hr> <br>              
+                <!-- /title -->
+
+                <!-- title -->
+                <h5 > Construction </h5>
+                <hr> <br>
+                <!-- /title -->
+
+                <!-- Construction  -->
+                <div class="row Construction">
+              
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="YearBuilt">Year Built</label>
+                          <input type="text"
+                            class="form-control" name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="">
+                          <small id="YearBuilt" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Elevartor">Elevartor</label>
+                          <input type="text"
+                            class="form-control" name="Elevartor" id="Elevartor" aria-describedby="Elevartor" placeholder="">
+                          <small id="Elevartor" class="form-text text-muted">Help text</small>
+                        </div>
+    
+                    </div>
+    
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="Area">Area</label>
+                          <input type="text"
+                            class="form-control" name="Area" id="Area" aria-describedby="Area" placeholder="">
+                          <small id="Area" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Manager">Manager</label>
+                          <input type="text"
+                            class="form-control" name="Manager" id="Manager" aria-describedby="Manager" placeholder="">
+                          <small id="Manager" class="form-text text-muted">Help text</small>
+                        </div>   
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="Floor">Floor</label>
+                          <input type="text"
+                            class="form-control" name="Floor" id="Floor" aria-describedby="Floor" placeholder="">
+                          <small id="Floor" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Apt">Building</label>
+                          <input type="text"
+                            class="form-control" name="Apt" id="Apt" aria-describedby="Apt" placeholder="">
+                          <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
+                        </div>   
+                    </div>
+                    
+                </div>    
+                <!-- /Construction  -->
+
+
+
+                
+                <!-- title -->
+                <h5 > Facilities </h5>
+                <hr> <br>
+                <!-- /title -->
+
+                <!-- Facilities  -->
+                <div class="row Facilities">
+              
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="PublicOffice">Public Office</label>
+                          <input type="text"
+                            class="form-control" name="PublicOffice" id="PublicOffice" aria-describedby="PublicOffice" placeholder="">
+                          <small id="PublicOffice" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Mall">Mall</label>
+                          <input type="text"
+                            class="form-control" name="Mall" id="Mall" aria-describedby="Mall" placeholder="">
+                          <small id="Mall" class="form-text text-muted">Help text</small>
+                        </div>
+    
+                    </div>
+    
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="Hospital">Hospital</label>
+                          <input type="text"
+                            class="form-control" name="Hospital" id="Hospital" aria-describedby="Hospital" placeholder="">
+                          <small id="Hospital" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Park">Park</label>
+                          <input type="text"
+                            class="form-control" name="Park" id="Park" aria-describedby="Park" placeholder="">
+                          <small id="Park" class="form-text text-muted">Help text</small>
+                        </div>   
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="form-group">
+                          <label for="DepartmentStore">DepartmentStore</label>
+                          <input type="text"
+                            class="form-control" name="DepartmentStore" id="DepartmentStore" aria-describedby="DepartmentStore" placeholder="">
+                          <small id="DepartmentStore" class="form-text text-muted">Help text</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="Apt">Other check thangf nay</label>
+                          <input type="text"
+                            class="form-control" name="Apt" id="Apt" aria-describedby="Apt" placeholder="">
+                          <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
+                        </div>   
+                    </div>
+                    
+                </div>    
+                <!-- /Facilities  -->
+
+
+
+                <!-- title -->
+                <h5 > Parking </h5>
+                <hr> 
+                 <!-- /title -->
+
+                 <!-- Parking -->
+                <div class="row Parking">
+                
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="Ground">Ground</label>
+                        <input type="text"
+                            class="form-control" name="Ground" id="Ground" aria-describedby="Ground" placeholder="">
+                        <small id="Ground" class="form-text text-muted">Help text</small>
+                        </div>
+                       
+
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="Basement">Basement</label>
+                        <input type="text"
+                            class="form-control" name="Basement" id="Basement" aria-describedby="Basement" placeholder="">
+                        <small id="Basement" class="form-text text-muted">Help text</small>
+                        </div>
+                      
+                    </div>
+
+                    
+                </div>
+                <!--/parking -->
+
+                
+
+                <!-- title -->
+                <h5 > Time to </h5>
+                <hr> 
+                 <!-- /title -->
+
+                 <!-- Time -->
+                <div class="row Time">
+                
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="BusStop">Bus Stop</label>
+                        <input type="text"
+                            class="form-control" name="BusStop" id="BusStop" aria-describedby="BusStop" placeholder="">
+                        <small id="BusStop" class="form-text text-muted">Help text</small>
+                        </div>
+                       
+
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                        <label for="SubWay">SubWay</label>
+                        <input type="text"
+                            class="form-control" name="SubWay" id="SubWay" aria-describedby="SubWay" placeholder="">
+                        <small id="SubWay" class="form-text text-muted">Help text</small>
+                        </div>
+                      
+                    </div>
+                   
+                </div>
+                <!--/Time -->
+
+
+
+                 <!-- title -->
+                 <h5 > School </h5>
+                 <hr> <br>
+                 <!-- /title -->
+ 
+                 <!-- School -->
+                 <div class="row School">
+                 
+                     <div class="col-xl-6">
+                         <div class="form-group">
+                         <label for="Elementary">Elementary</label>
+                         <input type="text"
+                             class="form-control" name="Elementary" id="Elementary" aria-describedby="Elementary" placeholder="">
+                         <small id="Elementary" class="form-text text-muted">Help text</small>
+                         </div>
+                        
+                         <div class="form-group">
+                         <label for="High">High School</label>
+                         <input type="text"
+                             class="form-control" name="High" id="High" aria-describedby="High" placeholder="">
+                         <small id="High" class="form-text text-muted">Help text</small>
+                         </div>
+ 
+                     </div>
+ 
+                     <div class="col-xl-6">
+                          
+                        <div class="form-group">
+                            <label for="Middle">Middle</label>
+                            <input type="text"
+                                class="form-control" name="Middle" id="Middle" aria-describedby="Middle" placeholder="">
+                            <small id="Middle" class="form-text text-muted">Help text</small>
+                        </div>    
+                        
+
+                         <div class="form-group">
+                         <label for="University">University</label>
+                         <input type="text"
+                             class="form-control" name="University" id="University" aria-describedby="University" placeholder="">
+                         <small id="University" class="form-text text-muted">Help text</small>
+                         </div>
+ 
+                     </div>
+ 
+                     
+                 </div>
+                 <!--/School -->
+
+                 <div class="row">
+                     <div class="col-xl-6">
+                         <br><br>
+                         <button  type="button" class="btn btn-warning">Predict</button>
+                         <br><br>
+                        <h5 style="color: red; "> The suitable Saleprices : <span style="color: black;">12312</span></h5>
+                  
+                     </div>
+                     <div class="col-xl-6">
+
+                        <!-- price -->
+                        <div class="form-group SalePrice">
+                            <label for="SalePrice">Price</label>
+                            <input type="text"
+                                class="form-control" name="Price" id="Price" aria-describedby="Price" placeholder="">
+                            <small id="Price" class="form-text text-muted"> you can refer our suggestion</small>
+                            <br>
+                            <button type="submit" class="btn btn-primary"> Post</button>    
+                            <button type="submit" class="btn btn-danger"> Delete</button>    
+                        </div>
+  
+                    </div>
+                 </div>
+                
+
+
+
+                 
+                
+
+        </form>
+
+   </div>
+   
+  
+
+
+    <!-- include jquery and bootstap -->
+    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
+    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+    <script type="text/javascript" >
+        // preview  script
+        for (let index = 1; index <= 6; index++){
+            $(`#Image${index}`).keyup(function(){
+                 let link =$(`#Image${index}`).val();
+                 $(`#PreviewImage${index}`).attr('src',link); 
+
+             });           
+        }  
+         
+      
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    
+    <title>Profile</title>
+    
+    
+    <link rel="stylesheet" href="../../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../../public/stylesheets/User/profile.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+ 
+
+
+
+</head>
+<body>
+  
+
+
+
+   <div class="Profile">
+        <!-- title -->
+        <h3 style="text-align:center"> Update Profile </h3>
+         <hr> <br>
+        <!-- /title -->
+        <form action="" method="post"  >
+            <div class="form">
+                    <div class="form-group">
+                      <label for="Name">Your name </label>
+                      <input type="text"
+                        class="form-control" name="Name" id="Name" aria-describedby="Name" placeholder="" required>
+                      <small id="Name" class="form-text text-muted">Help text</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="Phone">Phone</label>
+                      <input type="text"
+                        class="form-control" name="Phone" id="Phone" aria-describedby="Phone" placeholder="" required>
+                      <small id="Phone" class="form-text text-muted">Help text</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="Dob">Date Of Birth</label>
+                      <input type="datetime"
+                        class="form-control" name="Dob" id="Dob" aria-describedby="Dob" placeholder="dd/mm/yy" required>
+                      <small id="Dob" class="form-text text-muted">31/1/2020</small>
+                    </div>
+                    
+
+
+            </div>
+
+                 <!-- title -->
+                <h3 style="text-align:center">  Update Password </h3>
+                <hr> <br>
+               <!-- /title -->
+            <div     class="form">
+
+              <div class="form-group">
+                <label for="OldPassWord">Old PassWord</label>
+                <input type="password"
+                  class="form-control" name="OldPassWord" id="OldPassWord" aria-describedby="OldPassWord" placeholder="" required>
+                <small id="OldPassWord" class="form-text text-muted">Help text</small>
+              </div>
+              <div class="form-group">
+                <label for="NewPassWord">New PassWord</label>
+                <input type="password"
+                  class="form-control" name="NewPassWord" id="NewPassWord" aria-describedby="NewPassWord" placeholder="" required>
+                <small id="NewPassWord" class="form-text text-muted">Help text</small>
+              </div>
+              <div class="form-group">
+                <label for="Confirm">Confirm new PassWord</label>
+                <input type="password"
+                  class="form-control" name="Confirm" id="Confirm" aria-describedby="Confirm" placeholder="" required>
+                <small id="Confirm" class="form-text text-muted">Help text</small>
+              </div>
+          
+                <br>
+                <button  type="submit"  class="btn btn-primary" id="btn"> Send </button>
+            </div>
+            
+            
+        </form>
+              
+
+   </div>
+   
+  
+
+
+    <!-- include jquery and bootstap -->
+    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
+    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.form{
+  
+    padding: 10% 10%;
+}
+
+#register{
+    width: 700px;
+    height: 700px;
+    margin: auto;
+    background-color: #ededed;
+    padding: 2%;
+    border-radius: 10%;
+}

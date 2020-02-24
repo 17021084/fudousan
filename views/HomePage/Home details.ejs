@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title>Home Details </title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/HomePage/HomeDetails.css">
+    <link rel="stylesheet" type="text/css"  href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/HomePage/HomeDetails.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
-   
+    <link rel="stylesheet"  type="text/css" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 
@@ -31,15 +32,15 @@
             
             <div class="col-sm-4">
                 <div>
-                    <img src="../../public/images/icon/location.svg" alt="Location" class="BigIcon" > Location </img>
+                    <img src="/images/icon/location.svg" alt="Location" class="BigIcon" > Location </img>
                 </div>
                 <div>
-                    <img src="../../public/images/icon/owner.svg" alt="owner" class="BigIcon"> Owner </img>
+                    <img src="/images/icon/owner.svg" alt="owner" class="BigIcon"> Owner </img>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div>
-                    <img src="../../public/images/icon/calendar.svg" alt="calendar" class="BigIcon"> year built</img>
+                    <img src="/images/icon/calendar.svg" alt="calendar" class="BigIcon"> year built</img>
                 </div>
                 <div>
                     <h6>Purpose <br>  <span style="color: red;"> For Rent</span> </h6>
@@ -47,10 +48,10 @@
             </div>
             <div class="col-sm-4">
                 <div>
-                    <img src="../../public/images/icon/area.svg" alt="area" class="BigIcon"> 200 </img>
+                    <img src="/images/icon/area.svg" alt="area" class="BigIcon"> 200 </img>
                 </div>
                 <div>
-                    <img src="../../public/images/icon/cost.svg" alt="cost" class="BigIcon"> 199902$ </img>
+                    <img src="/images/icon/cost.svg" alt="cost" class="BigIcon"> 199902$ </img>
                 </div>
             </div>
 
@@ -106,7 +107,7 @@
                
                 <div class="DetailHeader" >
                     <h4  style="text-align: center;  background-color: #c4c4c4;">
-                        <img src="../../public/images/icon/homeDetails.svg"  class="BigIcon" alt="HomeDetails"> Home Details </img>
+                        <img src="/images/icon/homeDetails.svg"  class="BigIcon" alt="HomeDetails"> Home Details </img>
                     </h4>
                 </div>
                 
@@ -318,18 +319,19 @@
          <br><hr><br>
         <!-- /horizontal line  -->    
     
-        <form action="" method="post" class="Loan">
+
+        <form  action="/homelist/predictOpentCredit" method="POST" class="Loan">
             <h3 style="text-align: center;">Lets'us Help you calculator !!!  </h3> <br><br>
 
             <div class="row" id="predict">
 
                     
                         <!-- col1 -->
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                            <label for="CurrentLoanAmount">Current Loan amount</label>
+                            <label for="CurrentLoan">Current Loan amount</label>
                             <input type="number" min="0"
-                                class="form-control" name="CurrentLoanAmount" id="CurrentLoanAmount" placeholder="">
+                                class="form-control" name="CurrentLoan" id="CurrentLoan" placeholder="">
                                                 
                             </div>
                             <div class="form-group">
@@ -339,66 +341,69 @@
                                                 
                             </div>
                             <div class="form-group">
-                            <label for="AnnualIncome">Annual Income</label>
+                            <label for="Income">Annual Income</label>
                             <input type="number" min="0"
-                                class="form-control" name="AnnualIncome" id="AnnualIncome" placeholder="">
+                                class="form-control" name="Income" id="Income" placeholder="">
                                                 
                             </div>
-
+                            <div class="form-group">
+                                <label for="Years">Years in current job</label>
+                                <input type="number" min="0"
+                                class="form-control" name="Years" id="Years" placeholder="">
+                                                    
+                            </div>
+                            <div class="form-group">
+                                <label for="Debt">Monthly Debt</label>
+                                <input type="number" min="0"
+                                class="form-control" name="Debt" id="Debt"  placeholder="">
+                                                
+                            </div>
 
                         </div>     
                         <!-- /col1 -->
                         
                         <!-- col2 -->
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="Yearsincurrentjob">Years in current job</label>
-                                <input type="number" min="0"
-                                class="form-control" name="Yearsincurrentjob" id="Yearsincurrentjob" placeholder="">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="MonthlyDebt">MonthlyDebt</label>
-                                <input type="number" min="0"
-                                class="form-control" name="MonthlyDebt" id="MonthlyDebt"  placeholder="">
-                                                
-                            </div>
+                        <div class="col-lg-6">
+                            
                             <div class="form-group">
                                 <label for="YearsofCreditHistory">Years of Credit History</label>
                                 <input type="number" min="0"
                                 class="form-control" name="YearsofCreditHistory" id="YearsofCreditHistory" placeholder="">
                                                     
                             </div>
-                        </div>      
-                        <!-- /col2 -->
-
-                        <!-- col3 -->
-                        <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="NumberofOpenAccounts">Number of Open Accounts</label>
+                                <label for="OpenAccounts">Number of Open Accounts</label>
                                 <input type="number" min="0"
-                                class="form-control" name="Numberofopenaccounts" id="Numberofopenaccounts" placeholder="">
+                                class="form-control" name="OpenAccounts" id="OpenAccounts" placeholder="">
                                                     
                             </div>
                             <div class="form-group">
-                                <label for="Numberofcreditproblems">Number of Credit Problems</label>
+                                <label for="CreditProblems">Number of Credit Problems</label>
                                 <input type="number" min="0"
-                                class="form-control" name="Numberofcreditproblems" id="Numberofcreditproblems"  placeholder="">
+                                class="form-control" name="CreditProblems" id="CreditProblems"  placeholder="">
                                                 
                             </div>
                             <div class="form-group">
-                                <label for="Currentcreditbalance">Current Credit Balance</label>
+                                <label for="CreditBalance">Current Credit Balance</label>
                                 <input type="number" min="0"
-                                class="form-control" name="Currentcreditbalance" id="Currentcreditbalance" placeholder="">
+                                class="form-control" name="CreditBalance" id="CreditBalance" placeholder="">
                                                     
                             </div>
-                        </div>   
-                        <!-- /col3 -->
+                            <div class="form-group">
+                                <label for="Delinquent">Months since last delinquent  </label>
+                                <input type="number" min="0"
+                                class="form-control" name="Delinquent" id="Delinquent" placeholder="">
+                                                    
+                            </div>
+
+                        </div>      
+                        <!-- /col2 -->
+              
                     
                 
             </div>
             <div class="Result">
-                    <h4>Your Loan you can get : <span style="color: red;"> 12312321 $</span>    </h4>
+                    <h4>Your Loan you can get : <span id="predictMaxOpenCredit" style="color: red;"> 697016 </span> $   </h4>
                     <button type="submit" value="Submit"  type="button" class="btn btn-warning">Calculator</button>
             </div>   
 
@@ -415,7 +420,66 @@
 
 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+   <script>
+        $('form.Loan').on('submit',function(event){
+                     
+            var that = $(this), //refer to form
+                 url = that.attr('action'), //* cai nay bug ne 
+                 method= that.attr('method'),
+                 data={};
+
+            that.find('[name]').each(function( index, value){
+                let that = $(this),
+                    name = that.attr('name');
+                
+                value = that.val();
+                data[name]=value;
+            })
+
+           
+                   
+            axios({
+                method: method,
+                url: url,
+                data: data
+            }).then(function (response) {
+                let weights = response.data.model.weights;
+                let income = response.data.income;
+                const averageArr = response.data.average; //last col is outcomevariabel, so itnst neccesary
+                let outcome=0;
+                var i=0;        
+                
+                console.log('average',averageArr)
+                for ( i ; i < income.length ;++i ){
+                  
+                    if ( income[i]===""){
+                                       
+                        outcome+= averageArr[i]*weights[i];
+                    }else{
+                        income[i]=parseFloat(income[i]);
+                        outcome+= income[i]*weights[i];
+                    }
+
+                }
+                outcome+=weights[i];
+
+                console.log( "Model linear ",response.data.model);
+                // outcome.toFixed(3);
+               
+                $('#predictMaxOpenCredit').html(parseInt(outcome));
+
+                // console.log( 'dau vao sau khi phan tich', income);
+
+            }).catch(error=>console.log(error) );
+
+            
+            return false; // prevent form submit event.preventDefault();  
+        });
+
+   </script>
+
 </body>
 </html>

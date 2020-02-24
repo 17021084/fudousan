@@ -1,0 +1,31 @@
+.Table{
+    padding: 50px 10%;
+}
+
+.form{
+    padding: 3%;
+    background-color: #ededed;
+}
+
+.WarpTable{
+    padding-left:25%;
+}
+
+
+.tbl tHead tr{
+    background-color: #6EB1E1;
+  
+   
+}
+
+.RightCol{
+    /* background-color: #6EB1E1; */
+    border-radius: 0 50px 50px 0px;
+}
+
+.LeftCol{
+    /* background-color: #6EB1E1; */
+    border-radius: 50px 0px 0px 50px;
+
+   
+}

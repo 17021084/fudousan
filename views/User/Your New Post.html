@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    
+    <title>Your News</title>
+    
+    
+    <link rel="stylesheet" href="../../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../../public/stylesheets/User/Table.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+
+
+
+</head>
+<body>
+  
+giờ
+vì chí
+Brief 
+Title 
+image 
+content
+
+
+   <div class="Table">
+        <!-- title -->
+        <h3 style="text-align:center"> Your News Post </h3>
+         <hr> <br>
+        <!-- /title -->
+        <div class="WarpTable">
+            <table class="table table-hover table-inverse table-responsive tbl">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th class="LeftCol">stt</th>
+                        <th>Home Name</th>
+                        <th>Address</th>                    
+                        <th>Time</th>
+                        <th>Status</th>                 
+                        <th class="RightCol">Button</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row" class="LeftCol" >1</td>
+                            <td>VIncon Long bien riversite</td>
+                            <td>Thu Thien THudau 1</td>
+                          
+                            <td> 2010</td>
+                            
+                            <td>watting </td>
+                            <td class="RightCol"> <button type="button" class="btn btn-danger">delete</button> </td>
+                            
+                        </tr>
+                        
+                    </tbody>
+            </table>
+    
+
+        </div>
+       
+         <!-- title -->
+         <h3 style="text-align:center"> Compose New</h3>
+         <hr> <br>
+        <!-- /title -->
+        
+        <form action="">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                      <label for="Title">Title</label>
+                      <input required type="text" class="form-control" name="Title" id="Title" aria-describedby="Title" placeholder="">
+                      <small id="Title" class="form-text text-muted">Help text</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="Location">Location</label>
+                      <input required type="text" class="form-control" name="Location" id="Location" aria-describedby="Location" placeholder="HoanKiem-HaNoi">
+                      <small id="Location" class="form-text text-muted">Help text</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="Image">Image </label>
+                      <input required type="text" class="form-control" name="Image" id="Image" 
+                      aria-describedby="Image" placeholder="link">
+                    
+                      <img id="PreviewImage" style=" height : 200px  ;border-radius: 5%;" 
+                      src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" 
+                      alt="Responsive image">                  
+                    
+
+
+                    </div>
+                    
+                </div>
+                <div class="col-xl-6">
+                        <div class="form-group">
+                          <label for="Brief">Brief</label>
+                               <textarea required class="form-control" name="Brief" id="Brief" rows="10"></textarea>
+                        </div>
+                </div>
+
+            </div>
+             <!-- title -->
+             <h3 style="text-align:center">  Composer </h3>
+             <hr> <br>
+            <!-- /title -->
+            
+            
+             
+          <textarea required class="form-control" name="content"  id="editor" rows="">
+            
+          </textarea>
+
+        </form>
+       
+       
+   </div>
+   
+  
+
+
+    <!-- include jquery and bootstap -->
+    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
+    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+    <script type="text/javascript" >
+       
+       $(`#Image`).keyup(function(){
+             let link =$(`#Image`).val();
+          $(`#PreviewImage`).attr('src',link); 
+
+         }); 
+
+
+     ClassicEditor
+     .create( document.querySelector( '#editor' ) )
+     .then( editor => {
+            console.log( editor );
+     } ).catch( error => {
+          console.error( error );
+    } );
+           
+                                
+                                
+         
+      
+
+    </script>
+
+
+</body>
+</html>
