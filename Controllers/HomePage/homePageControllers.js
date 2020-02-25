@@ -1,10 +1,15 @@
 const builModelFrom = require('../../Regression/Regression');
-const dotenv = require('dotenv');
-dotenv.config(); // to access file .env
+const { getNews ,getNewsById ,updateNewsById }= require('../../database/newsModel');
+
+
+
+
 
 
 // const path = 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Credit_Data.csv';
 const path = process.env.CREDIT_DATA_PATH;
+
+
 
 
 function index( req,res ){
@@ -20,12 +25,35 @@ function homeDetails( req,res ){
 
 }
 
-function newsDetails( req,res ){
-    res.send('hello')
+async function newsDetails( req,res ){
+    try {
+		let news = await updateNewsById(req.params.id);
+		res.json(news);
+	} catch (error) {
+		console.log(error);
+	}
 
 }
-function newsList( req,res ){
-    res.send('hello')
+// async function newsDetails( req,res ){
+//     try {
+// 		let news = await getNewsById(req.params.id);
+// 		res.json(news);
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+
+// }
+
+
+
+async  function newsList( req,res ){
+    try {
+		let news = await getNews();
+		
+		res.json(news);
+	} catch (error) {
+		console.log(error);
+	}
 
 }
 
@@ -39,8 +67,8 @@ async function predict( req,res ){
         // let { data } = req.body;
         let  data  = req.body;
 
-        console.log('Fuck this shit', req.body)
-        console.log("data", data)
+        // console.log('Fuck this shit', req.body)
+        // console.log("data", data)
         
         let income= [ 
             data.CurrentLoan	,data.CreditScore 	,data.Income
@@ -96,6 +124,7 @@ function booking( req,res ){
     res.send('hello')
 
 }
+
 
 
 module.exports={
