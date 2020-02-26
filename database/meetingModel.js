@@ -1,17 +1,19 @@
 const pool = require('./pool');
 
 const getMeetings = () => {
-    return new Promise((resolve,reject) => {
-        pool.query( "select  h.HomeId , h.HomeName , m.* from meeting m inner join home h on m.HomeId = h.HomeId ", (err, result)=>{
-            if(err) {
-                 reject(err);
-            }else{
-
-                 resolve(result);
-            }
-        });
-    })
-}
+	return new Promise((resolve, reject) => {
+		pool.query(
+			'select  h.HomeId , h.HomeName , m.* from meeting m inner join home h on m.HomeId = h.HomeId ',
+			(err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+			}
+		);
+	});
+};
 
 // const getMeetingsById = (id) => {
 //     return new Promise((resolve,reject) => {
@@ -54,13 +56,13 @@ const getMeetings = () => {
 
 const insertMeetings = (arrayBooking, per = 1) => {
 	return new Promise((resolve, reject) => {
-        let sql = `insert into meeting 
-                (HomeId ,Permission,	MeetingDate,duaration,	EmailBooker,	Message)
+		let sql = `insert into meeting 
+                (HomeId ,Permission, MeetingDate, duaration, EmailBooker, Message)
                  Values
                  (? ,0,	?,?,?,?)
                    `;
-                //    [ HomeId ,MeetingDate,EmailBooker,duaration,Message ]
-		pool.query(sql,arrayBooking , (err, result) => {
+		//    [ HomeId ,MeetingDate,EmailBooker,duaration,Message ]
+		pool.query(sql, arrayBooking, (err, result) => {
 			if (err) {
 				reject(err);
 			} else {
@@ -74,6 +76,6 @@ module.exports = {
 	getMeetings: getMeetings,
 	// getNewsById: getNewsById,
 	// updateNewsById: updateNewsById,
-    // deleteNewsById: deleteNewsById,
-    insertMeetings:insertMeetings
+	// deleteNewsById: deleteNewsById,
+	insertMeetings: insertMeetings
 };

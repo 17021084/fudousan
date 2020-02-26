@@ -120,9 +120,7 @@ async function predict(req, res) {
 	}
 }
 
-function find(req, res) {
-	res.send('hello');
-}
+
 
 // post  /homelist/booking  ->ok
 async function booking(req, res) {
@@ -163,6 +161,11 @@ async function booking(req, res) {
 		res.status(400).send(error);
 	}
 }
+
+function find(req, res) {
+	res.send('hello');
+}
+
 
 module.exports = {
 	index: index,

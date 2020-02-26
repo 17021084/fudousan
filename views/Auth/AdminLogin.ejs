@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title>Admin Login</title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/authen.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/authen.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
 
 
 
 </head>
 <body>
-  
-
+  <!-- header -->
+  <%- include ('../Header.ejs') %> 
 
 
    <div class="form">
-        <form action="">
+        <form action="" id="login">
             <h4 style="text-align: center;">Admin Login </h4>
             <div class="inputfield">
                 <div class="form-group">
@@ -48,12 +48,14 @@
 
    </div>
    
-  
+
+   <!-- footer -->
+  <%- include ('../Footer.ejs') %> 
 
 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 
 
 

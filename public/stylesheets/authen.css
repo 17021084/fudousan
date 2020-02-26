@@ -1,6 +1,5 @@
 .form{
-  
-    padding: 10% 10%;
+    padding: 3% 10%;
 }
 
 #register{
@@ -11,3 +10,14 @@
     padding: 2%;
     border-radius: 10%;
 }
+
+#login{
+    width: 700px;
+    height: 400px;
+    margin: auto;
+    background-color: #ededed;
+    padding: 2%;
+    border-radius: 10%;
+
+}
+

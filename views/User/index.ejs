@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title>Your Home</title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/User/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/profile.css">
+    <link rel="stylesheet" href="/stylesheets/User/Table.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
  
 
 
@@ -19,8 +20,8 @@
 </head>
 <body>
   
-
-
+    <!-- header -->
+    <%- include('../Header.ejs')  %> 
 
    <div class="Profile">
         <!-- title -->
@@ -28,10 +29,10 @@
          <hr> <br>
         <!-- /title -->
         
-        <table class="table table-hover table-inverse table-responsive tbl">
+        <table class="table table-hover table-inverse  tbl">
             <thead class="thead-inverse">
                 <tr>
-                    <th>stt</th>
+                    <th class="LeftCol">stt</th>
                     <th>Home Name</th>
                     <th>Address</th>
                     <th>Area</th>
@@ -39,19 +40,20 @@
                     <th>Purpose</th>
                     <th>Prices</th>
                     <th>Status</th>
-                    <th>Button</th>
+                    <th class="RightCol">Button</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row">1</td>
+                        <td scope="row" class="LeftCol">1</td>
                         <td>VIncon Long bien riversite</td>
                         <td>Thu Thien THudau 1</td>
                         <td> 3000</td>
                         <td> 2010</td>
                         <td>For Rent</td>
+                        <td>21312</td>
                         <td>watting </td>
-                        <td> <button type="button" class="btn btn-danger">delete</button> </td>
+                        <td class="RightCol"> <button type="button" class="btn btn-danger">Modify</button> </td>
                         
                     </tr>
                     
@@ -59,14 +61,14 @@
         </table>
 
          <!-- title -->
-         <h3 style="text-align:center"> Incoming request </h3>
+         <h3 style="text-align:center"> Incoming Meeting request </h3>
          <hr> <br>
         <!-- /title -->
         
-        <table class="table table-hover table-inverse table-responsive tbl">
+        <table class="table table-hover table-inverse  tbl">
             <thead class="thead-inverse">
                 <tr>
-                    <th>stt</th>
+                    <th class="LeftCol">stt</th>
                     <th>Home Name</th>
                     <th>Address</th>
                     <th>Mail</th>
@@ -75,21 +77,21 @@
                     <th>Phone</th>
                     <th>Message</th>
                     <th>Sendmail</th>
-                    <th>Delete</th>
+                    <th class="RightCol" >Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row">1</td>
+                        <td class="LeftCol" scope="row">1</td>
                         <td>VIncon Long bien riversite</td>
                         <td>Thu Thien THudau 1</td>
                         <td> 3000</td>
                         <td> 2010</td>
-                        <td>For Rent</td>
+                        <td >For Rent</td>
                         <td>watting </td>
                         <td>watting </td>
-                        <td> <button type="button" class="btn btn-primary">delete</button> </td>
-                        <td> <button type="button" class="btn btn-danger">delete</button> </td>
+                        <td> <button type="button" class="btn btn-primary">SendMail</button> </td>
+                        <td class="RightCol"> <button type="button" class="btn btn-danger">Delete</button> </td>
                         
                     </tr>
                     
@@ -99,13 +101,15 @@
    </div>
    
   
+   <!-- Footer -->
+   <div >
+    <%- include('../Footer.ejs')  %> 
 
+   </div>
+  
 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
-
-
-
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

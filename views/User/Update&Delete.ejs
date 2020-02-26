@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title> Update n Delete Home</title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/User/Post_Update_DeleteHome.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/Post_Update_DeleteHome.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
    
 
 
@@ -19,8 +19,8 @@
 </head>
 <body>
   
-
-
+    <!-- header -->
+    <%- include('../Header.ejs')%>
 
    <div class="HomeForm">
         <!-- title -->
@@ -381,7 +381,7 @@
                                 class="form-control" name="Price" id="Price" aria-describedby="Price" placeholder="">
                             <small id="Price" class="form-text text-muted"> you can refer our suggestion</small>
                             <br>
-                            <button type="submit" class="btn btn-primary"> Post</button>    
+                            <button type="submit" class="btn btn-primary"> Update</button>    
                             <button type="submit" class="btn btn-danger"> Delete</button>    
                         </div>
   
@@ -400,10 +400,10 @@
    
   
 
-
+    <%- include('../Footer.ejs')  %> 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 
 
 

@@ -6,6 +6,7 @@ var dotenv = require('dotenv');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adminsRouter = require('./routes/admins');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.set('view engine', 'ejs')
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admins', adminsRouter);
 
 
 module.exports = app;
