@@ -452,11 +452,9 @@
                 let outcome=0;
                 var i=0;        
                 
-                console.log('average',averageArr)
-                for ( i ; i < income.length ;++i ){
-                  
-                    if ( income[i]===""){
-                                       
+                // console.log('average',averageArr)
+                for ( i ; i < income.length ;++i ){   
+                    if ( income[i]===""){                                 
                         outcome+= averageArr[i]*weights[i];
                     }else{
                         income[i]=parseFloat(income[i]);
@@ -465,17 +463,13 @@
 
                 }
                 outcome+=weights[i];
-
                 console.log( "Model linear ",response.data.model);
-                // outcome.toFixed(3);
-               
+                // outcome.toFixed(3);               
                 $('#predictMaxOpenCredit').html(parseInt(outcome));
-
                 // console.log( 'dau vao sau khi phan tich', income);
 
             }).catch(error=>console.log(error) );
-
-            
+      
             return false; // prevent form submit event.preventDefault();  
         });
 

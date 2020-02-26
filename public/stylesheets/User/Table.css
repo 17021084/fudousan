@@ -8,14 +8,18 @@
 }
 
 .WarpTable{
-    padding-left:25%;
+    /* padding-left:25%; */
 }
 
+.tbl {
+    margin: auto;
+    width: 800px;
+}
 
 .tbl tHead tr{
     background-color: #6EB1E1;
   
-   
+ 
 }
 
 .RightCol{
