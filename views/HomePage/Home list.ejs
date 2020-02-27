@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title>List Home</title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/HomePage/HomeList.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/HomePage/HomeList.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
    
 
 
@@ -19,35 +19,7 @@
 </head>
 <body>
     <!-- header -->
-   <div class="header" >
-       <header>
-            <ul >
-                <li >
-                    <a class="" href="#">
-                        <img class="LogoIcon" src="../../public/images/icon/040-home.svg" alt="icon" > 
-                    </a>
-                </li>
-                <li  >
-                    <a  href="#">Home</a>   
-                </li>
-               
-                <li style="margin-right:1px  ;" >
-                    <a  href="#">List Home </a>
-                </li>
-                <li >
-                    <a  href="#">News </a>
-                </li>
-                
-                <li  class="right">
-                    <a  href="#"> <button type="button" class="btn btn-warning btn-sm">Login</button> </a>
-                </li>
-                
-            </ul>
-
-            
-
-       </header>
-   </div>
+   <%- include('../Header.ejs') %>
 
 
    
@@ -259,102 +231,74 @@
             <h1>   List </h1>
                 <hr>
         </div>
-
-        <div  class="information">
-            <div class="row">
-                
-                <div class="col-xl-5">
-                    <div class="MainHomeImage">
-                        <a href="http://"> 
-                            <img style=" height : 200px ; width:fit-content ;border-radius: 5%;" src="https://picsum.photos/id/100/500/500" class= "img-thumbnail" alt="Responsive image">
-                        </a>                 
-                    </div>                                      
-                </div>
-
-                <div class="col-xl-7">
-                    
-                    <h3 style="text-align: center;" > Title of news blablalbalbalbla</h3>
-                    
-                        <div class="row">
-                            <div class="col-xl-6 HomeLocation">
-                    
-                                <img class="BigIcon" src="../../public/images/icon/location.svg" alt="Location"> <b style="font-size: smaller;"> KimJungkun-Busan </b></img>
-                            </div>
-                            
-                            <div class="col-xl-6 HomeOwner" style="margin:8px 0px 8px 0px ;" >                
-                                <img class="BigIcon" src="../../public/images/icon/owner.svg" alt="HomeOwner"> <i style="font-size: smaller;" > Do Quang Trung </i></img>
-                            </div>
-                           
-                            
-                           
-                            <div class="col-xl-6 HomeLocation"  style="margin:8px 0px 8px 0px ;" >
-                                <img class="BigIcon" src="../../public/images/icon/area.svg" alt="area"> <b>2000</b></img>
-                                
-                            </div>
-                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
-                                <img class="BigIcon" src="../../public/images/icon/calendar.svg" alt="calendar"> <b>2008</b></img>
-                                
-                            </div>
-                         
-                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
-                                Purpose <br>
-                                <span style="color: red;">for Sale</span>
-                            </div>
-                            <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;"> 
-                                <img class="BigIcon" src="../../public/images/icon/cost.svg" alt="cost"> <b>20000000</b> $</img>
-                               
-                            </div>
-                            <div style="margin:auto" >
-                                <a href="http://"><button type="button"  class="btn btn-warning">View Details</button></a>
-
-                            </div>
-                        </div>
-                </div>
-
-            </div>
+        <!-- for tam 3 cai -->
+        <% for( let index = 0; index < 3; index++ ) { %>
+        
        
-        </div>
+              <div style="margin-bottom:  30px;" class="information">
+                  <div class="row">
+                      
+                      <div class="col-xl-5">
+                          <div class="MainHomeImage">
+                              <a href="/homelist/<%= home[index].HomeId%>"> 
+                                  <img style=" height : 200px ; width:fit-content ;border-radius: 5%;" src="<%= home[index].Image1%>" class= "img-thumbnail" alt="Responsive image">
+                              </a>                 
+                          </div>                                      
+                      </div>
+
+                      <div class="col-xl-7">
+                          
+                          <h3 style="text-align: center;" > <%= home[index].HomeName%></h3>
+                          
+                              <div class="row">
+                                  <div class="col-xl-6 HomeLocation">
+                          
+                                      <img class="BigIcon" src="/images/icon/location.svg" alt="Location"> <b style="font-size: smaller;"> <%= home[index].Address%></b></img>
+                                  </div>
+                                  
+                                  <div class="col-xl-6 HomeOwner" style="margin:8px 0px 8px 0px ;" >                
+                                      <img class="BigIcon" src="/images/icon/owner.svg" alt="HomeOwner"> <i style="font-size: smaller;" > <%= home[index].FullName%> </i></img>
+                                  </div>
+                                
+                                  
+                                
+                                  <div class="col-xl-6 HomeLocation"  style="margin:8px 0px 8px 0px ;" >
+                                      <img class="BigIcon" src="/images/icon/area.svg" alt="area"> <b><%= home[index].Area%></b></img>
+                                      
+                                  </div>
+                                  <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
+                                      <img class="BigIcon" src="/images/icon/calendar.svg" alt="calendar"> <b><%= home[index].YearBuilt%></b></img>
+                                      
+                                  </div>
+                              
+                                  <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;">
+                                      Purpose <br>
+                                      <span style="color: red;"><%= home[index].Purpose%></span>
+                                  </div>
+                                  <div class="col-xl-6 HomeLocation" style="margin:8px 0px 8px 0px ;"> 
+                                      <img class="BigIcon" src="/images/icon/cost.svg" alt="cost"> <b><%= home[index].Price%></b> $</img>
+                                    
+                                  </div>
+                                  <div style="margin:auto" >
+                                      <a href="/HomeList/<%= home[index].HomeId%>"><button type="button"  class="btn btn-warning">View Details</button></a>
+
+                                  </div>
+                              </div>
+                      </div>
+
+                  </div>
+              </div>
+         <% } %>        
 
    </div>
    
 
 
    <!-- footer -->
-   <div class ="footer">
-        <footer>
-            
-                <div class="row">
-                    <div class="col-lg-6">
-                       <ul>
-                           <li><a style=" font-size: medium;" href="http://"> <img src="../../public/images/icon/google-drive.svg" class="BigIcon" alt="Drive icon"> Document</a></li>
-                           <li>
-                               <a style=" font-size: medium;" href="https://github.com/17021084/fudousan"> <img src="../../public/images/icon/github.svg" class="BigIcon" alt="github"> </a>
-                               <a style=" font-size: medium;" href="https://www.facebook.com/profile.php?id=100009755466855"> <img src="../../public/images/icon/facebook.svg" class="BigIcon" alt="facebook"> </a>
-                            
-                            </li>
-                           
-                       </ul>
-                        
-                    </div>
-                    <div class="col-lg-6">
-                        <ul>
-                            <li><img src="../../public/images/icon/gmail.svg" class="BigIcon" alt="Drive icon"> dotrunghg1999@gmail.com</li>
-                            <li>
-                                <img src="../../public/images/icon/copyright-guidelines.svg" class="BigIcon" alt="copyright"> Do Quang Trung-K62j-UET-VNU
-                                     
-                             </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-
-
-        </footer>
-   </div>
-
+   <%- include('../Footer.ejs')%>
 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

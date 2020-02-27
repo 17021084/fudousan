@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>News List </title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/HomePage/NewList.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+   
+
+
+
+</head>
+<body>
+    <!-- header -->
+   <%- include('../Header.ejs')%>
+
+
+   
+   <div class="NewList">
+        <div class=NewPostTitle>
+            <h1> News  Post</h1>
+                <hr>
+        </div>
+        <% for( let index = 0; index < news.length; index++ ) { %>
+        
+      
+        <div  class="information">
+            
+            <h3 style="text-align: center;" > <%= news[index].Title%>  </h3>
+            <div class="row">
+
+                <div class="col-xl-5">
+                    <div class="MainNewsImage">
+                        <a href="http://"> 
+                             <img style=" height : 200px ; width:fit-content ;border-radius: 5%;" src="https://picsum.photos/id/100/500/500" class= "img-thumbnail" alt="Responsive image">
+                         </a>                 
+                     </div>    
+
+
+                </div>
+                <div class="col-xl-7">
+                   
+                        <div class="Fullbrief">
+                            <%= news[index].Brief%>  
+        
+                         </div>
+                        <div class="row">
+                            <div class="col-xl-4 HomeLocation">
+                    
+                                <img class="BigIcon" src="/images/icon/location.svg" alt="Location"> <b style="font-size: smaller;"> <%= news[index].Place%>   </b></img>
+                            </div>
+                            
+                            <div class="col-xl-4 HomeOwner" style="margin:8px 0px 8px 0px ;" >                
+                                <img class="BigIcon" src="/images/icon/owner.svg" alt="HomeOwner"> <i style="font-size: smaller;" > <%= news[index].FullName%>   </i></img>
+                            </div>
+            
+                            <div class="col-xl-4 Time" style="margin:8px 0px 8px 0px ;" >                
+                                <img class="BigIcon" src="/images/icon/015-stopwatch.svg" alt="Time"> <i style="font-size: smaller;"> 
+                                    <%=  news[index].CreatedDate.toString().slice(0,news[index].CreatedDate.toString().length-35+1) %>  
+                                    
+                                 </i></img>
+                            </div>
+                        </div>
+                        <a style="padding: 0%;" href="/news/<%=news[index].NewsId%>"><button type="button" class="btn btn-warning"> Click Here To See More ...</button></a>
+                </div>
+
+            </div>
+       
+
+
+        </div>
+            <br> <br> <br>
+        <% } %>
+
+   </div>
+   
+
+
+   <!-- footer -->
+   <%- include('../Footer.ejs') %> 
+
+
+    <!-- include jquery and bootstap -->
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

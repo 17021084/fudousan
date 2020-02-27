@@ -3,13 +3,23 @@ var router = express.Router();
 var user = require('../Controllers/User/userPageControllers');
 
 
-//auth
-router.get('/login', user.getLogin );
-router.get('/register' ,user.getRegister );
-router.post('/login' ,user.postLogin);
-router.post('/register', user.postRegister);
+
+//test api
+router.get('/test', user.testGet );
+router.post('/test', user.testPost );
+router.put('/test', user.testPut );
 
 
+router.get('/rd', (req,res)=>{
+    res.redirect( '/users/');
+} );
+
+
+
+
+
+
+//profile
 router.get('/profile',user.getProfile);
 router.put('/profile/updateInfor',user.updateInfor);
 router.put('/profile/password',user.updatePassWord);
@@ -19,7 +29,6 @@ router.put('/profile/password',user.updatePassWord);
 // home and meeting = index
 router.get('/',user.index);
 
-router.get('/modifyhome/:id',user.getModifyHome);
 router.get('/newhome',user.getNewHome);
 
 router.post('/newhome');
@@ -27,10 +36,11 @@ router.post('/newhome/predict');
 
 
 //Modify Homes'information
-router.delete('/home');
-router.put('/home');
-router.delete('/meeting');
+router.get('/home/:id',user.getModifyHome);
+router.delete('/home/:id');
+router.put('/home/:id');
 
+router.delete('/meeting');
 
 
 //news

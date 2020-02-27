@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>News Details </title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/HomePage/NewDetails.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+   
+
+
+
+</head>
+<body>
+    <!-- header -->
+   <%- include('../Header.ejs')%>
+
+
+   
+   <div class="NewDetails">
+
+        <div  class="information">
+            <h1 style="text-align: center;" >  <%=newsById.Title %> </h1>
+            <div class="row">
+
+                <div class="col-xl-5">
+                    <div class="MainNewsImage">
+                        <a href="<%=newsById.Image %>"> 
+                             <img style=" height : 300px ; width:fit-content ;border-radius: 5%;" src="<%=newsById.Image %>" class= "img-thumbnail" alt="Responsive image">
+                         </a>                 
+                     </div>    
+
+
+                </div>
+                <div class="col-xl-7">
+                   
+                        <div class="Fullbrief">
+                            <%=newsById.Brief %>
+                         </div>
+                        <div class="row">
+                            <div class="col-xl-4 HomeLocation">
+                    
+                                <img class="BigIcon" src="/images/icon/location.svg" alt="Location"> <b style="font-size: smaller;"> <%=newsById.Place %> </b></img>
+                            </div>
+                            
+                            <div class="col-xl-4 HomeOwner" style="margin:8px 0px 8px 0px ;" >                
+                                <img class="BigIcon" src="/images/icon/owner.svg" alt="HomeOwner"> <i style="font-size: smaller;" > <%= newsById.FullName%> </i></img>
+                            </div>
+            
+                            <div class="col-xl-4 Time" style="margin:8px 0px 8px 0px ;" >                
+                                <img class="BigIcon" src="/images/icon/015-stopwatch.svg" alt="Time"> 
+                                <i style="font-size: smaller;"> 
+                                    <%=newsById.CreatedDate.toString().slice(0,newsById.CreatedDate.toString().length-35+1)  %>   
+                                   
+                                </i></img>
+                           
+                            </div>
+                        </div>
+
+                </div>
+
+
+            </div>
+            <br> <br>
+            <!-- content -->
+            <div   class="content" >
+                <%=newsById.Content %>
+            </div>
+
+        </div>
+
+
+        <div class=NewPostTitle>
+            <h1> News  Post</h1>
+                <hr>
+        </div>
+
+        <div class="row NewsPostRow">
+         
+           <% for( let index = 0; index < 3; index++ ) { %> 
+           
+                <% let i = Math.floor(Math.random() * news.length );   %> 
+                             
+                
+
+            <!-- News Block -->
+            <div class="col-sm-3 NewsBlock">
+               
+                <div class="NewsImage">
+                   <a href="<%= news[i].Image %>"> 
+                        <img style=" height : 200px ; width:fit-content ;border-radius: 5%;" src="<%= news[i].Image %>" class="img-thumbnail" alt="Responsive image">
+                    </a>                 
+                </div>    
+
+                <div class="HomeName">
+                    <a href="<%=news[i].Image%>"><h4 style="text-align: center;">  <%=  news[i].Title %> </h4></a>
+                </div>
+                <div class="HomeLocation">
+                     
+                    <img class="BigIcon" src="/images/icon/location.svg" alt="Location"> <b>  <%=  news[i].Place %>  </b></img>
+                </div>
+                
+                <div class="HomeOwner" style="margin:8px 0px 8px 0px ;" >                
+                    <img class="BigIcon" src="/images/icon/owner.svg" alt="HomeOwner"> <i> <%=  news[i].FullName %>  </i></img>
+                </div>
+
+                <div class="Time" style="margin:8px 0px 8px 0px ;" >                
+                    <img class="BigIcon" src="/images/icon/015-stopwatch.svg" alt="Time"> <i> <%=  news[i].CreatedDate.toString().slice(0,news[i].CreatedDate.toString().length-35+1) %> </i></img>
+                </div>
+                              
+                 <div class="brief">
+                    <%=  news[i].Brief %>
+                 </div>
+                 <a href="/news/<%=news[i].NewsId%>">See more <br></a>   
+
+            </div>
+            
+          
+            <% } %>
+            <!-- /News Block -->
+
+        </div>
+
+
+   </div>
+   
+
+
+   <!-- footer -->
+   <%- include('../Footer.ejs')%>
+
+
+    <!-- include jquery and bootstap -->
+    <script src="javascripts/jquery/dist/jquery.js"></script>
+    <script src="javascripts/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

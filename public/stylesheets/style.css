@@ -20,7 +20,7 @@ header{
   background-color: #C693DE;
   color: black;
   padding-left: 10%;
-  height: 50px;
+  height: 55px;
 }
 
 header ul{
@@ -57,6 +57,16 @@ footer .row .col-lg-6 ul{
   padding-left: 10%;
 }
 
+header .dropdown{
+    margin-bottom: 10px;
+
+}
 
 
+.alert{
+  margin: auto;
+  width: 500px;
+  height: 50px;
+  text-align: center;
 
+}

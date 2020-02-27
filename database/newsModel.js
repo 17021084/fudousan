@@ -30,7 +30,7 @@ const getNews = () => {
 
 const getNewsById = (id) => {
     return new Promise((resolve,reject) => {
-        pool.query( "select  u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where u.NewsId = ?  ", [id],(err, result)=>{
+        pool.query( "select  u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where n.NewsId = ?  ", [id],(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -41,9 +41,9 @@ const getNewsById = (id) => {
     })
 }
 
-const updateNewsById = (id ,per = 1) => {
+const updateNewsById = (id ,per = 0) => {
     return new Promise((resolve,reject) => {
-        pool.query( `update news set Permission={per}  where NewsId = ?  `, [id],(err, result)=>{
+        pool.query( `update news set Permission=${per}  where NewsId = ?  `, [id],(err, result)=>{
             if(err) {
                  reject(err);
             }else{

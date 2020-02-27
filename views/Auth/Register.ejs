@@ -13,7 +13,7 @@
     <!-- bootstrap  -->
     <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 </head>
@@ -25,44 +25,57 @@
 
 
    <div class="form">
-        <form id="register" action="">
+        <form id="register"  action="/auth/register" method="post"  class="login"   >
             <h4 style="text-align: center;">Register </h4>
             <div class="inputfield">
                   <div class="form-group">
                     <label for="Email">Email</label>
                     <input type="text"
                       class="form-control" name="Email" id="Email" aria-describedby="helpId" placeholder="abc@gmail.com" required>
-                    <small id="Email" class="form-text text-muted">Help text</small>
+                   
                   </div>
                   <div class="form-group">
                     <label for="Password">Password</label>
                     <input type="password"
                       class="form-control" name="Password" id="Password" aria-describedby="helpId" required placeholder="Password">
-                    <small id="Password" class="form-text text-muted">Help text</small>
+                    
                   </div>
                   <div class="form-group">
-                    <label for="ConfirnPassword">Confirn Password</label>
+                    <label for="ConfirmPassword">Confirm Password</label>
                     <input type="password"
-                      class="form-control" name="ConfirnPassword" id="ConfirnPassword" aria-describedby="helpId" required placeholder="Password">
-                    <small id="ConfirnPassword" class="form-text text-muted">Help text</small>
+                      class="form-control" name="ConfirmPassword" id="ConfirmPassword" aria-describedby="helpId" required placeholder="Password">
+                    <small id="AlertConfirmPassword" class="form-text text-muted"></small>
                   </div>
 
                   <div class="form-group">
                     <label for="Phone">Phone</label>
                     <input type="text"
-                      class="form-control" name="Phone" id="Phone" aria-describedby="Phone" placeholder="14024845" required>
-                    <small id="Phone" class="form-text text-muted">Help text</small>
+                      class="form-control" name="Phone" id="Phone" aria-describedby="Phone" placeholder="03582257" required>
+               
                   </div>
+
+                  <div class="form-group">
+                    <label for="FullName">Full Name</label>
+                    <input type="text"
+                      class="form-control" name="FullName" id="FullName"  placeholder="Nguyen Van a" required>
+               
+                  </div>
+
+
                   <div class="form-group">
                     <label for="Dob">Date Of Birth</label>
                     <input type="text"
                       class="form-control" name="Dob" id="Dob" aria-describedby="Dob" placeholder="dd/mm/yy" required>
-                    <small id="Dob" class="form-text text-muted">Help text</small>
+          
                   </div>
                     
-
-
-                  <button  style="margin-left:40%;" type="button" class="btn btn-warning">Register </button>
+                  <div class="" id="alert">
+                    <!-- alert put here -->
+                  </div>
+                
+                  <button  style="margin-left:40%;" type="submit" class="btn btn-warning">Register </button>
+                  <br><br>
+                 <a  style="margin-left:40%;" name="" id="" class="btn btn-success" href="/auth/login" role="button">Get Back </a>
                   
             </div>
             
@@ -82,7 +95,72 @@
 
 
     <script type="text/javascript" >
+   $('form.login').on('submit', function (event) {
+    event.preventDefault(); 
+      // check password
+       let ConfirmPassword = $('#ConfirmPassword').val();
+       let Password = $('#Password').val();
+      if( ConfirmPassword !== Password){
+          $('#AlertConfirmPassword').html('<span style="color:red;" >Password does not match </span>');
+          return false;
+      }else{
+        $('#AlertConfirmPassword').html('');
+      }
+
+
+      var that = $(this), //refer to form
+        url = that.attr('action'), //* cai nay bug ne 
+        method = that.attr('method'),
+        data = {};
+
+      that.find('[name]').each(function (index, value) {
+        let that = $(this),
+          name = that.attr('name');
+
+        if(name !=='ConfirmPassword') {
+          value = that.val();
+
+          console.log(value);
+
+          data[name] = value;
+        }; 
        
+      })
+
+      console.log(data);
+
+      // <div class="alert alert-danger alert" role="alert" >
+      //             This is a danger alert—check it out!
+      //           </div>
+
+      axios({
+        method: method,
+        url: url,
+        data: data
+      }).then(function (response) {
+
+        let { alert ,success} = response.data;
+        // console.log(response.data.alert);          
+        if (alert) {
+          $('#alert').html(`  
+    <div class="alert alert-danger alert" role="alert" >
+            ${alert}
+    </div>`)
+   
+        
+        } else {
+          $('#alert').html(`  
+          <div class="alert alert-success" role="alert">
+  Register Success
+  
+</div>`)
+        }
+
+      }).catch(error => console.log(error));
+
+
+      return false; // prevent form submit event.preventDefault();  
+    });           
     
 
     </script>

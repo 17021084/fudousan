@@ -28,31 +28,31 @@
    <div class="HomeDetails">
         
         <!-- basic information -->
-        <h3 style="text-align: center;"> Linh Dam apartment</h3>
+        <h3 style="text-align: center;"> <%= home.HomeName %> </h3>
         <div class="row ">
             
             <div class="col-sm-4">
                 <div>
-                    <img src="/images/icon/location.svg" alt="Location" class="BigIcon" > Location </img>
+                    <img src="/images/icon/location.svg" alt="Location" class="BigIcon" >  <%= home.Address %> </img>
                 </div>
                 <div>
-                    <img src="/images/icon/owner.svg" alt="owner" class="BigIcon"> Owner </img>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div>
-                    <img src="/images/icon/calendar.svg" alt="calendar" class="BigIcon"> year built</img>
-                </div>
-                <div>
-                    <h6>Purpose <br>  <span style="color: red;"> For Rent</span> </h6>
+                    <img src="/images/icon/owner.svg" alt="owner" class="BigIcon">  <%= home.FullName %> </img>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div>
-                    <img src="/images/icon/area.svg" alt="area" class="BigIcon"> 200 </img>
+                    <img src="/images/icon/calendar.svg" alt="calendar" class="BigIcon">  <%= home.YearBuilt %></img>
                 </div>
                 <div>
-                    <img src="/images/icon/cost.svg" alt="cost" class="BigIcon"> 199902$ </img>
+                    <h6>Purpose <br>  <span style="color: red;">  <%= home.Purpose %></span> </h6>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div>
+                    <img src="/images/icon/area.svg" alt="area" class="BigIcon">  <%= home.Area %> </img>
+                </div>
+                <div>
+                    <img src="/images/icon/cost.svg" alt="cost" class="BigIcon">  <%= home.Price %>$ </img>
                 </div>
             </div>
 
@@ -69,17 +69,26 @@
          
          <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
             <div class="carousel-inner CarouselBg">
-              
+                
                 <div class="carousel-item active HomeImage">
-                <img src="https://picsum.photos/id/237/400/600" class="https://picsum.photos/id/244/100/100 " alt="image 1">
+                <img src="<%= home.Image1 %>" alt="image 1">
               </div>
 
               <div class="carousel-item HomeImage">
-                <img src="https://picsum.photos/id/230/400/600" class="https://picsum.photos/id/244/100/100" alt="image 2">
+                <img src="<%= home.Image2 %>"  alt="image 2">
               </div>
               
               <div class="carousel-item HomeImage">
-                <img src="https://picsum.photos/id/244/400/600" class="https://picsum.photos/id/244/400/600" alt="image 3">
+                <img src="<%= home.Image3 %>" alt="image 3">
+              </div>
+              <div class="carousel-item HomeImage">
+                <img src="<%= home.Image4 %>" alt="image 3">
+              </div>
+              <div class="carousel-item HomeImage">
+                <img src="<%= home.Image5 %>"  alt="image 3">
+              </div>
+              <div class="carousel-item HomeImage">
+                <img src="<%= home.Image6 %>" alt="image 3">
               </div>
 
             </div>
@@ -122,20 +131,20 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">HallWay</td>
-                                        <td> 123</td>
+                                        <td> <%= home.HallWay %></td>
                                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Heating</td>
-                                        <td> value</td>                     
+                                        <td>  <%= home.Heating %></td>                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Apartment type</td>
-                                        <td> value</td>                     
+                                        <td>  <%= home.ApartmentType %></td>                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Subway station</td>
-                                        <td> value </td>                     
+                                        <td>  <%= home.SubwayStation %> </td>                     
                                     </tr>
 
 
@@ -150,20 +159,20 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">Elementary</td>
-                                        <td> 1</td>
+                                        <td>  <%= home.Elementary %></td>
                                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Middle</td>
-                                        <td> value</td>                     
+                                        <td>  <%= home.Middle %></td>                     
                                     </tr>
                                     <tr>
                                         <td scope="row">HighSchool</td>
-                                        <td> value </td>                     
+                                        <td>  <%= home.HighSchool %> </td>                     
                                     </tr>
                                     <tr>
                                         <td scope="row">University</td>
-                                        <td> value</td>                     
+                                        <td>  <%= home.University %></td>                     
                                     </tr>
                                 
 
@@ -178,12 +187,12 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">Ground</td>
-                                        <td> 1 </td>
+                                        <td> <%= home.Ground %> </td>
                                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Basement</td>
-                                        <td> value</td>                     
+                                        <td> <%= home.Basement %> </td>                     
                                     </tr>      
                                 </tbody>
 
@@ -194,12 +203,12 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">Bustop</td>
-                                        <td> 1 </td>
+                                        <td> <%= home.Bustop %> </td>
                                     
                                     </tr>
                                     <tr>
                                         <td scope="row">Subway</td>
-                                        <td> 12</td>                     
+                                        <td> <%= home.University %> </td>                     
                                     </tr>      
                                 </tbody>
                         </table>
@@ -226,12 +235,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td scope="row">2005</td>
-                                        <td>1</td>
-                                        <td>23</td>
-                                        <td>2321</td>
-                                        <td>321</td>
-                                        <td>3123</td>
+                                        <td scope="row"><%= home.YearBuilt %></td>
+                                        <td><%= home.Area %></td>
+                                        <td><%= home.Floor %></td>
+                                        <td><%= home.Elevartor %></td>
+                                        <td><%= home.Managers %></td>
+                                        <td><%= home.Apt %></td>
 
                                     </tr>
                                 
@@ -246,7 +255,7 @@
                         <table class="table table-hover table-inverse table-responsive">
                             <thead class="thead-inverse">
                                 <tr>
-                                    <th>Public store</th>
+                                    <th>Public Office</th>
                                     <th>Hospital</th>
                                     <th>Department Store</th>
                                     <th>Mall</th>
@@ -257,12 +266,12 @@
                             </thead>
                                 <tbody>
                                     <tr>
-                                        <td scope="row">2005</td>
-                                        <td>1</td>
-                                        <td>23</td>
-                                        <td>2321</td>
-                                        <td>321</td>
-                                        <td>3123</td>
+                                        <td scope="row"><%= home.PublicOffice %></td>
+                                        <td><%= home.Hospital %></td>
+                                        <td><%= home.DepartmentStore %></td>
+                                        <td><%= home.Mall %></td>
+                                        <td><%= home.Park %></td>
+                                        <td><%= home.Other %></td>
 
                                     </tr>
                                 
@@ -404,7 +413,7 @@
                 
             </div>
             <div class="Result">
-                    <h4>Your Loan you can get : <span id="predictMaxOpenCredit" style="color: red;"> 697016 </span> $   </h4>
+                    <h4>Your Loan you can get : <span id="predictMaxOpenCredit" style="color: red;">  </span> $   </h4>
                     <button type="submit" value="Submit"  type="button" class="btn btn-warning">Calculator</button>
             </div>   
 

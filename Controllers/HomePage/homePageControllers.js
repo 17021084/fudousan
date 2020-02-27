@@ -3,16 +3,29 @@ const { getNews, getNewsById } = require('../../database/newsModel');
 const { getHomes, getHomeById } = require('../../database/homeModel');
 const { getMeetings, insertMeetings } = require('../../database/meetingModel');
 
-// const path = 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Credit_Data.csv';
-const path = process.env.CREDIT_DATA_PATH;
+
+const path = process.env.CREDIT_DATA_PATH ||'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Credit_Data.csv';
 
 // :/   ->ok
 async function index(req, res) {
 	try {
 		let home = await getHomes();
 		let news = await getNews();
+		
+		//paginate 
+		// let p = req.query.page;
 
-		res.send(news);
+		//pagination
+		let start =0;
+		let end = 6;
+
+		res.render('HomePage/index', {
+			home : home,
+			start : start,
+			end : end,
+			news : news
+		} );
+		
 	} catch (error) {
 		console.log(error);
 	}
@@ -22,7 +35,8 @@ async function index(req, res) {
 async function homeList(req, res) {
 	try {
 		let home = await getHomes();
-		res.send(home);
+		res.status(200).render('HomePage/Home list.ejs',{home :home });
+
 	} catch (error) {
 		console.log(error);
 	}
@@ -32,20 +46,37 @@ async function homeList(req, res) {
 async function homeDetails(req, res) {
 	try {
 		let home = await getHomeById(req.params.id);
-		res.send(home);
+		//check valid ?
+
+		res.status(200).render('HomePage/Home details',{home:home[0]});
+
+
+
 	} catch (error) {
 		console.log(error);
 	}
 	// res.render('HomePage/Home details');
 }
 
-// /news/:id   ->ok
+
+
+
+
+// /news/:id   ->bug query
 async function newsDetails(req, res) {
 	try {
+
 		let newsById = await getNewsById(req.params.id); // main
 		let news = await getNews(); // othernews
 
-		// res.json(news);
+		
+			
+		res.status(200).render('HomePage/News Details',{ 
+			newsById:newsById[0],
+			news:news
+		});
+
+
 	} catch (error) {
 		console.log(error);
 	}
@@ -56,7 +87,7 @@ async function newsList(req, res) {
 	try {
 		let news = await getNews();
 
-		res.json(news);
+		res.status(200).render('HomePage/News List',{news:news});
 	} catch (error) {
 		console.log(error);
 	}
@@ -73,7 +104,7 @@ async function predict(req, res) {
 
 		// console.log('Fuck this shit', req.body)
 		// console.log("data", data)
-
+	
 		let income = [
 			data.CurrentLoan,
 			data.CreditScore,
@@ -125,9 +156,9 @@ async function predict(req, res) {
 // post  /homelist/booking  ->ok
 async function booking(req, res) {
 	try {
-		// [ HomeId ,MeetingDate,EmailBooker,duaration,Message ]
+	
 		var { HomeId, MeetingDate, EmailBooker, duaration, Message } = req.body;
-
+		
 		// check valid data
 		if (!HomeId || !MeetingDate || !EmailBooker || !duaration || !Message) {
 			return res.status(400).send({
@@ -144,6 +175,7 @@ async function booking(req, res) {
 		var arrayBooking = [ HomeId, MeetingDate, EmailBooker, duaration || 1, Message || '' ];
 
 		var insert = await insertMeetings(arrayBooking);
+		
 
 		res.status(200).send(insert);
 

@@ -54,12 +54,12 @@ const getMeetings = () => {
 //     })
 // }
 
-const insertMeetings = (arrayBooking, per = 1) => {
+const insertMeetings = (arrayBooking, per = 0) => {
 	return new Promise((resolve, reject) => {
 		let sql = `insert into meeting 
                 (HomeId ,Permission, MeetingDate, duaration, EmailBooker, Message)
                  Values
-                 (? ,0,	?,?,?,?)
+                 (? ,${per},	?,?,?,?)
                    `;
 		//    [ HomeId ,MeetingDate,EmailBooker,duaration,Message ]
 		pool.query(sql, arrayBooking, (err, result) => {

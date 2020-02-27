@@ -7,6 +7,8 @@ var dotenv = require('dotenv');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminsRouter = require('./routes/admins');
+var auth = require('./routes/auth');
+var userMiddleware =require('./middlewares/userMiddleware');
 
 var app = express();
 
@@ -25,7 +27,8 @@ app.set('view engine', 'ejs')
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', auth);
+app.use('/users',userMiddleware, usersRouter);
 app.use('/admins', adminsRouter);
 
 

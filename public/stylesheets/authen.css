@@ -1,5 +1,5 @@
 .form{
-    padding: 3% 10%;
+    padding: 10% 10%;
 }
 
 #register{
@@ -13,7 +13,7 @@
 
 #login{
     width: 700px;
-    height: 400px;
+    height: 480px;
     margin: auto;
     background-color: #ededed;
     padding: 2%;
