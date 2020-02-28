@@ -15,13 +15,14 @@
              </li>
              
              <li  class="right">
-                 <!-- <a  href="/users/login"> <button type="button" class="btn btn-warning btn-sm">Login</button> </a> -->
-                    <!--  bawts logic o day -->
-                <!-- Example single danger button -->
+               
+                <% if (  userInfor!=='logout' &&  userInfor!=='login'  ) { %>
+                 
+                            <!-- Example single danger button -->
                 <div class="dropdown">
                     <button class="btn btn-warning dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                                user
+                                <%= userInfor._name %>                
                             </button>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
                         <a class="dropdown-item" href="/users/">Your Home and Meeting</a>
@@ -29,11 +30,19 @@
                         <a class="dropdown-item" href="/users/news">Your News</a>
                         <a class="dropdown-item" href="/users/composermail">Mail Compose</a>
                         <a class="dropdown-item" href="/users/newhome">Post New Home</a>
-                      
+                    
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log out</a>
+                        <a class="dropdown-item" href="/users/logout">Log out</a>
                     </div>
                 </div>
+
+                <% } else if(userInfor!=='login' ) {%>
+                
+                 <a  href="/users/login"> <button type="button" class="btn btn-warning btn-sm">Login</button> </a>
+                    <!--  bawts logic o day -->
+                
+                             
+                <% }%>
 
              </li>
              

@@ -6,20 +6,25 @@ function userMiddleware( req, res ,next){
    
    
 
-    if(!token) return res.redirect('/auth/login');
+    if(!token) {
+       
+        res.locals = 'logout';
+       
+        return res.redirect('/auth/login');
+    }
    
     try {
         const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-        req.user = verified;
-
-        //ko can thiet
-        // res.locals = verified;
-
-        console.log( 'req.user= ', req.user);     
-        //log out just excuted  in front end
+        res.locals = verified;        
+            
+        res.locals.token =token;
         next();
     } catch (error) {
-         res.status(400).send(error);
+
+      res.status(400).send(error)
+
+       
+
     }
 
 }

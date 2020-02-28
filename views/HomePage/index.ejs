@@ -19,7 +19,7 @@
 </head>
 <body>
     <!-- header -->
-  <%- include ('../Header.ejs') %> 
+    <%- include ('../Header.ejs',{userInfor:userInfor}) %> 
    
 
 
@@ -111,7 +111,7 @@
         
         <div class="row NewsPostRow">
           
-            <% for( let index = 0; index < news.length; index++ ) { %>
+            <% for( let index = 0; index < 3; index++ ) { %>
             
                 <!-- News Block -->
             <div class="col-sm-3 NewsBlock">

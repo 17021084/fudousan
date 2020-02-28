@@ -14,8 +14,11 @@ router.get('/rd', (req,res)=>{
     res.redirect( '/users/');
 } );
 
-
-
+//log oute
+router.get('/logout', (req,res)=>{
+    res.clearCookie('auth_token')
+    res.redirect( '/users/');
+} );
 
 
 
@@ -31,7 +34,7 @@ router.get('/',user.index);
 
 router.get('/newhome',user.getNewHome);
 
-router.post('/newhome');
+router.post('/newhome',user.postNewHome);
 router.post('/newhome/predict');
 
 
@@ -39,6 +42,8 @@ router.post('/newhome/predict');
 router.get('/home/:id',user.getModifyHome);
 router.delete('/home/:id');
 router.put('/home/:id');
+
+
 
 router.delete('/meeting');
 

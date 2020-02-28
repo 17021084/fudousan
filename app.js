@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var adminsRouter = require('./routes/admins');
 var auth = require('./routes/auth');
 var userMiddleware =require('./middlewares/userMiddleware');
+var headerMiddleware =require('./middlewares/headerMiddleware');
 
 var app = express();
 
@@ -26,7 +27,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
 
 
-app.use('/', indexRouter);
+app.use('/',headerMiddleware , indexRouter);
 app.use('/auth', auth);
 app.use('/users',userMiddleware, usersRouter);
 app.use('/admins', adminsRouter);

@@ -2,6 +2,9 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
+
+
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = require('../../database/userModel');
 
@@ -9,15 +12,52 @@ const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = re
 // get /composermail/
 
 function mailComposer(req, res) {
-	res.render('User/ComposerMail', { toEmail: '' });
+	// header
+	var userInfor = res.locals ;
+	res.render('User/ComposerMail', {userInfor:userInfor ,toEmail: '' });
 }
 //  get  /composermail/:email
 function mailComposerById(req, res) {
-	res.render('User/ComposerMail', { toEmail: req.params.email });
+	// header
+	var userInfor = res.locals ;
+	res.render('User/ComposerMail', { userInfor:userInfor , toEmail: req.params.email });
 }
 
 function sendMail(req, res) {
-	// var {service , }
+	
+	var {PassWord ,Services ,From ,To ,subject,content}= req.body;
+	
+	var transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+		  user: From,
+		  pass: PassWord
+		}
+	});
+
+	var mailOptions = {
+        from: From,
+        to: To,
+        subject: subject ,
+        html: content
+    };
+	
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+			console.log(error)
+			res.send({
+				alert: error
+			});
+
+        } else {
+			res.send({
+				success: 'success'
+			});
+        }
+      });
+
+
 }
 //==================================
 
@@ -26,9 +66,13 @@ function sendMail(req, res) {
 //profile ============================
 async function getProfile(req, res) {
 	try {
+		// header
+		var userInfor = res.locals ;
 		var UserId = 1;
 
-		res.status(200).render('User/Profile');
+		res.status(200).render('User/Profile',{
+			userInfor:userInfor
+		});
 	} catch (error) {
 		res.send(error);
 	}
@@ -43,7 +87,13 @@ function updatePassWord(req, res) {}
 
 async function getNews(req, res) {
 	try {
-		res.status(200).render('User/Your New Post');
+		// header
+		var userInfor = res.locals ;
+	
+		res.status(200).render('User/Your New Post',{
+			userInfor:userInfor
+		});
+		
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -55,10 +105,12 @@ function deleteNews(req, res) {}
 // home & incoming meeting
 async function index(req, res) {
 	try {
-		
-		// console.log(verified);
+	
+		var userInfor = res.locals ;	
 
-		res.status(200).render('User/');
+		res.status(200).render('User/',{
+			userInfor:userInfor
+		});
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -66,7 +118,24 @@ async function index(req, res) {
 
 async function getNewHome(req, res) {
 	try {
-		res.status(200).render('User/PostNewHome');
+		// header
+		var userInfor = res.locals ;
+		res.status(200).render('User/PostNewHome',{
+			userInfor:userInfor
+		});
+	} catch (error) {
+		res.status(400).send(error);
+	}
+}
+async function postNewHome(req, res) {
+	try {
+		// header
+		let {nameArr,valueArr} = req.body;
+		nameArr=nameArr.toString();
+		res.send( req.body)
+			
+
+		
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -74,12 +143,18 @@ async function getNewHome(req, res) {
 
 async function getModifyHome(req, res) {
 	try {
+		// header
+		var userInfor = res.locals ;
+
 		var id = req.params.id;
-		res.status(200).render('User/Update&Delete');
+		res.status(200).render('User/Update&Delete',{
+			userInfor:userInfor
+		});
 	} catch (error) {
 		res.status(400).send(error);
 	}
 }
+
 
 /// test
 async function testGet(req, res) {
@@ -133,6 +208,7 @@ module.exports = {
 	deleteNews: deleteNews,
 	index: index,
 	getNewHome: getNewHome,
+	postNewHome: postNewHome,
 	getModifyHome: getModifyHome,
 
 

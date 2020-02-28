@@ -14,12 +14,13 @@
     <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 </head>
 <body>
     <!-- header  -->
-  <%- include ('../Header.ejs')%>
+    <%- include ('../Header.ejs',{userInfor:userInfor}) %> 
 
 
    <div class="Mail">
@@ -27,7 +28,7 @@
         <h3 style="text-align:center"> Mail Composer </h3>
          <hr> <br>
         <!-- /title -->
-        <form action="" method="post" class="formEmail" >
+        <form action="/users/composermail" method="post" class="formEmail" >
             <div class="form">
                     <div class="form-group">
                       <label for="">Your Email Acount</label>
@@ -72,7 +73,9 @@
 
                     </div>
 
-
+                    <div class="" id="alert">
+                      <!-- alert put here -->
+                    </div>
             </div>
 
               <!-- title -->
@@ -140,14 +143,29 @@
           console.log(data);
               
                       
-              //  axios({
-              //      method: method,
-              //      url: url,
-              //      data: data
-              //  }).then(function (response) {
-                  
-                    
-              //  }).catch(error=>console.log(error) );
+               axios({
+                   method: method,
+                   url: url,
+                   data: data
+               }).then(function (response) {
+                let { alert ,success} = response.data;
+                  if (alert) {
+                    $('#alert').html(`  
+    <div class="alert alert-danger alert" role="alert" >
+            PassWord or Email not correct! or Your Email Security 
+            
+    </div>`)
+
+                  } else {
+                    $('#alert').html(`  
+          <div class="alert alert-success" role="alert">
+ Send success
+  
+</div>`)
+                  }  
+
+
+               }).catch(error=>console.log(error) );
          
                
                return false; // prevent form submit event.preventDefault();  

@@ -20,16 +20,16 @@
 <body>
   
   <!-- Header  -->
-  <%- include('../Header.ejs')%>
+  <%- include ('../Header.ejs',{userInfor:userInfor}) %> 
 
 
-   <div class="HomeForm">
+   <div class="HomeForm" >
         <!-- title -->
         <h3 style="text-align:center"> Your Home </h3>
          <hr> <br>
         <!-- /title -->
 
-        <form action="" method="post"  id="form">
+        <form action="/users/newhome" method="post" class="form"  id="form">
                 <div class="form-group HomeName">
                     <h4 style="text-align: center;"> <label for="HomeName">Your Home Name</label> </h4>
                     
@@ -42,10 +42,10 @@
                       <h4 style="text-align: center;"> Purpose </h4>
                       <br>
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="purpose" id="" value="ForRent"> For Rent 
+                        <input class="form-check-input" type="radio" name="Purpose"  id="ForRent" value="ForRent"> For Rent 
                       </label>
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="purpose" id="" value="ForSale"> For Sale 
+                        <input class="form-check-input" type="radio" name="Purpose" checked id="ForSale" value="ForSale"> For Sale 
                       </label>
     
                     </div>     
@@ -232,7 +232,7 @@
                           <small id="DepartmentStore" class="form-text text-muted">Help text</small>
                         </div>
                         <div class="form-group">
-                          <label for="Apt">Other check thangf nay</label>
+                          <label for="Apt">Other !!check </label>
                           <input type="text"
                             class="form-control" name="Apt" id="Apt" aria-describedby="Apt" placeholder="">
                           <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
@@ -383,13 +383,8 @@
   
                     </div>
                  </div>
-                
-
-
-
-                 
-                
-
+                                
+            
         </form>
 
    </div>
@@ -416,6 +411,72 @@
              });           
         }  
          
+          $('form.form').on('submit', function (event) {
+            
+          
+            var that = $(this), //refer to form
+              url = that.attr('action'), //* cai nay bug ne 
+              method = that.attr('method'),
+              data = {},
+              nameArr =[],
+              valueArr=[];
+
+            that.find('[name]').each(function (index, value) {
+              let that = $(this),
+                name = that.attr('name');
+                value = that.val();
+              if (value !== '' && name !=='Purpose' ) {
+                nameArr.push(name);
+                valueArr.push(value)
+                // console.log(value);
+                data[name] = value;
+
+              };
+
+            })
+
+            if(  $("#ForSale").is(":checked"))
+            {
+              
+                nameArr.push('Purpose');
+                valueArr.push('ForSale');
+                data['Purpose'] = 'ForSale';
+            }
+             else
+            {
+              
+                nameArr.push('Purpose');
+                valueArr.push('ForRent');
+                data['Purpose'] = 'ForRent';
+            }
+
+
+
+            console.log(nameArr);
+            console.log(valueArr);
+            // console.log(data);
+            objData= {
+              nameArr:nameArr,
+              valueArr:valueArr
+            }
+           
+
+            axios({
+              method: method,
+              url: url,
+              data: objData
+            }).then(function (response) {
+                console.log(response.data)
+             
+              }
+
+            ).catch(error => console.log(error));
+
+
+            return false; // prevent form submit event.preventDefault();  
+          });           
+    
+
       
 
     </script>
