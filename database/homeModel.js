@@ -56,6 +56,20 @@ const getHomeById = (id) => {
 // }
 
 
+const insertHome = ( col, data  ) => {
+    let sql = `insert into  home${col}    values ${data} `;
+    console.log('sql 1',sql);
+    return new Promise((resolve,reject) => {
+        pool.query(sql ,(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+                console.log(sql);
+                 resolve(result);
+            }
+        });
+    })
+}
 
 
 // module.exports = newsModel;
@@ -63,6 +77,7 @@ const getHomeById = (id) => {
 
 module.exports = {
     getHomes:getHomes,
+    insertHome:insertHome,
     getHomeById:getHomeById,
   
 };

@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = require('../../database/userModel');
+const { insertHome } = require('../../database/homeModel');
 
 // mail ===========================
 // get /composermail/
@@ -131,8 +132,13 @@ async function postNewHome(req, res) {
 	try {
 		// header
 		let {nameArr,valueArr} = req.body;
-		nameArr=nameArr.toString();
-		res.send( req.body)
+		nameArr= '( Permission,' +nameArr.toString()+')';
+		valueArr='( 0 ,'+ valueArr.toString()+ ')';
+		var insert= await insertHome( nameArr ,valueArr  );
+
+			console.log(insert)
+		res.send( insert)
+		// console.log(valueArr)
 			
 
 		
