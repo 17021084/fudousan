@@ -9,6 +9,7 @@ const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = re
 const { insertHome } = require('../../database/homeModel');
 
 
+
 const path = process.env.KOREA_HOME_DATA_PATH  || 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Home_Data.csv';
 
 // mail ===========================
@@ -64,10 +65,12 @@ async function getProfile(req, res) {
 	try {
 		// header
 		var userInfor = res.locals;
-		var UserId = 1;
-
+	
+		var user = await getUserById( res.locals._id);
+		
 		res.status(200).render('User/Profile', {
-			userInfor: userInfor
+			userInfor: userInfor,
+			user:user[0]
 		});
 	} catch (error) {
 		res.send(error);
@@ -101,10 +104,16 @@ function deleteNews(req, res) {}
 async function index(req, res) {
 	try {
 		var userInfor = res.locals;
+		
+		
+	
 
-		res.status(200).render('User/', {
-			userInfor: userInfor
+		res.status(200).render('User/index', {
+			userInfor: userInfor,
+
 		});
+
+
 	} catch (error) {
 		res.status(400).send(error);
 	}
