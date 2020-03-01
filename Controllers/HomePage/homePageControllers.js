@@ -97,7 +97,7 @@ async function newsList(req, res) {
 }
 
 // asyn   ->ok
-async function predict(req, res) {
+async function predictMaxOpenCredit(req, res) {
 	try {
 		console.log('1');
 		let { model, average } = await builModelFrom(path);
@@ -121,15 +121,18 @@ async function predict(req, res) {
 			data.CreditBalance
 		];
 
-		// console.log("income", income)
+		console.log("income", average);
 
-		// let result = model.predict(income) ;
+		
+		// let result = model.predict(average) ;
 		// console.log('Quang day .....')
 
 		// console.log("ketqua :", result[0]);
 		let summary = model.toJSON();
 
 		// console.log('Ko dung bo gameeeeeee')
+
+		// res.status(200).send(result);
 
 		res.status(200).json({
 			model: summary,
@@ -157,39 +160,25 @@ async function predict(req, res) {
 // post  /homelist/booking  ->ok
 async function booking(req, res) {
 	try {
-		var { HomeId, MeetingDate, EmailBooker, duaration, Message } = req.body;
+		var { HomeId, date, Email, Duration, Message } = req.body;
 
-		// check valid data
-		if (!HomeId || !MeetingDate || !EmailBooker || !duaration || !Message) {
-			return res.status(400).send({
-				error: 'HomeId ,MeetingDate,EmailBooker,duaration,Message . one of them isnt exist!! check your json '
-			});
-		}
-		// check required data
-		if (MeetingDate == '' || EmailBooker == '') {
-			return res.status(400).send({
-				error: 'You must provide us Email or Meeting Date'
-			});
-		}
-
-		var arrayBooking = [ HomeId, MeetingDate, EmailBooker, duaration || 1, Message || '' ];
+		
+		var arrayBooking = [ HomeId, date, Email, Duration , Message  ];
+		// res.send(arrayBooking);
 
 		var insert = await insertMeetings(arrayBooking);
 
-		res.status(200).send(insert);
-
-		// inser = {
-		// 	fieldCount: 0,
-		// 	affectedRows: 1,
-		// 	insertId: 5,
-		// 	serverStatus: 2,
-		// 	warningCount: 2,
-		// 	message: '',
-		// 	protocol41: true,
-		// 	changedRows: 0
-		// };
+		res.status(200).send( {
+			success:true
+		});
+	
+		
 	} catch (error) {
-		res.status(400).send(error);
+		console.log(error);
+		res.status(200).send({
+			success:false
+
+		});
 	}
 }
 
@@ -197,13 +186,18 @@ function find(req, res) {
 	res.send('hello');
 }
 
+
+
+
+
 module.exports = {
 	index: index,
 	homeList: homeList,
 	homeDetails: homeDetails,
 	newsDetails: newsDetails,
 	newsList: newsList,
-	predict: predict,
+	predictMaxOpenCredit: predictMaxOpenCredit,
 	booking: booking,
-	find: find
+	find: find,
+	
 };

@@ -4,10 +4,6 @@ var user = require('../Controllers/User/userPageControllers');
 
 
 
-//test api
-router.get('/test', user.testGet );
-router.post('/test', user.testPost );
-router.put('/test', user.testPut );
 
 
 router.get('/rd', (req,res)=>{
@@ -43,6 +39,7 @@ router.get('/home/:id',user.getModifyHome);
 router.delete('/home/:id');
 router.put('/home/:id');
 
+router.post( '/home/predictSalePrice',user.predictSalePrice);
 
 
 router.delete('/meeting');

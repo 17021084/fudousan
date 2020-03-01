@@ -2,9 +2,14 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
+const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = require('../../database/userModel');
 const { insertHome } = require('../../database/homeModel');
+
+
+const path = process.env.KOREA_HOME_DATA_PATH  || 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Home_Data.csv';
 
 // mail ===========================
 // get /composermail/
@@ -152,44 +157,44 @@ async function getModifyHome(req, res) {
 	}
 }
 
-/// test
-async function testGet(req, res) {
+
+//just predict Sale Price, 
+async function predictSalePrice(req, res) {
 	try {
-		// var users = await getUsers();
+		let { model, average } = await builModelFrom(path);
+		let {data} = req.body;
 
-		var users = await getUserByEmail('dotrunghg1999@gmail.com');
+		// // console.log(average[20])
+		// average.pop();
 
-		// var users = await getUserById(10);
 
-		res.send(users);
+		//analysis data . data in average array instead req data which null valu  
+		for (let i = 0; i < data.length; i++) {
+			if(data[i]===""){
+				data[i]=parseFloat(average[i]);
+			}
+		}
+
+
+		let result = model.predict(data)	
+		console.log(result);
+		console.log(model.toJSON())
+		// console.log(model.toJSON().summary)
+
+
+		// res.send(data);
+
+		res.send(result);
+	
 	} catch (error) {
 		res.status(400).send(error);
 	}
 }
 
-async function testPost(req, res) {
-	try {
-		// Email,PassWord,role =0 , FullName, Dob, Phone
-		let user = [ 'abc@gmail.com', '123', 'Nguyen Phuong Linh', '15/2/1998', '12312' ];
-		var users = await insertUser(user);
-		var users = await getUsers();
-		res.send(users);
-	} catch (error) {
-		res.status(400).send(error);
-	}
-}
-async function testPut(req, res) {
-	try {
-		//  Password , FullName, Dob,Phone NewsId
-		let user = [ '123', 'Tinh Thuy Trang', '15/2/2000', '12312', 2 ];
-		var users = await updateUserById(user);
-		var users = await getUsers();
 
-		res.send(users);
-	} catch (error) {
-		res.status(400).send(error);
-	}
-}
+
+
+
 
 module.exports = {
 	sendMail: sendMail,
@@ -205,8 +210,6 @@ module.exports = {
 	getNewHome: getNewHome,
 	postNewHome: postNewHome,
 	getModifyHome: getModifyHome,
-
-	testGet: testGet,
-	testPost: testPost,
-	testPut: testPut
+	predictSalePrice:predictSalePrice
+	
 };

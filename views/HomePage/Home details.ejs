@@ -289,18 +289,15 @@
 
             <!-- meeting form -->
             <div class="col-xl-3" id="BookMeeting">
-                <form action="">
+                <form action="/homelist/booking" method="post" class="book">
                     <div class="form-group">
                       <label for="Email"><h5>Email</h5></label>
                       <input type="text" class="form-control" name="Email" id="Email"  placeholder="blabla@gmail.com" required>                  
                     </div>
+                  
                     <div class="form-group">
-                      <label for="Phone"><h5>Phone</h5></label>
-                      <input type="text" class="form-control" name="Phone" id="Phone"  placeholder="124241414" required>                  
-                    </div>
-                    <div class="form-group">
-                      <label for="Date"><h5> Date time </h5></label>
-                      <input type="datetime-local" class="form-control" placeholder="dd/mm/yy" name="Date" id="Date" aria-describedby="Date"   required>                  
+                      <label for="date"><h5> Date time </h5></label>
+                      <input type="datetime-local" class="form-control" placeholder="dd/mm/yy" name="date" id="date" aria-describedby="Date"   required>                  
                       <!-- min="15/11/1999" Date  bắt điều kiện cho ngày ( trèn js ở đây) -->
                       <small id="Date" class="form-text text-muted">When do you want to meet us ?</small>
                     </div>
@@ -312,12 +309,24 @@
                     </div>
                     
                     <div class="form-group">
-                      <label for="Message">Message</label>
-                      <textarea class="form-control" name="Message" id="Message" rows="3"></textarea>
+                        <label for="Message">Message</label>
+                        <textarea class="form-control" name="Message" id="Message" rows="3"></textarea>
                     </div>
-                    <button type="button" class="btn btn-danger">Book</button>
+                    
+                    <input  type="text" style="display: none;" name="HomeId" id="HomeId"   value="<%= home.HomeId %>">     
+
+
+                    
+                    <button type="submit" class="btn btn-danger">Book</button>
+                     
+                    <br>
+                    <div id="alert">
+
+                    </div>
+
 
                 </form>
+                
             </div>
             <!-- /meeting form -->
         </div>
@@ -341,31 +350,31 @@
                             <div class="form-group">
                             <label for="CurrentLoan">Current Loan amount</label>
                             <input type="number" min="0"
-                                class="form-control" name="CurrentLoan" id="CurrentLoan" placeholder="">
+                                class="form-control" name="CurrentLoan" id="CurrentLoan" placeholder="11596100">
                                                 
                             </div>
                             <div class="form-group">
                             <label for="CreditScore">CreditScore</label>
                             <input type="number" min="0"
-                                class="form-control" name="CreditScore" id="CreditScore"  placeholder="">
+                                class="form-control" name="CreditScore" id="CreditScore"  placeholder="1074">
                                                 
                             </div>
                             <div class="form-group">
                             <label for="Income">Annual Income</label>
                             <input type="number" min="0"
-                                class="form-control" name="Income" id="Income" placeholder="">
+                                class="form-control" name="Income" id="Income" placeholder="1366823">
                                                 
                             </div>
                             <div class="form-group">
                                 <label for="Years">Years in current job</label>
                                 <input type="number" min="0"
-                                class="form-control" name="Years" id="Years" placeholder="">
+                                class="form-control" name="Years" id="Years" placeholder="5">
                                                     
                             </div>
                             <div class="form-group">
                                 <label for="Debt">Monthly Debt</label>
                                 <input type="number" min="0"
-                                class="form-control" name="Debt" id="Debt"  placeholder="">
+                                class="form-control" name="Debt" id="Debt"  placeholder="18430">
                                                 
                             </div>
 
@@ -378,33 +387,34 @@
                             <div class="form-group">
                                 <label for="YearsofCreditHistory">Years of Credit History</label>
                                 <input type="number" min="0"
-                                class="form-control" name="YearsofCreditHistory" id="YearsofCreditHistory" placeholder="">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="OpenAccounts">Number of Open Accounts</label>
-                                <input type="number" min="0"
-                                class="form-control" name="OpenAccounts" id="OpenAccounts" placeholder="">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="CreditProblems">Number of Credit Problems</label>
-                                <input type="number" min="0"
-                                class="form-control" name="CreditProblems" id="CreditProblems"  placeholder="">
-                                                
-                            </div>
-                            <div class="form-group">
-                                <label for="CreditBalance">Current Credit Balance</label>
-                                <input type="number" min="0"
-                                class="form-control" name="CreditBalance" id="CreditBalance" placeholder="">
+                                class="form-control" name="YearsofCreditHistory" id="YearsofCreditHistory" placeholder="18">
                                                     
                             </div>
                             <div class="form-group">
                                 <label for="Delinquent">Months since last delinquent  </label>
                                 <input type="number" min="0"
-                                class="form-control" name="Delinquent" id="Delinquent" placeholder="">
+                                class="form-control" name="Delinquent" id="Delinquent" placeholder="16">
                                                     
                             </div>
+                            <div class="form-group">
+                                <label for="OpenAccounts">Number of Open Accounts</label>
+                                <input type="number" min="0"
+                                class="form-control" name="OpenAccounts" id="OpenAccounts" placeholder="11">
+                                                    
+                            </div>
+                            <div class="form-group">
+                                <label for="CreditProblems">Number of Credit Problems</label>
+                                <input type="number" min="0"
+                                class="form-control" name="CreditProblems" id="CreditProblems"  placeholder="1">
+                                                
+                            </div>
+                            <div class="form-group">
+                                <label for="CreditBalance">Current Credit Balance</label>
+                                <input type="number" min="0"
+                                class="form-control" name="CreditBalance" id="CreditBalance" placeholder="290770">
+                                                    
+                            </div>
+                            
 
                         </div>      
                         <!-- /col2 -->
@@ -435,12 +445,14 @@
     <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 
    <script>
+       //loan
         $('form.Loan').on('submit',function(event){
                      
             var that = $(this), //refer to form
                  url = that.attr('action'), //* cai nay bug ne 
                  method= that.attr('method'),
                  data={};
+                
 
             that.find('[name]').each(function( index, value){
                 let that = $(this),
@@ -457,6 +469,7 @@
                 url: url,
                 data: data
             }).then(function (response) {
+                    console.log(response.data);
                 let weights = response.data.model.weights;
                 let income = response.data.income;
                 const averageArr = response.data.average; //last col is outcomevariabel, so itnst neccesary
@@ -483,6 +496,64 @@
       
             return false; // prevent form submit event.preventDefault();  
         });
+
+        // book
+        $('form.book').on('submit',function(event){
+                     
+                     var that = $(this), //refer to form
+                          url = that.attr('action'), //* cai nay bug ne 
+                          method= that.attr('method'),
+                          data={};
+                         
+         
+                     that.find('[name]').each(function( index, value){
+                         let that = $(this),
+                             name = that.attr('name');
+                         
+                         value = that.val();
+                         data[name]=value;
+                     })
+                    
+
+                     console.log(data)
+                            
+                     axios({
+                         method: method,
+                         url: url,
+                         data: data
+                     }).then(function (response) {
+                        console.log(response.data)
+                        let { success} = response.data;
+                        if( success){
+                            $('#alert').html(`
+                            <div style="width: fit-content;"  class="alert alert-success alert-dismissible fade show" role="alert">
+                                       <strong> request s'sendding </strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                             </button>
+                            </div>
+                            `)
+                        }else{
+                            $('#alert').html(`
+                            <div style="width: fit-content;"  class="alert alert-danger alert-dismissible fade show" role="alert">
+                                       <strong> somthing went wrong !! cant send </strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                             </button>
+                            </div>
+                            `)
+
+                        }
+
+
+
+
+                     }).catch(error=>console.log(error) );
+               
+                     return false; // prevent form submit event.preventDefault();  
+                 });
+
+
 
    </script>
 

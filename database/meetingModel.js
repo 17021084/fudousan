@@ -56,10 +56,11 @@ const getMeetings = () => {
 
 const insertMeetings = (arrayBooking, per = 0) => {
 	return new Promise((resolve, reject) => {
+		// [ HomeId,   ...  ,date, Email, duaration , Message  ];
 		let sql = `insert into meeting 
-                (HomeId ,Permission, MeetingDate, duaration, EmailBooker, Message)
+                (HomeId ,Permission, MeetingDate, EmailBooker ,Duration , Message)
                  Values
-                 (? ,${per},	?,?,?,?)
+                 (? ,${per},?, ? , ? , ?)
                    `;
 		//    [ HomeId ,MeetingDate,EmailBooker,duaration,Message ]
 		pool.query(sql, arrayBooking, (err, result) => {
