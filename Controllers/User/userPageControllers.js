@@ -2,9 +2,6 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
-
-
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = require('../../database/userModel');
 const { insertHome } = require('../../database/homeModel');
@@ -14,65 +11,58 @@ const { insertHome } = require('../../database/homeModel');
 
 function mailComposer(req, res) {
 	// header
-	var userInfor = res.locals ;
-	res.render('User/ComposerMail', {userInfor:userInfor ,toEmail: '' });
+	var userInfor = res.locals;
+	res.render('User/ComposerMail', { userInfor: userInfor, toEmail: '' });
 }
 //  get  /composermail/:email
 function mailComposerById(req, res) {
 	// header
-	var userInfor = res.locals ;
-	res.render('User/ComposerMail', { userInfor:userInfor , toEmail: req.params.email });
+	var userInfor = res.locals;
+	res.render('User/ComposerMail', { userInfor: userInfor, toEmail: req.params.email });
 }
 
 function sendMail(req, res) {
-	
-	var {PassWord ,Services ,From ,To ,subject,content}= req.body;
-	
+	var { PassWord, Services, From, To, subject, content } = req.body;
+
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-		  user: From,
-		  pass: PassWord
+			user: From,
+			pass: PassWord
 		}
 	});
 
 	var mailOptions = {
-        from: From,
-        to: To,
-        subject: subject ,
-        html: content
-    };
-	
+		from: From,
+		to: To,
+		subject: subject,
+		html: content
+	};
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-			console.log(error)
+	transporter.sendMail(mailOptions, function(error, info) {
+		if (error) {
+			console.log(error);
 			res.send({
 				alert: error
 			});
-
-        } else {
+		} else {
 			res.send({
 				success: 'success'
 			});
-        }
-      });
-
-
+		}
+	});
 }
 //==================================
-
-
 
 //profile ============================
 async function getProfile(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 		var UserId = 1;
 
-		res.status(200).render('User/Profile',{
-			userInfor:userInfor
+		res.status(200).render('User/Profile', {
+			userInfor: userInfor
 		});
 	} catch (error) {
 		res.send(error);
@@ -89,12 +79,11 @@ function updatePassWord(req, res) {}
 async function getNews(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
-	
-		res.status(200).render('User/Your New Post',{
-			userInfor:userInfor
+		var userInfor = res.locals;
+
+		res.status(200).render('User/Your New Post', {
+			userInfor: userInfor
 		});
-		
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -106,11 +95,10 @@ function deleteNews(req, res) {}
 // home & incoming meeting
 async function index(req, res) {
 	try {
-	
-		var userInfor = res.locals ;	
+		var userInfor = res.locals;
 
-		res.status(200).render('User/',{
-			userInfor:userInfor
+		res.status(200).render('User/', {
+			userInfor: userInfor
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -120,9 +108,9 @@ async function index(req, res) {
 async function getNewHome(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
-		res.status(200).render('User/PostNewHome',{
-			userInfor:userInfor
+		var userInfor = res.locals;
+		res.status(200).render('User/PostNewHome', {
+			userInfor: userInfor
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -130,37 +118,39 @@ async function getNewHome(req, res) {
 }
 async function postNewHome(req, res) {
 	try {
-		// header
-		let {nameArr,valueArr} = req.body;
-		nameArr= '( Permission,' +nameArr.toString()+')';
-		valueArr='( 0 ,'+ valueArr.toString()+ ')';
+		//get UserId
+		var userInfor = res.locals;
+	
+		let { nameArr, valueArr } = req.body;
+		valueArr = valueArr.map((vl) => "'" + vl.toString() + "'");
+		nameArr = '( Permission, UserId,' + nameArr.toString() + ')';
+		valueArr=`( 0 , ${userInfor._id}  ,`+ valueArr.toString()+ ')';
+
 		var insert= await insertHome( nameArr ,valueArr  );
-
-			console.log(insert)
-		res.send( insert)
-		// console.log(valueArr)
-			
-
+	
+		res.send({ success: insert });
 		
 	} catch (error) {
-		res.status(400).send(error);
+		console.log(error.sqlMessage) 
+		res.status(400).send({ alert: error.sqlMessage });
 	}
 }
+
+
 
 async function getModifyHome(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 
 		var id = req.params.id;
-		res.status(200).render('User/Update&Delete',{
-			userInfor:userInfor
+		res.status(200).render('User/Update&Delete', {
+			userInfor: userInfor
 		});
 	} catch (error) {
 		res.status(400).send(error);
 	}
 }
-
 
 /// test
 async function testGet(req, res) {
@@ -184,7 +174,6 @@ async function testPost(req, res) {
 		var users = await insertUser(user);
 		var users = await getUsers();
 		res.send(users);
-		
 	} catch (error) {
 		res.status(400).send(error);
 	}
@@ -205,7 +194,7 @@ async function testPut(req, res) {
 module.exports = {
 	sendMail: sendMail,
 	mailComposer: mailComposer,
-	mailComposerById: mailComposerById,	
+	mailComposerById: mailComposerById,
 	getProfile: getProfile,
 	updateInfor: updateInfor,
 	updatePassWord: updatePassWord,
@@ -216,7 +205,6 @@ module.exports = {
 	getNewHome: getNewHome,
 	postNewHome: postNewHome,
 	getModifyHome: getModifyHome,
-
 
 	testGet: testGet,
 	testPost: testPost,

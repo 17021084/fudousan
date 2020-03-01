@@ -58,7 +58,7 @@ const getHomeById = (id) => {
 
 const insertHome = ( col, data  ) => {
     let sql = `insert into  home${col}    values ${data} `;
-    console.log('sql 1',sql);
+    console.log('sql :',sql);
     return new Promise((resolve,reject) => {
         pool.query(sql ,(err, result)=>{
             if(err) {
@@ -69,6 +69,7 @@ const insertHome = ( col, data  ) => {
             }
         });
     })
+    
 }
 
 

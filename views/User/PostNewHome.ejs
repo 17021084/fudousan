@@ -141,9 +141,9 @@
                           <small id="YearBuilt" class="form-text text-muted">Help text</small>
                         </div>
                         <div class="form-group">
-                          <label for="Elevartor">Elevartor</label>
+                          <label for="Elevators">Elevators</label>
                           <input type="text"
-                            class="form-control" name="Elevartor" id="Elevartor" aria-describedby="Elevartor" placeholder="">
+                            class="form-control" name="Elevators" id="Elevators" aria-describedby="Elevators" placeholder="1">
                           <small id="Elevartor" class="form-text text-muted">Help text</small>
                         </div>
     
@@ -232,10 +232,10 @@
                           <small id="DepartmentStore" class="form-text text-muted">Help text</small>
                         </div>
                         <div class="form-group">
-                          <label for="Apt">Other !!check </label>
+                          <label for="Other">Other </label>
                           <input type="text"
-                            class="form-control" name="Apt" id="Apt" aria-describedby="Apt" placeholder="">
-                          <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
+                            class="form-control" name="Other" id="Other" aria-describedby="Other" placeholder="">
+                          <small id="Apt" class="form-text text-muted">swimming pool, gym, play ground ...</small>
                         </div>   
                     </div>
                     
@@ -366,7 +366,7 @@
                          <br><br>
                          <button  type="button" class="btn btn-warning">Predict</button>
                          <br><br>
-                        <h5 style="color: red; "> The suitable Saleprices : <span style="color: black;">12312</span></h5>
+                        <h5 style="color: red; "> The suitable Saleprices : <span style="color: black;"></span></h5>
                   
                      </div>
                      <div class="col-xl-6">
@@ -379,11 +379,14 @@
                             <small id="SalePrice" class="form-text text-muted"> you can refer our suggestion</small>
                             <br>
                             <button type="submit" class="btn btn-primary"> Post</button>    
+                            <div class="" id="alert">
+                              <!-- alert put here -->
+                            </div>   
                         </div>
   
                     </div>
                  </div>
-                                
+                
             
         </form>
 
@@ -439,22 +442,20 @@
             {
               
                 nameArr.push('Purpose');
-                valueArr.push("\'ForSale\'");
+                valueArr.push("ForSale");
                 data['Purpose'] = 'ForSale';
             }
              else
             {
               
                 nameArr.push('Purpose');
-                valueArr.push("\'ForRent\'");
+                valueArr.push("ForRent");
                 data['Purpose'] = 'ForRent';
             }
 
 
 
-            console.log(nameArr);
-            console.log(valueArr);
-            // console.log(data);
+           
             objData= {
               nameArr:nameArr,
               valueArr:valueArr
@@ -466,11 +467,28 @@
               url: url,
               data: objData
             }).then(function (response) {
-                console.log(response.data)
-             
-              }
+              let { alert, success } = response.data;
+              // console.log(response.data.alert);          
+              if (alert) {
+                $('#alert').html(`  
+              <div class="alert alert-danger alert" role="alert" >
+                   got some problem - check console log
+                   
+              </div>`)
+              console.log(alert)
 
-            ).catch(error => console.log(error));
+              } else {
+                $('#alert').html(`  
+              <div class="alert alert-success" role="alert">
+                Successfully
+                
+              </div>`)
+              console.log(success)
+              }
+             
+            
+
+            }).catch(error => console.log(error));
 
 
             return false; // prevent form submit event.preventDefault();  
