@@ -43,6 +43,9 @@ const getUserByEmail = (mail) => {
 
 	
 
+
+
+//  Nen lam kieu nay 
 /**
  * 
 //role =0 : users
@@ -51,9 +54,14 @@ const getUserByEmail = (mail) => {
  * @param {*} userArray = [ Password , FullName, Dob ,Phone,  UserId ]
  * @param {*} role  defautl =0
  */
-const updateUserById = (userArray ,role = 0) => {
+const updateProfileById = (user ,role = 0) => {
+    let {FullName ,Phone, Dob, UserId}=user;
+
+
+    
+    let sql = ` update user set    Role=${role}, FullName='${FullName}' , Dob= '${Dob}' ,Phone='${Phone}' where UserId = ${UserId}  `
     return new Promise((resolve,reject) => {
-        pool.query( `update user set    Password =? , Role=${role}, FullName=?, Dob=? ,Phone=? where UserId = ?  `, userArray,(err, result)=>{
+        pool.query( sql,(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -63,6 +71,28 @@ const updateUserById = (userArray ,role = 0) => {
         });
     })
 }
+
+const updatePasswordById = (user ,role = 0) => {
+
+    let {Password, UserId}=user;
+    let sql = ` update user set    Role=${role}, Password='${Password}' where UserId = ${UserId}  `
+    return new Promise((resolve,reject) => {
+        pool.query( sql,(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
+
+
+
+
 
 /**
  * 
@@ -94,8 +124,9 @@ module.exports = {
     getUsers:getUsers,
     getUserById:getUserById,
     getUserByEmail:getUserByEmail,
-    updateUserById:updateUserById,
-    insertUser:insertUser
+    insertUser:insertUser,
+    updateProfileById:updateProfileById,
+    updatePasswordById:updatePasswordById
 };
 
 

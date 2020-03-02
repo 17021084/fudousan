@@ -20,7 +20,7 @@ router.get('/logout', (req,res)=>{
 
 //profile
 router.get('/profile',user.getProfile);
-router.put('/profile/updateInfor',user.updateInfor);
+router.put('/profile/updateInfor',user.updateProfile);
 router.put('/profile/password',user.updatePassWord);
 
 

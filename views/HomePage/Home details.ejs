@@ -331,104 +331,113 @@
             <!-- /meeting form -->
         </div>
         <!-- /Home details -->
-
+        
+        
+        <br><br>
 
         <!-- predict loans  -->
+         <!-- School Title -->
+         <a class="btn btn-default" data-toggle="collapse" href="#Loan" role="button" aria-expanded="false"
+         aria-controls="collapseExample">
+         <h5 style="text-align: center;" ><img class="BigIcon" src="/images/icon/Loan.svg" alt="Loan"><b > Lets'us Help you calculate your Loan!!!  </b> </img> </h5>
+          </a>
+       
+
          <!-- horizontal line  -->
          <br><hr><br>
         <!-- /horizontal line  -->    
     
 
-        <form  action="/homelist/predictOpentCredit" method="POST" class="Loan">
-            <h3 style="text-align: center;">Lets'us Help you calculator !!!  </h3> <br><br>
+            <!-- School dropdown -->
+                 <div class="collapse" id="Loan">
 
-            <div class="row" id="predict">
+                    <form  action="/homelist/predictOpentCredit" method="POST" class="Loan">
 
-                    
-                        <!-- col1 -->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                            <label for="CurrentLoan">Current Loan amount</label>
-                            <input type="number" min="0"
-                                class="form-control" name="CurrentLoan" id="CurrentLoan" placeholder="11596100">
-                                                
-                            </div>
-                            <div class="form-group">
-                            <label for="CreditScore">CreditScore</label>
-                            <input type="number" min="0"
-                                class="form-control" name="CreditScore" id="CreditScore"  placeholder="1074">
-                                                
-                            </div>
-                            <div class="form-group">
-                            <label for="Income">Annual Income</label>
-                            <input type="number" min="0"
-                                class="form-control" name="Income" id="Income" placeholder="1366823">
-                                                
-                            </div>
-                            <div class="form-group">
-                                <label for="Years">Years in current job</label>
-                                <input type="number" min="0"
-                                class="form-control" name="Years" id="Years" placeholder="5">
+                                        <div class="row" id="predict">                                     
+                                                    <!-- col1 -->
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                        <label for="CurrentLoan">Current Loan amount</label>
+                                                        <input type="number" min="0"
+                                                            class="form-control" name="CurrentLoan" id="CurrentLoan" placeholder="11596100">
+                                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="CreditScore">CreditScore</label>
+                                                        <input type="number" min="0"
+                                                            class="form-control" name="CreditScore" id="CreditScore"  placeholder="1074">
+                                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="Income">Annual Income</label>
+                                                        <input type="number" min="0"
+                                                            class="form-control" name="Income" id="Income" placeholder="1366823">
+                                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Years">Years in current job</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="Years" id="Years" placeholder="5">
+                                                                                
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Debt">Monthly Debt</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="Debt" id="Debt"  placeholder="18430">
+                                                                            
+                                                        </div>
+
+                                                    </div>     
+                                                    <!-- /col1 -->
                                                     
-                            </div>
-                            <div class="form-group">
-                                <label for="Debt">Monthly Debt</label>
-                                <input type="number" min="0"
-                                class="form-control" name="Debt" id="Debt"  placeholder="18430">
+                                                    <!-- col2 -->
+                                                    <div class="col-lg-6">
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="YearsofCreditHistory">Years of Credit History</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="YearsofCreditHistory" id="YearsofCreditHistory" placeholder="18">
+                                                                                
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Delinquent">Months since last delinquent  </label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="Delinquent" id="Delinquent" placeholder="16">
+                                                                                
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="OpenAccounts">Number of Open Accounts</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="OpenAccounts" id="OpenAccounts" placeholder="11">
+                                                                                
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="CreditProblems">Number of Credit Problems</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="CreditProblems" id="CreditProblems"  placeholder="1">
+                                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="CreditBalance">Current Credit Balance</label>
+                                                            <input type="number" min="0"
+                                                            class="form-control" name="CreditBalance" id="CreditBalance" placeholder="290770">
+                                                                                
+                                                        </div>
+                                                        
+
+                                                    </div>      
+                                                    <!-- /col2 -->
+                                        
                                                 
-                            </div>
+                                            
+                                        </div>
+                                        <div class="Result">
+                                                <h4>Your Loan you can get : <span id="predictMaxOpenCredit" style="color: red;">  </span> $   </h4>
+                                                <button type="submit" value="Submit"  type="button" class="btn btn-warning">Calculator</button>
+                                        </div>   
 
-                        </div>     
-                        <!-- /col1 -->
-                        
-                        <!-- col2 -->
-                        <div class="col-lg-6">
-                            
-                            <div class="form-group">
-                                <label for="YearsofCreditHistory">Years of Credit History</label>
-                                <input type="number" min="0"
-                                class="form-control" name="YearsofCreditHistory" id="YearsofCreditHistory" placeholder="18">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="Delinquent">Months since last delinquent  </label>
-                                <input type="number" min="0"
-                                class="form-control" name="Delinquent" id="Delinquent" placeholder="16">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="OpenAccounts">Number of Open Accounts</label>
-                                <input type="number" min="0"
-                                class="form-control" name="OpenAccounts" id="OpenAccounts" placeholder="11">
-                                                    
-                            </div>
-                            <div class="form-group">
-                                <label for="CreditProblems">Number of Credit Problems</label>
-                                <input type="number" min="0"
-                                class="form-control" name="CreditProblems" id="CreditProblems"  placeholder="1">
-                                                
-                            </div>
-                            <div class="form-group">
-                                <label for="CreditBalance">Current Credit Balance</label>
-                                <input type="number" min="0"
-                                class="form-control" name="CreditBalance" id="CreditBalance" placeholder="290770">
-                                                    
-                            </div>
-                            
-
-                        </div>      
-                        <!-- /col2 -->
-              
-                    
-                
-            </div>
-            <div class="Result">
-                    <h4>Your Loan you can get : <span id="predictMaxOpenCredit" style="color: red;">  </span> $   </h4>
-                    <button type="submit" value="Submit"  type="button" class="btn btn-warning">Calculator</button>
-            </div>   
-
-        </form>
-
+                                      </form>
+                </div>    
 
    </div>
    
@@ -489,7 +498,10 @@
                 outcome+=weights[i];
                 console.log( "Model linear ",response.data.model);
                 // outcome.toFixed(3);               
-                $('#predictMaxOpenCredit').html(parseInt(outcome));
+                    $('#predictMaxOpenCredit').html(parseInt(outcome).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                                }));
                 // console.log( 'dau vao sau khi phan tich', income);
 
             }).catch(error=>console.log(error) );

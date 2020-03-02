@@ -30,7 +30,8 @@ router.post('/login' ,async  (req, res)=> {
 		const { error } = loginValidation(req.body);
 		if (error)
 			return res.status(200).render('Auth/UserLogin', {
-				alert: error.details[0].message
+				alert: error.details[0].message,
+				userInfor:'login'
 		});
 
 		let { Email, Password } = req.body;
@@ -39,7 +40,8 @@ router.post('/login' ,async  (req, res)=> {
 		const emailExist = await getUserByEmail(Email);
 		if (!emailExist.length) 
 			return res.status(200).render('Auth/UserLogin', {
-				alert: 'Email not found'
+				alert: 'Email not found',
+				userInfor:'login'
 			});
 
 
@@ -49,16 +51,19 @@ router.post('/login' ,async  (req, res)=> {
 
         if (!validPassword) {
 				return res.status(200).render('Auth/UserLogin',{ 
-						alert: 'Password is Invalid'
+						alert: 'Password is Invalid',
+						userInfor:'login'
 				});
 			
 		}else {
 
 				const token = jwt.sign({
-						_id:   emailExist[0].UserId,
-						_email: emailExist[0].Email,
-						_name: emailExist[0].FullName,
-						_role: emailExist[0].Role
+					_id:   emailExist[0].UserId,
+					_email: emailExist[0].Email,
+					_name: emailExist[0].FullName,
+					_phone: emailExist[0].Phone,
+					_dob: emailExist[0].Dob,
+					_role: emailExist[0].Role
 
 					}, process.env.TOKEN_SECRET)
 			
@@ -124,65 +129,68 @@ router.post('/register', async  (req, res) =>{
 // admin
 
 //auth
-router.get('/admin/login',  (req, res) =>{
+// router.get('/admin/login',  (req, res) =>{
 	
 
-	res.render('Auth/AdminLogin' ,{userInfor:'logout', alert:false});
-} );
+// 	res.render('Auth/AdminLogin' ,{userInfor:'logout', alert:false});
+// } );
 
 
-router.post('/admin/login' ,async  (req, res)=> {
-	try {
+// router.post('/admin/login' ,async  (req, res)=> {
+// 	try {
 			
-		//validation
-		const { error } = loginValidation(req.body);
-		if (error)
-			return res.status(200).render('Auth/UserLogin', {
-				alert: error.details[0].message
-		});
+// 		//validation
+// 		const { error } = loginValidation(req.body);
+// 		if (error)
+// 			return res.status(200).render('Auth/UserLogin', {
+// 				alert: error.details[0].message,
+// 				userInfor:'login'
+// 		});
 
-		let { Email, Password } = req.body;
+// 		let { Email, Password } = req.body;
 
-        // CHECK IF EMAIL IS EXIST ?
-		const emailExist = await getUserByEmail(Email);
-		if (!emailExist.length) 
-			return res.status(200).render('Auth/UserLogin', {
-				alert: 'Email not found'
-			});
+//         // CHECK IF EMAIL IS EXIST ?
+// 		const emailExist = await getUserByEmail(Email);
+// 		if (!emailExist.length) 
+// 			return res.status(200).render('Auth/UserLogin', {
+// 				alert: 'Email not found'
+// 			});
 
 
-        // CHECK PASSWORD IS CORRECT ?
-        const validPassword = await bcrypt.compare(Password, emailExist[0].Password);
+//         // CHECK PASSWORD IS CORRECT ?
+//         const validPassword = await bcrypt.compare(Password, emailExist[0].Password);
       
 
-        if (!validPassword) {
-				return res.status(200).render('Auth/UserLogin',{ 
-						alert: 'Password is Invalid'
-				});
+//         if (!validPassword) {
+// 				return res.status(200).render('Auth/UserLogin',{ 
+// 						alert: 'Password is Invalid'
+// 				});
 			
-		}else {
+// 		}else {
 
-				const token = jwt.sign({
-						_id:   emailExist[0].UserId,
-						_email: emailExist[0].Email,
-						_name: emailExist[0].FullName,
-						_role: emailExist[0].Role
+// 				const token = jwt.sign({
+// 						_id:   emailExist[0].UserId,
+// 						_email: emailExist[0].Email,
+// 						_name: emailExist[0].FullName,
+// 						_phone: emailExist[0].Phone,
+// 						_dob: emailExist[0].Dob,
+// 						_role: emailExist[0].Role
 
-					}, process.env.TOKEN_SECRET)
+// 					}, process.env.TOKEN_SECRET)
 			
 				
-				res.cookie('auth_token',token,{ expires: new Date(Date.now() + 36000000), httpOnly: true });
-				res.header('auth_token',token);
-				res.redirect('/users/');;
-				// res.redirect('/');;
+// 				res.cookie('auth_token',token,{ expires: new Date(Date.now() + 36000000), httpOnly: true });
+// 				res.header('auth_token',token);
+// 				res.redirect('/users/');;
+// 				// res.redirect('/');;
 				
 			
-        	}	
+//         	}	
 
-	} catch (error) {
-		res.status(400).send(error);
-	}
-});
+// 	} catch (error) {
+// 		res.status(400).send(error);
+// 	}
+// });
 
 
 

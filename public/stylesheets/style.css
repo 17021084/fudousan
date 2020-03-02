@@ -1,6 +1,8 @@
 body {
  
-  font:  "Roboto", Helvetica, Arial, sans-serif;
+  /* font:  "Roboto", Helvetica, Arial, sans-serif; */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .LogoIcon{

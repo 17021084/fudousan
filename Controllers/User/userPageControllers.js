@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
-const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = require('../../database/userModel');
+const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
 const { insertHome } = require('../../database/homeModel');
 
 
@@ -69,7 +69,7 @@ async function getProfile(req, res) {
 		var user = await getUserById( res.locals._id);
 		
 		res.status(200).render('User/Profile', {
-			userInfor: userInfor,
+			userInfor: userInfor ,
 			user:user[0]
 		});
 	} catch (error) {
@@ -77,8 +77,68 @@ async function getProfile(req, res) {
 	}
 }
 
-function updateInfor(req, res) {}
-function updatePassWord(req, res) {}
+async function updateProfile(  req , res) {
+	try {
+		let	{Name, Phone ,Dob}= req.body;
+		
+
+
+		let user ={
+			FullName: Name ||res.locals._name,
+			Phone: Phone||res.locals._phone,
+			Dob:Dob || res.locals._dob,
+			UserId : res.locals._id
+			}
+		
+		let update = await updateProfileById(user);
+
+		res.send({})
+
+	} catch (error) {
+		console.log(error);
+		res.send({
+			error : "Error"
+		});
+	}
+}
+async  function updatePassWord(req, res) {
+	try {
+		let {newPass , oldPass} = req.body;
+
+		let user = await getUserById(res.locals._id);
+		
+        // // CHECK PASSWORD IS CORRECT ?
+		const validPassword = await bcrypt.compare(oldPass, user[0].Password);
+		if( !validPassword){
+			return res.send({
+				alert :"Old PassWord's incorrects"
+			});
+		}
+
+		if(newPass ===oldPass ){
+			return res.send({
+				success :"update complete"
+			});
+		} 
+		
+		//  //HASH PASSWORDS
+		 const salt = await bcrypt.genSalt(10); //gen salt to add in password
+		 const hashPassword = await bcrypt.hash(newPass, salt);
+		
+		 await updatePasswordById( {
+			Password:hashPassword, 
+			UserId : res.locals._id
+		 })
+
+		 res.send({
+			success :"update complete"
+		});
+
+	} catch (error) {
+		
+	}
+
+}
 
 // ====================================
 
@@ -210,7 +270,7 @@ module.exports = {
 	mailComposer: mailComposer,
 	mailComposerById: mailComposerById,
 	getProfile: getProfile,
-	updateInfor: updateInfor,
+	updateProfile: updateProfile,
 	updatePassWord: updatePassWord,
 	getNews: getNews,
 	postNews: postNews,

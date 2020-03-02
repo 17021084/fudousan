@@ -27,7 +27,7 @@
         <h3 style="text-align:center"> Update Profile </h3>
          <hr> <br>
         <!-- /title -->
-        <form action="" method="post"  >
+        <form action="profile/updateInfor" method="put"  class="profileUpdate" >
             <div class="form">
 
              
@@ -45,9 +45,9 @@
                 <div class="form-group">
                   <label for="Name">Your name </label>
                   <input type="text"
-                    class="form-control" name="Name" id="Name" aria-describedby="Name" placeholder=" Nguyen Van A" required>                     
+                    class="form-control" name="Name" id="Name" aria-describedby="Name" placeholder=" Nguyen Van A" >                     
                 </div>             
-                <button  type="submit"  class="btn btn-primary" id="btn"> Update  </button> <br> <br>
+                <button  type="submit"  class="btn btn-primary" > Update  </button> <br> <br>
               </div>
 
 
@@ -61,10 +61,10 @@
                 <div class="form-group">
                   <label for="Phone">Phone</label>
                   <input type="text"
-                    class="form-control" name="Phone" id="Phone" aria-describedby="Phone" placeholder="" required>
-                  <small id="Phone" class="form-text text-muted">Help text</small>
+                    class="form-control" name="Phone" id="Phone" aria-describedby="Phone" placeholder="" >
+              
                 </div>
-                <button  type="submit"  class="btn btn-primary" id="btn"> Update  </button> <br> <br>
+                <button  type="submit"  class="btn btn-primary" > Update  </button> <br> <br>
               
               </div>
 
@@ -78,14 +78,17 @@
                 <div class="form-group">
                   <label for="Dob">Date Of Birth</label>
                   <input type="datetime"
-                    class="form-control" name="Dob" id="Dob" aria-describedby="Dob" placeholder="dd/mm/yy" required>
+                    class="form-control" name="Dob" id="Dob" aria-describedby="Dob" placeholder="dd/mm/yy" >
                   <small id="Dob" class="form-text text-muted">31/1/2020</small>
                 </div>
 
-                <button  type="submit"  class="btn btn-primary" id="btn"> Update  </button> <br> <br>
+                
+                <button  type="submit"  class="btn btn-primary" > Update  </button> <br> <br>
               </div>
                                             
+                <div class = 'alertProfile'>
                 
+                </div>
 
             </div>
 
@@ -98,7 +101,7 @@
           <img class="BigIcon" src="/images/icon/edit.svg" alt="Time">  </img>
         </a>    </h3>
         <br> 
-      <form action="" method="post">      
+      <form action="profile/password" method="put" class="passwordUpdate">      
                
 
             <!-- === -->
@@ -112,23 +115,32 @@
                   <label for="OldPassWord">Old PassWord</label>
                   <input type="password"
                     class="form-control" name="OldPassWord" id="OldPassWord" aria-describedby="OldPassWord" placeholder="" required>
-                  <small id="OldPassWord" class="form-text text-muted">Help text</small>
+                    <small id="alertOld"  class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                   <label for="NewPassWord">New PassWord</label>
                   <input type="password"
                     class="form-control" name="NewPassWord" id="NewPassWord" aria-describedby="NewPassWord" placeholder="" required>
-                  <small id="NewPassWord" class="form-text text-muted">Help text</small>
+                  
                 </div>
                 <div class="form-group">
                   <label for="Confirm">Confirm new PassWord</label>
                   <input type="password"
                     class="form-control" name="Confirm" id="Confirm" aria-describedby="Confirm" placeholder="" required>
-                  <small id="Confirm" class="form-text text-muted">Help text</small>
+                  <small id="alertConfirm"  class="form-text text-muted"></small>
                 </div>
             
                   <br>
                   <button  type="submit"  class="btn btn-primary" id="btn"> Update Password </button>
+
+
+                  <div class = 'alertPassword'>
+                
+                  </div>
+                  <div class = 'alertPasscharactor'>
+                
+                  </div>
+  
               </div>
              
           
@@ -150,7 +162,136 @@
     <!-- include jquery and bootstap -->
     <script src="/javascripts/jquery/dist/jquery.js"></script>
     <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    
+    <script>
+      // submit profile
+      $('form.profileUpdate').on('submit', function (event) {
+                // event.preventDefault();  
+            var that = $(this), //refer to form
+              url = that.attr('action'), //* cai nay bug ne 
+              method = that.attr('method'),
+              data = {};
+             
 
+            that.find('[name]').each(function (index, value) {
+              let that = $(this),
+                name = that.attr('name');
+                value = that.val().trim();
+                if( value !==''){
+                  data[name] = value;
+
+                }
+                        
+              
+            })
+            
+            console.log(data);
+        
+           
+
+            axios({
+              method: method,
+              url: url,
+              data: data
+            }).then(function (response) {
+                
+              $('.alertProfile').html(`  
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> you should refresh this pages
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+                  
+                  
+                  `)
+             
+            }).catch(error => console.log(error));
+
+
+            return false; // prevent form submit event.preventDefault();  
+          });   
+
+      // submit password form
+      $('form.passwordUpdate').on('submit', function (event) {
+             
+                $('#alertOld').html(' ')
+            let newPass=  $('#NewPassWord').val();    
+            let confirm = $('#Confirm').val();    
+            let oldPass = $('#OldPassWord').val();
+            
+            if(newPass.length <8){
+              $('.alertPasscharactor').html(`  
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  New Password at <strong>  least 8 </strong>characters!!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div> 
+                  `)
+
+            }
+
+
+            if(confirm!==newPass ){              
+                 $('#alertConfirm').html(`  
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Confirm New Password </strong> doesnt match
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div> 
+                  `)       
+                return false;
+            }
+            let pass ={
+              newPass :newPass,
+              confirm :confirm,
+              oldPass :oldPass
+            }
+
+            axios({
+              method: 'put',
+              url: 'profile/password',
+              data: pass
+            }).then(function (response) {
+                // console.log(response.data)
+                let  {alert , success} = response.data;
+                if(alert){
+                  console.log(alert);
+                  
+
+                  $('.alertPassword').html(`  
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> ${alert}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div> 
+                  `)
+                }else{
+                  
+                  $('.alertPassword').html(`  
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Alert</strong> ${success}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div> 
+                  `)
+                  console.log(success);
+                 }
+             
+            }).catch(error => console.log(error));
+
+
+            return false; // prevent form submit event.preventDefault();  
+          });    
+
+
+
+
+    </script>
 
 
 </body>
