@@ -1,5 +1,5 @@
 const builModelFrom = require('../../Regression/Regression');
-const { getNews, getNewsById } = require('../../database/newsModel');
+const { getNews, getNewsByNewsId } = require('../../database/newsModel');
 const { getHomes, getHomeById } = require('../../database/homeModel');
 const { getMeetings, insertMeetings } = require('../../database/meetingModel');
 
@@ -66,7 +66,7 @@ async function newsDetails(req, res) {
 	try {
 		// header
 		var userInfor = res.locals ;
-		let newsById = await getNewsById(req.params.id); // main
+		let newsById = await getNewsByNewsId(req.params.id); // News Id
 		let news = await getNews(); // othernews
 
 		res.status(200).render('HomePage/News Details', {
@@ -74,6 +74,7 @@ async function newsDetails(req, res) {
 			newsById: newsById[0],
 			news: news
 		});
+		
 	} catch (error) {
 		console.log(error);
 	}

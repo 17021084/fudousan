@@ -28,9 +28,24 @@ const getNews = () => {
     })
 }
 
-const getNewsById = (id) => {
+//user Id
+const getNewsByUsersId = (id) => {
     return new Promise((resolve,reject) => {
-        pool.query( "select  u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where n.NewsId = ?  ", [id],(err, result)=>{
+        pool.query( "select u.UserId , u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where u.UserId = ?  ", [id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+//NewsId
+const getNewsByNewsId = (id) => {
+    return new Promise((resolve,reject) => {
+        pool.query( "select u.UserId , u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where n.NewsId = ?  ", [id],(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -75,7 +90,8 @@ const deleteNewsById = (id) => {
 
 module.exports = {
     getNews:getNews,
-    getNewsById:getNewsById,
+    getNewsByUsersId:getNewsByUsersId,
+    getNewsByNewsId:getNewsByNewsId,
     updateNewsById:updateNewsById,
     deleteNewsById:deleteNewsById
 };

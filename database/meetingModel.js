@@ -15,18 +15,21 @@ const getMeetings = () => {
 	});
 };
 
-// const getMeetingsById = (id) => {
-//     return new Promise((resolve,reject) => {
-//         pool.query( "select  u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where u.NewsId = ?  ", [id],(err, result)=>{
-//             if(err) {
-//                  reject(err);
-//             }else{
+const getMeetingsByUserId = (Userid) => {
+    return new Promise((resolve,reject) => {
 
-//                  resolve(result);
-//             }
-//         });
-//     })
-// }
+		let sql ="select  m.* ,h.HomeName , h.Address  from meeting m inner join home h on m.HomeId = h.HomeId  inner join user u on u.UserId = h.UserId     where  u.UserId = ?  "
+
+        pool.query(sql , [Userid],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
 
 // const updateMeetingsById = (id ,per = 1) => {
 //     return new Promise((resolve,reject) => {
@@ -41,18 +44,19 @@ const getMeetings = () => {
 //     })
 // }
 
-// const deleteMeetingsById = (id) => {
-//     return new Promise((resolve,reject) => {
-//         pool.query( "delete from news   where NewsId = ?  ", [id],(err, result)=>{
-//             if(err) {
-//                  reject(err);
-//             }else{
 
-//                  resolve(result);
-//             }
-//         });
-//     })
-// }
+const deleteByMeetingId = (meetingId) => {
+    return new Promise((resolve,reject) => {
+        pool.query( " delete from meeting   where MeetingId = ?  ", [meetingId],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
 
 const insertMeetings = (arrayBooking, per = 0) => {
 	return new Promise((resolve, reject) => {
@@ -73,10 +77,11 @@ const insertMeetings = (arrayBooking, per = 0) => {
 	});
 };
 
+
 module.exports = {
 	getMeetings: getMeetings,
-	// getNewsById: getNewsById,
+	getMeetingsByUserId: getMeetingsByUserId,
 	// updateNewsById: updateNewsById,
-	// deleteNewsById: deleteNewsById,
+	deleteByMeetingId: deleteByMeetingId,
 	insertMeetings: insertMeetings
 };

@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
-const { insertHome } = require('../../database/homeModel');
+const { insertHome ,getHomeByUsersId} = require('../../database/homeModel');
+const { getNewsByUsersId } =require('../../database/newsModel');
+const { getMeetingsByUserId ,deleteByMeetingId } =require('../../database/meetingModel');
 
 
 
@@ -21,7 +23,7 @@ function mailComposer(req, res) {
 	res.render('User/ComposerMail', { userInfor: userInfor, toEmail: '' });
 }
 //  get  /composermail/:email
-function mailComposerById(req, res) {
+function mailComposerByParam(req, res) {
 	// header
 	var userInfor = res.locals;
 	res.render('User/ComposerMail', { userInfor: userInfor, toEmail: req.params.email });
@@ -147,37 +149,73 @@ async  function updatePassWord(req, res) {
 async function getNews(req, res) {
 	try {
 		// header
-		var userInfor = res.locals;
-
+		let userInfor = res.locals;
+		let news = await getNewsByUsersId (res.locals._id);
+		// console.log(news);
 		res.status(200).render('User/Your New Post', {
-			userInfor: userInfor
+			userInfor: userInfor,
+			news :news
 		});
 	} catch (error) {
 		res.status(400).send(error);
 	}
 }
-function postNews(req, res) {}
+
+async function postNews(req, res) {
+	try {
+		
+
+
+
+	} catch (error) {
+		console.log(error);
+		res.send(error);
+	}
+
+
+}
 function deleteNews(req, res) {}
 // ===========================================
 
 // home & incoming meeting
 async function index(req, res) {
 	try {
+
 		var userInfor = res.locals;
-		
-		
-	
+
+		var home = await getHomeByUsersId(userInfor._id);
+		var meeting = await getMeetingsByUserId( userInfor._id);
+
 
 		res.status(200).render('User/index', {
 			userInfor: userInfor,
-
+			meeting :meeting,
+			home:home
 		});
 
 
 	} catch (error) {
+		console.log(error)
 		res.status(400).send(error);
 	}
 }
+// /users/meeting/delete/:MeetingId  _. bug
+async function deleteMeetingByMeetingId(req, res) {
+	try {
+		
+		 let deleteMeeting = await deleteByMeetingId( req.params.meetingId );
+		 console.log( deleteMeeting )
+		 console.log( req.params.MeetingId )
+		 res.redirect('/users/');
+	} catch (error) {
+		console.log(error)
+		res.status(400).send(error);
+	}
+}
+
+
+
+
 
 async function getNewHome(req, res) {
 	try {
@@ -268,7 +306,7 @@ async function predictSalePrice(req, res) {
 module.exports = {
 	sendMail: sendMail,
 	mailComposer: mailComposer,
-	mailComposerById: mailComposerById,
+	mailComposerByParam: mailComposerByParam,
 	getProfile: getProfile,
 	updateProfile: updateProfile,
 	updatePassWord: updatePassWord,
@@ -279,6 +317,7 @@ module.exports = {
 	getNewHome: getNewHome,
 	postNewHome: postNewHome,
 	getModifyHome: getModifyHome,
-	predictSalePrice:predictSalePrice
+	predictSalePrice:predictSalePrice,
+	deleteMeetingByMeetingId:deleteMeetingByMeetingId
 	
 };

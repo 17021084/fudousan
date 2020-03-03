@@ -42,7 +42,7 @@ router.put('/home/:id');
 router.post( '/home/predictSalePrice',user.predictSalePrice);
 
 
-router.delete('/meeting');
+router.get('/meeting/delete/:MeetingId',user.deleteMeetingByMeetingId);
 
 
 //news
@@ -53,7 +53,7 @@ router.delete('/news',user.deleteNews )// post new
 
 
 //mail
-router.get('/composermail/:email', user.mailComposerById); // index button
+router.get('/composermail/:email', user.mailComposerByParam); // index button
 
 router.get('/composermail', user.mailComposer);
 router.post('/composermail', user.sendMail);

@@ -44,18 +44,40 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row" class="LeftCol">1</td>
-                        <td>VIncon Long bien riversite</td>
-                        <td>Thu Thien THudau 1</td>
-                        <td> 3000</td>
-                        <td> 2010</td>
-                        <td>For Rent</td>
-                        <td>21312</td>
-                        <td>watting </td>
-                        <td class="RightCol"> <button type="button" class="btn btn-danger">Modify</button> </td>
-                        
-                    </tr>
+                    <% home.forEach(element => { %>
+                        <tr>
+                            <td scope="row" class="LeftCol"> <%= home.indexOf(element)+1 %> </td>
+                            <td> <%= element.HomeName%></td>
+                            <td><%= element.Address %> </td>
+                            <td> <%= element.Area %></td>
+                            <td> <%= element.YearBuilt %></td>
+                            
+                            <td><%= element.Purpose %></td>
+    
+                            <td><%= element.Price %></td>
+                            
+                            <% if (element.Permission!=0 ){ %>
+                                <td> <span style="color: red;">watting</span> </td>
+                                
+                                <% }else{ %>
+                              <td> <span style="color: green;">Posting</span> </td>
+                                    
+                            <% } %> 
+                            
+                            <td class="RightCol">
+                                
+                                <a href="http://">
+                                    <img class="BigIcon" src="/images/icon/edit.svg" alt="Location"> </img>
+                                </a>                           
+                  
+                            </td>
+                            
+                        </tr>
+                       <% }) %>
+                       
+                   
+                   
+                    
                     
                 </tbody>
         </table>
@@ -74,27 +96,38 @@
                     <th>Mail</th>
                     <th>Date </th>
                     <th>Duaration</th>
-                    <th>Phone</th>
+                
                     <th>Message</th>
-                    <th>Sendmail</th>
-                    <th class="RightCol" >Delete</th>
+                    <th>Status</th>
+                  
+                    <th class="RightCol" >Button </th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="LeftCol" scope="row">1</td>
-                        <td>VIncon Long bien riversite</td>
-                        <td>Thu Thien THudau 1</td>
-                        <td> 3000</td>
-                        <td> 2010</td>
-                        <td >For Rent</td>
-                        <td>watting </td>
-                        <td>watting </td>
-                        <td> <button type="button" class="btn btn-primary">SendMail</button> </td>
-                        <td class="RightCol"> <button type="button" class="btn btn-danger">Delete</button> </td>
+                    <% meeting.forEach(element => { %>
+                     
+                        <tr>
+                            <td class="LeftCol" scope="row"> <%= meeting.indexOf(element)+1 %> </td>
+                            <td>  <%= element.HomeName %></td>
+                            <td> <%= element.Address %> </td>
+                            <td>  <%= element.EmailBooker %> </td>
+                            <td> <%= element.MeetingDate %></td>
+                            <td > <%= element.Duration %> </td>
+                            <td><%= element.Message %> </td>
+                            <td><%= element.Permission %> </td>
+                            
+                            <td class="RightCol">
+                                
+                            <a name="" id="" class="btn btn-primary"  target="_blank" href="/users/composermail/<%= element.EmailBooker %>" role="button">Mail</a>               
+                            <a name="" id=""  onclick="confirmDelete(event)"  class="btn btn-danger" href="/users/meeting/delete/<%= element.MeetingId%>" role="button">Delete</a>               
+                            </td>
+                            
+                        </tr>
                         
-                    </tr>
                     
+                    
+                    <% }) %>
+                  
                 </tbody>
         </table>
 
@@ -111,5 +144,20 @@
     <!-- include jquery and bootstap -->
     <script src="/javascripts/jquery/dist/jquery.js"></script>
     <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+   <script>
+
+        function confirmDelete(event) {
+            if(confirm('Do You want to delete it ?')  ){
+                
+                return true;
+            }else{
+                event.preventDefault();
+                return false;
+            }
+        }
+
+   </script>
+
 </body>
 </html>

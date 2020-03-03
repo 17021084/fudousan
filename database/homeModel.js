@@ -28,6 +28,18 @@ const getHomeById = (id) => {
         });
     })
 }
+const getHomeByUsersId = (id) => {
+    return new Promise((resolve,reject) => {
+        pool.query( "select u.FullName ,u.Email , h.* from home h inner join user u on h.UserId= u.UserId  where u.UserId = ?  ", [id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
 
 // const updateHomeById = (id ,per = 1) => {
 //     return new Promise((resolve,reject) => {
@@ -80,7 +92,7 @@ module.exports = {
     getHomes:getHomes,
     insertHome:insertHome,
     getHomeById:getHomeById,
-  
+    getHomeByUsersId:getHomeByUsersId
 };
 
 

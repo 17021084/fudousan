@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>Post New Home</title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/Post_Update_DeleteHome.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+   
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<body>
+  
+  <!-- Header  -->
+  <%- include ('../Header.ejs',{userInfor:userInfor}) %> 
+
+
+   <div class="HomeForm" >
+        <!-- title -->
+        <h3 style="text-align:center"> Your Home </h3>
+         <hr> <br>
+        <!-- /title -->
+
+        <form action="/users/newhome" method="post" class="form"  id="form">
+                <div class="form-group HomeName">
+                    <h4 style="text-align: center;"> <label for="HomeName">Your Home Name</label> </h4>
+                    
+                    <input type="text"
+                            class="form-control " name="HomeName" id="HomeName" aria-describedby="HomeName" placeholder="">
+                    <small id="HomeName" class="form-text text-muted">Simple name please !1 ^^</small>
+
+                    <br><br>
+                    <div class="check">
+                      <h4 style="text-align: center;"> Purpose </h4>
+                      <br>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="Purpose"  id="ForRent" value="ForRent"> For Rent 
+                      </label>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="Purpose" checked id="ForSale" value="ForSale"> For Sale 
+                      </label>
+    
+                   </div>     
+
+
+                </div>
+
+
+                <!-- type Title -->
+                  <a class="btn btn-default" data-toggle="collapse" href="#Type" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h5 ><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b>   Type </b> </img> </h5>
+                  </a>             
+                
+                <div class="collapse" id="Type">                
+                      <!-- type -->
+                        <div class="row type">               
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                        <label for="HallWay">Hall way</label>
+                                        <input type="text"
+                                            class="form-control" name="HallWay" id="HallWay" aria-describedby="HallWay" placeholder="">
+                                        <small id="HallWay" class="form-text text-muted">Help text</small>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="ApartmentType">Apartment Type</label>
+                                        <input type="text"
+                                            class="form-control" name="ApartmentType" id="ApartmentType" aria-describedby="ApartmentType" placeholder="">
+                                        <small id="ApartmentType" class="form-text text-muted">Help text</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                        <label for="Heating">Heating</label>
+                                        <input type="text"
+                                            class="form-control" name="Heating" id="Heating" aria-describedby="Heating" placeholder="">
+                                        <small id="Heating" class="form-text text-muted">Help text</small>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="SubwayStation">Subway station</label>
+                                        <input type="text"
+                                            class="form-control" name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="">
+                                        <small id="SubwayStation" class="form-text text-muted">Help text</small>
+                                        </div>
+
+                                    </div>
+
+                          
+                              </div>
+                      
+                           <!--/type -->
+
+                
+                  </div>
+    
+                  <!-- title -->
+               
+                <hr> <br>
+                <!-- /title -->
+              
+              
+                <!-- image Title -->
+                  <a class="btn btn-default" data-toggle="collapse" href="#Image" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h5 ><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b>   Image  </b> </img> </h5>
+                  </a>   
+                   <!-- image dropdown -->
+                  <div class="collapse" id="Image">  
+
+                                   <div class="row image">
+                    
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image1">Image 1</label>
+                                                    <input type="text" class="form-control" name="Image1" id="Image1"  placeholder="">
+                                                  
+                                              </div>              
+                                              <img id="PreviewImage1" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image2">Image 2</label>
+                                                    <input type="text" class="form-control" name="Image2" id="Image2"  placeholder="">
+                                                    
+                                              </div>              
+                                              <img id="PreviewImage2" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image3">Image 3</label>
+                                                    <input type="text" class="form-control" name="Image3" id="Image3"  placeholder="">
+                                                  
+                                              </div>              
+                                              <img id="PreviewImage3" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image4">Image 4</label>
+                                                    <input type="text" class="form-control" name="Image4" id="Image4"  placeholder="">
+                                                    
+                                              </div>              
+                                              <img id="PreviewImage4" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image5">Image 5</label>
+                                                    <input type="text" class="form-control" name="Image5" id="Image5"  placeholder="">
+                                              
+                                              </div>              
+                                              <img id="PreviewImage5" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>
+                                          <!-- img1  -->
+                                          <div class="col-xl-6" >
+                                              
+                                              <div class="form-group" name="ImageInput">
+                                                  <label for="Image6">Image 6</label>
+                                                    <input type="text" class="form-control" name="Image6" id="Image6"  placeholder="">
+                                                  
+                                              </div>              
+                                              <img id="PreviewImage6" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                      
+                                          </div>                                       
+                                  </div>
+
+                      </div>
+                     <!-- image dropdown -->
+                
+
+
+                <!-- title -->
+                    <br><br>
+                <h3 style="text-align:center"> Information for statiscs </h3>
+                <hr> <br>              
+              
+                <!-- /title -->
+
+
+
+              <!-- Construction Title -->
+              <a class="btn btn-default" data-toggle="collapse" href="#Construction" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <h5 ><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b>   Construction  </b> </img> </h5>
+              </a>   
+              
+               <!-- Construction dropdown -->
+              <div class="collapse" id="Construction">  
+                                  <!-- Construction  -->
+                              <div class="row Construction">
+                            
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                      <label for="YearBuilt">Year Built</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict"   name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="2002">
+                                      <small id="YearBuilt" class="form-text text-muted">Help text</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="Elevators">Elevators</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict" name="Elevators" id="Elevators" aria-describedby="Elevators" placeholder="8">
+                                      <small id="Elevartor" class="form-text text-muted">Help text</small>
+                                    </div>
+                
+                                </div>
+                
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                      <label for="Area">Area</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict" name="Area" id="Area" aria-describedby="Area" placeholder="774">
+                                      <small id="Area" class="form-text text-muted">Help text</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="Manager">Manager</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict" name="Manager" id="Manager" aria-describedby="Manager" placeholder="6">
+                                      <small id="Manager" class="form-text text-muted">Help text</small>
+                                    </div>   
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                      <label for="Floor">Floor</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict" name="Floor" id="Floor" aria-describedby="Floor" placeholder="10">
+                                      <small id="Floor" class="form-text text-muted">Help text</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="Apt">Building</label>
+                                      <input type="number" min="0"
+                                        class="form-control predict" name="Apt" id="Apt" aria-describedby="Apt" placeholder="5">
+                                      <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
+                                    </div>   
+                                </div>
+                                
+                            </div>    
+                            <!-- /Construction  -->
+                  </div>
+                  <hr> <br>
+                  <!-- /Construction dropdown -->
+
+
+
+              
+
+
+
+                
+                
+                  <!-- Facilities Title -->
+                  <a class="btn btn-default" data-toggle="collapse" href="#Facilities" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <h5><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b> Facilities </b> </img> </h5>
+                  </a>
+                  
+                  <!-- Facilities dropdown -->
+                  <div class="collapse" id="Facilities">
+                                          <!-- Facilities  -->
+                                  <div class="row Facilities">
+                                
+                                    <div class="col-xl-4">
+                                        <div class="form-group">
+                                          <label for="PublicOffice">Public Office</label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="PublicOffice" id="PublicOffice" aria-describedby="PublicOffice" placeholder="4">
+                                          <small id="PublicOffice" class="form-text text-muted">Help text</small>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="Mall">Mall</label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="Mall" id="Mall" aria-describedby="Mall" placeholder="1">
+                                          <small id="Mall" class="form-text text-muted">Help text</small>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="col-xl-4">
+                                        <div class="form-group">
+                                          <label for="Hospital">Hospital</label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="Hospital" id="Hospital" aria-describedby="Hospital" placeholder="1">
+                                          <small id="Hospital" class="form-text text-muted">Help text</small>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="Park">Park</label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="Park" id="Park" aria-describedby="Park" placeholder="1">
+                                          <small id="Park" class="form-text text-muted">Help text</small>
+                                        </div>   
+                                    </div>
+
+                                    <div class="col-xl-4">
+                                        <div class="form-group">
+                                          <label for="DepartmentStore">DepartmentStore</label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="DepartmentStore" id="DepartmentStore" aria-describedby="DepartmentStore" placeholder="1">
+                                          <small id="DepartmentStore" class="form-text text-muted">Help text</small>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="Other">Other </label>
+                                          <input type="number" min="0"
+                                            class="form-control predict" name="Other" id="Other" aria-describedby="Other" placeholder="4">
+                                          <small id="Apt" class="form-text text-muted">swimming pool, gym, play ground ...</small>
+                                        </div>   
+                                    </div>
+                                    
+                                </div>    
+                                <!-- /Facilities  -->
+
+
+
+                  </div>
+                  <hr> <br>
+                  <!-- /Facilities dropdown -->
+
+              
+           
+
+                  <!-- Parking Title -->
+                  <a class="btn btn-default" data-toggle="collapse" href="#Parking" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <h5><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b> Parking </b> </img> </h5>
+                  </a>
+                  
+                  <!-- Parking dropdown -->
+                  <div class="collapse" id="Parking">
+                                                <!-- Parking -->
+                                  <div class="row Parking">
+                                  
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                        <label for="Ground">Ground</label>
+                                        <input type="number" min="0"
+                                            class="form-control predict" name="Ground" id="Ground" aria-describedby="Ground" placeholder="206">
+                                        <small id="Ground" class="form-text text-muted">Help text</small>
+                                        </div>
+                                      
+
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                        <label for="Basement">Basement</label>
+                                        <input type="number" min="0"
+                                            class="form-control predict" name="Basement" id="Basement" aria-describedby="Basement" placeholder="387">
+                                        <small id="Basement" class="form-text text-muted">Help text</small>
+                                        </div>
+                                      
+                                    </div>
+
+                                    
+                                </div>
+                                <!--/parking -->
+                  </div>
+                  <hr> <br>
+                    <!-- Parking dropdown -->
+               
+                   
+                
+
+               
+                    <!-- Time Title -->
+                    <a class="btn btn-default" data-toggle="collapse" href="#Time" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <h5><img class="BigIcon" src="/images/icon/edit.svg" alt="Time"><b> Time to </b> </img> </h5>
+                  </a>
+                  
+                  <!-- Time dropdown -->
+                  <div class="collapse" id="Time">
+                         <!-- Time -->
+                                <div class="row Time">
+                                
+                                  <div class="col-xl-6">
+                                      <div class="form-group">
+                                      <label for="BusStop">Bus Stop</label>
+                                      <input type="number" min="0"
+                                          class="form-control predict" name="BusStop" id="BusStop" aria-describedby="BusStop" placeholder="15">
+                                      <small id="BusStop" class="form-text text-muted">Help text</small>
+                                      </div>
+                                    
+
+                                  </div>
+
+                                  <div class="col-xl-6">
+                                      <div class="form-group">
+                                      <label for="SubWay">SubWay</label>
+                                      <input  type="number" min="0"
+                                          class="form-control predict" name="SubWay" id="SubWay" aria-describedby="SubWay" placeholder="15">
+                                      <small id="SubWay" class="form-text text-muted">Help text</small>
+                                      </div>
+                                    
+                                  </div>
+                 
+                              </div>
+                           <!--/Time -->
+                  </div>
+                  <hr> <br>
+                    <!-- /Time dropdown -->
+
+
+              
+                 
+
+                 <!-- School Title -->
+                 <a class="btn btn-default" data-toggle="collapse" href="#School" role="button" aria-expanded="false"
+                 aria-controls="collapseExample">
+                 <h5><img class="BigIcon" src="/images/icon/edit.svg" alt="School"><b> School </b> </img> </h5>
+               </a>
+               
+               <!-- School dropdown -->
+               <div class="collapse" id="School">
+                                        <!-- School -->
+                                <div class="row School">
+                                
+                                  <div class="col-xl-6">
+                                      <div class="form-group">
+                                      <label for="Elementary">Elementary</label>
+                                      <input type="number" min="0"
+                                          class="form-control predict" name="Elementary" id="Elementary" aria-describedby="Elementary" placeholder="3">
+                                      <small id="Elementary" class="form-text text-muted">Help text</small>
+                                      </div>
+                                    
+                                      <div class="form-group">
+                                      <label for="High">High School</label>
+                                      <input type="number" min="0"
+                                          class="form-control predict" name="High" id="High" aria-describedby="High" placeholder="2">
+                                      <small id="High" class="form-text text-muted">Help text</small>
+                                      </div>
+
+                                  </div>
+
+                                  <div class="col-xl-6">
+                                      
+                                    <div class="form-group">
+                                        <label for="Middle">Middle</label>
+                                        <input type="number" min="0"
+                                            class="form-control predict" name="Middle" id="Middle" aria-describedby="Middle" placeholder="2">
+                                        <small id="Middle" class="form-text text-muted">Help text</small>
+                                    </div>    
+                                    
+
+                                      <div class="form-group">
+                                      <label for="University">University</label>
+                                      <input type="number" min="0"
+                                          class="form-control predict" name="University" id="University" aria-describedby="University" placeholder="2">
+                                      <small id="University" class="form-text text-muted">Help text</small>
+                                      </div>
+
+                                  </div>
+
+                                  
+                              </div>
+                              <!--/School -->
+              
+              </div>
+              <hr> <br>
+                <!-- /School dropdown -->
+                
+
+                 <div class="row">
+                     <div class="col-xl-6">
+                         <br><br>
+                         <button  type="button" id ='predict' class="btn btn-warning">Predict</button>
+                         <br><br>
+                        <h5 style="color: black ; "> The suitable Saleprices : <span id="predictPrice" style="color: red;"></span></h5>
+                  
+                     </div>
+                     <div class="col-xl-6">
+
+                        <!-- price -->
+                        <div class="form-group Price">
+                            <label for="Price">Price</label>
+                            <input type="number" min="0"
+                                class="form-control" name="Price" id="Price" aria-describedby="Price" placeholder="">
+                            <small id="SalePrice" class="form-text text-muted"> you can refer our suggestion</small>
+                            <br>
+                            <button type="submit" class="btn btn-primary"> Post</button>    
+                            <div class="" id="alert">
+                              <!-- alert put here -->
+                            </div>   
+                        </div>
+  
+                    </div>
+                 </div>
+                
+            
+        </form>
+
+   </div>
+   
+  
+   
+  <!-- Header  -->
+  <%- include('../Footer.ejs')%>
+
+
+    <!-- include jquery and bootstap -->
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+    <script type="text/javascript" >
+        // preview  script
+        for (let index = 1; index <= 6; index++){
+            $(`#Image${index}`).keyup(function(){
+                 let link =$(`#Image${index}`).val();
+                 $(`#PreviewImage${index}`).attr('src',link); 
+
+             });           
+        }  
+         // submit
+        $('form.form').on('submit', function (event) {
+            
+          
+            var that = $(this), //refer to form
+              url = that.attr('action'), //* cai nay bug ne 
+              method = that.attr('method'),
+              data = {},
+              nameArr =[],
+              valueArr=[];
+
+            that.find('[name]').each(function (index, value) {
+              let that = $(this),
+                name = that.attr('name');
+                value = that.val();
+              if (value !== '' && name !=='Purpose' ) {
+                nameArr.push(name);
+                valueArr.push(value)
+                // console.log(value);
+                data[name] = value;
+
+              };
+
+            })
+
+            if(  $("#ForSale").is(":checked"))
+            {
+              
+                nameArr.push('Purpose');
+                valueArr.push("ForSale");
+                data['Purpose'] = 'ForSale';
+            }
+             else
+            {
+              
+                nameArr.push('Purpose');
+                valueArr.push("ForRent");
+                data['Purpose'] = 'ForRent';
+            }
+
+
+
+           
+            objData= {
+              nameArr:nameArr,
+              valueArr:valueArr
+            }
+           
+
+            axios({
+              method: method,
+              url: url,
+              data: objData
+            }).then(function (response) {
+              let { alert, success } = response.data;
+              // console.log(response.data.alert);          
+              if (alert) {
+                $('#alert').html(`  
+              <div class="alert alert-danger alert" role="alert" >
+                   got some problem - check console log
+                   
+              </div>`)
+              console.log(alert)
+
+              } else {
+                $('#alert').html(`  
+              <div class="alert alert-success" role="alert">
+                Successfully
+                
+              </div>`)
+              console.log(success)
+              }
+             
+            
+
+            }).catch(error => console.log(error));
+
+
+            return false; // prevent form submit event.preventDefault();  
+          });           
+    
+
+        //predict
+        $('#predict').on('click',function(event) {
+          let data =[] ,name=[] ;     
+
+            $("input[class ~= 'predict']").each(function(index , value){
+              let that = $(this);
+                name.push(that.attr('name'))
+                value = that.val();
+                data.push(value);
+            });
+
+            console.log(data)
+            console.log(name)
+           
+            axios({
+              method: 'post',
+              url: '/users/home/predictSalePrice',
+              data: {data:data}
+            }).then(function (response) {                    
+              console.log(response.data)   
+               $('#predictPrice').html(`${parseInt(response.data[0]).toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                          }) }$`
+                   )                
+            }).catch(error => console.log(error));
+
+
+        })
+      
+    </script>
+
+
+</body>
+</html>
