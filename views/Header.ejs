@@ -16,7 +16,7 @@
              
              <li  class="right">
                
-                <% if (  userInfor!=='logout' &&  userInfor!=='login'  ) { %>
+                <% if (  userInfor!=='logout' &&  userInfor!=='login'  &&  userInfor!=='admin' ) { %>
                  
                             <!-- Example single danger button -->
                 <div class="dropdown">
@@ -36,13 +36,29 @@
                     </div>
                 </div>
 
-                <% } else if(userInfor!=='login' ) {%>
+                <% } else if(userInfor!=='login' &&  userInfor!=='admin' ) {%>
                 
-                 <a  href="/users/login"> <button type="button" class="btn btn-warning btn-sm">Login</button> </a>
+                 <a  href="/users/login"> <button type="button" class="btn btn-warning btn-sm"> User Login</button> </a>
                     <!--  bawts logic o day -->
                 
                              
-                <% }%>
+                <% } if(userInfor =='admin' ) {%>
+                                <!-- Example single danger button -->
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                              Admin              
+                            </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        <a class="dropdown-item" href="/admin/home">Home </a>
+                        <a class="dropdown-item" href="/admin/news">News</a>
+                        <a class="dropdown-item" href="/admin/Meeting">Meeting</a>                    
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/logout">Log out</a>
+                    </div>
+                </div>
+
+                <%  }%>
 
              </li>
              

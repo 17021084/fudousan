@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>Whoops!!</title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/profile.css">
+    <link rel="stylesheet" href="/stylesheets/User/Table.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        .background{
+            position: relative;
+        }
+        .notify{
+            position: absolute;
+            top: 230px;
+            text-align: center;
+        
+            width: 100%;
+            height:55px;
+        
+        }
+        .text{
+                width: 300px;
+                margin:  auto;
+                background-color:hsla(46, 69%, 94%, 0.67);
+                border: double 5px rgb(66, 146, 113);
+                color: red;
+        }
+       
+    </style>
+
+</head>
+<body>
+  
+    <!-- header -->
+    <%- include ('Header.ejs',{userInfor:userInfor}) %> 
+
+   
+  
+   <img  class ="background" style=" height: 100%; width:  100%;" src="/images/whoops.gif" alt="">
+  
+   <div class = "notify">
+                <div class="text">
+                        <h1>
+                            Forbidden!!
+                        </h1>
+
+                </div>
+   </div>
+
+   <!-- Footer -->
+   
+   <div  >
+    <%- include('Footer.ejs')  %> 
+    <div style="background-color: #C693DE; height: 100px;">
+
+    </div>
+   </div>   
+   
+
+    <!-- include jquery and bootstap -->
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+   <script>
+
+       
+
+   </script>
+
+</body>
+</html>

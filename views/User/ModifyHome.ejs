@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/icon/040-home.svg">
     
-    <title>Post New Home</title>
+    <title>Modify your home</title>
     
     
     <link rel="stylesheet" href="/stylesheets/style.css">
@@ -25,21 +25,24 @@
 
    <div class="HomeForm" >
         <!-- title -->
-        <h3 style="text-align:center"> Your Home </h3>
+        <h3 style="text-align:center"> Your Home  </h3>
          <hr> <br>
         <!-- /title -->
 
-        <form action="/users/newhome" method="post" class="form"  id="form">
+        <form action="/users/" method="post" class="form"  id="form">
                 <div class="form-group HomeName">
-                    <h4 style="text-align: center;"> <label for="HomeName">Your Home Name</label> </h4>
-                    
+                    <h4 style="text-align: center;">
+                       <label for="HomeName">Your Home Name : </label> 
+                        <span style="color:#C693DE;"> <%= Home.HomeName %> </span>
+                    </h4>
+                     
                     <input type="text"
                             class="form-control " name="HomeName" id="HomeName" aria-describedby="HomeName" placeholder="">
                     <small id="HomeName" class="form-text text-muted">Simple name please !1 ^^</small>
 
                     <br><br>
                     <div class="check">
-                      <h4 style="text-align: center;"> Purpose </h4>
+                      <h4 style="text-align: center;"> Purpose  <span style="color:#C693DE;"> <%= Home.Purpose %> </span> </h4>
                       <br>
                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="Purpose"  id="ForRent" value="ForRent"> For Rent 
@@ -64,13 +67,18 @@
                         <div class="row type">               
                                     <div class="col-xl-6">
                                         <div class="form-group">
-                                        <label for="HallWay">Hall way</label>
+                                        <label for="HallWay">Hall way 
+                                          <span style="color:#C693DE;"> <%= Home.HallWay %> </span>
+                                        </label>
                                         <input type="text"
                                             class="form-control" name="HallWay" id="HallWay" aria-describedby="HallWay" placeholder="">
                                         <small id="HallWay" class="form-text text-muted">Help text</small>
                                         </div>
                                         <div class="form-group">
-                                        <label for="ApartmentType">Apartment Type</label>
+                                        <label for="ApartmentType">Apartment Type
+                                          <span style="color:#C693DE;"> <%= Home.Type %> </span>
+                                        
+                                        </label>
                                         <input type="text"
                                             class="form-control" name="ApartmentType" id="ApartmentType" aria-describedby="ApartmentType" placeholder="">
                                         <small id="ApartmentType" class="form-text text-muted">Help text</small>
@@ -79,13 +87,18 @@
 
                                     <div class="col-xl-6">
                                         <div class="form-group">
-                                        <label for="Heating">Heating</label>
+                                        <label for="Heating">Heating
+                                          <span style="color:#C693DE;"> <%= Home.Heating %> </span>
+                                        </label>
                                         <input type="text"
                                             class="form-control" name="Heating" id="Heating" aria-describedby="Heating" placeholder="">
                                         <small id="Heating" class="form-text text-muted">Help text</small>
                                         </div>
                                         <div class="form-group">
-                                        <label for="SubwayStation">Subway station</label>
+                                        <label for="SubwayStation">Subway station
+
+                                          <span style="color:#C693DE;"> <%= Home.SubwayStation %> </span>
+                                        </label>
                                         <input type="text"
                                             class="form-control" name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="">
                                         <small id="SubwayStation" class="form-text text-muted">Help text</small>
@@ -124,7 +137,7 @@
                                                     <input type="text" class="form-control" name="Image1" id="Image1"  placeholder="">
                                                   
                                               </div>              
-                                              <img id="PreviewImage1" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage1" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image1 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>
                                           <!-- img1  -->
@@ -135,7 +148,7 @@
                                                     <input type="text" class="form-control" name="Image2" id="Image2"  placeholder="">
                                                     
                                               </div>              
-                                              <img id="PreviewImage2" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage2" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image2 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>
                                           <!-- img1  -->
@@ -146,7 +159,7 @@
                                                     <input type="text" class="form-control" name="Image3" id="Image3"  placeholder="">
                                                   
                                               </div>              
-                                              <img id="PreviewImage3" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage3" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image3 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>
                                           <!-- img1  -->
@@ -157,7 +170,7 @@
                                                     <input type="text" class="form-control" name="Image4" id="Image4"  placeholder="">
                                                     
                                               </div>              
-                                              <img id="PreviewImage4" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage4" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image4 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>
                                           <!-- img1  -->
@@ -168,7 +181,7 @@
                                                     <input type="text" class="form-control" name="Image5" id="Image5"  placeholder="">
                                               
                                               </div>              
-                                              <img id="PreviewImage5" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage5" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image5 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>
                                           <!-- img1  -->
@@ -179,7 +192,7 @@
                                                     <input type="text" class="form-control" name="Image6" id="Image6"  placeholder="">
                                                   
                                               </div>              
-                                              <img id="PreviewImage6" style=" height : 200px  ;border-radius: 5%;" src="https://picsum.photos/id/237/1000/500" class="img-thumbnail" alt="Responsive image">                  
+                                              <img id="PreviewImage6" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image6 %>" class="img-thumbnail" alt="Responsive image">                  
                                       
                                           </div>                                       
                                   </div>
@@ -210,13 +223,13 @@
                             
                                 <div class="col-xl-4">
                                     <div class="form-group">
-                                      <label for="YearBuilt">Year Built</label>
+                                      <label for="YearBuilt">Year Built    <span style="color:#C693DE;"> <%= Home.YearBuilt %> </span> </label>
                                       <input type="number" min="0"
                                         class="form-control predict"   name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="2002">
                                       <small id="YearBuilt" class="form-text text-muted">Help text</small>
                                     </div>
                                     <div class="form-group">
-                                      <label for="Elevators">Elevators</label>
+                                      <label for="Elevators">Elevators    <span style="color:#C693DE;"> <%= Home.Elevetors %> </span> </label>
                                       <input type="number" min="0"
                                         class="form-control predict" name="Elevators" id="Elevators" aria-describedby="Elevators" placeholder="8">
                                       <small id="Elevartor" class="form-text text-muted">Help text</small>
@@ -226,28 +239,28 @@
                 
                                 <div class="col-xl-4">
                                     <div class="form-group">
-                                      <label for="Area">Area</label>
+                                      <label for="Area">Area     <span style="color:#C693DE;"> <%= Home.Area %> </span> </label>
                                       <input type="number" min="0"
                                         class="form-control predict" name="Area" id="Area" aria-describedby="Area" placeholder="774">
-                                      <small id="Area" class="form-text text-muted">Help text</small>
+                                      <small id="Area" class="form-text text-muted"> square meters </small>
                                     </div>
                                     <div class="form-group">
-                                      <label for="Manager">Manager</label>
+                                      <label for="Manager">Managers :    <span style="color:#C693DE;"> <%= Home.Manager %> </span></label>
                                       <input type="number" min="0"
                                         class="form-control predict" name="Manager" id="Manager" aria-describedby="Manager" placeholder="6">
-                                      <small id="Manager" class="form-text text-muted">Help text</small>
+                                      <small id="Manager" class="form-text text-muted">Number of managers</small>
                                     </div>   
                                 </div>
 
                                 <div class="col-xl-4">
                                     <div class="form-group">
-                                      <label for="Floor">Floor</label>
+                                      <label for="Floor">Floors    <span style="color:#C693DE;"> <%= Home.Floor %> </span> </label>
                                       <input type="number" min="0"
                                         class="form-control predict" name="Floor" id="Floor" aria-describedby="Floor" placeholder="10">
                                       <small id="Floor" class="form-text text-muted">Help text</small>
                                     </div>
                                     <div class="form-group">
-                                      <label for="Apt">Building</label>
+                                      <label for="Apt">Building    <span style="color:#C693DE;"> <%= Home.Apt %> </span> </label>
                                       <input type="number" min="0"
                                         class="form-control predict" name="Apt" id="Apt" aria-describedby="Apt" placeholder="5">
                                       <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
@@ -281,13 +294,13 @@
                                 
                                     <div class="col-xl-4">
                                         <div class="form-group">
-                                          <label for="PublicOffice">Public Office</label>
+                                          <label for="PublicOffice">Public Office     <span style="color:#C693DE;"> <%= Home.PublicOffice %> </span>  </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="PublicOffice" id="PublicOffice" aria-describedby="PublicOffice" placeholder="4">
                                           <small id="PublicOffice" class="form-text text-muted">Help text</small>
                                         </div>
                                         <div class="form-group">
-                                          <label for="Mall">Mall</label>
+                                          <label for="Mall">Mall     <span style="color:#C693DE;"> <%= Home.Mall %> </span> </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="Mall" id="Mall" aria-describedby="Mall" placeholder="1">
                                           <small id="Mall" class="form-text text-muted">Help text</small>
@@ -297,13 +310,13 @@
                     
                                     <div class="col-xl-4">
                                         <div class="form-group">
-                                          <label for="Hospital">Hospital</label>
+                                          <label for="Hospital">Hospital    <span style="color:#C693DE;"> <%= Home.Hospital %> </span>  </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="Hospital" id="Hospital" aria-describedby="Hospital" placeholder="1">
                                           <small id="Hospital" class="form-text text-muted">Help text</small>
                                         </div>
                                         <div class="form-group">
-                                          <label for="Park">Park</label>
+                                          <label for="Park">Park     <span style="color:#C693DE;"> <%= Home.Park %> </span>     </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="Park" id="Park" aria-describedby="Park" placeholder="1">
                                           <small id="Park" class="form-text text-muted">Help text</small>
@@ -312,13 +325,13 @@
 
                                     <div class="col-xl-4">
                                         <div class="form-group">
-                                          <label for="DepartmentStore">DepartmentStore</label>
+                                          <label for="DepartmentStore">DepartmentStore     <span style="color:#C693DE;"> <%= Home.DepartmentStore %> </span> </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="DepartmentStore" id="DepartmentStore" aria-describedby="DepartmentStore" placeholder="1">
                                           <small id="DepartmentStore" class="form-text text-muted">Help text</small>
                                         </div>
                                         <div class="form-group">
-                                          <label for="Other">Other </label>
+                                          <label for="Other">Other     <span style="color:#C693DE;"> <%= Home.Other %> </span>  </label>
                                           <input type="number" min="0"
                                             class="form-control predict" name="Other" id="Other" aria-describedby="Other" placeholder="4">
                                           <small id="Apt" class="form-text text-muted">swimming pool, gym, play ground ...</small>
@@ -350,7 +363,7 @@
                                   
                                     <div class="col-xl-6">
                                         <div class="form-group">
-                                        <label for="Ground">Ground</label>
+                                        <label for="Ground">Ground     <span style="color:#C693DE;"> <%= Home.Ground %> </span> </label>
                                         <input type="number" min="0"
                                             class="form-control predict" name="Ground" id="Ground" aria-describedby="Ground" placeholder="206">
                                         <small id="Ground" class="form-text text-muted">Help text</small>
@@ -361,7 +374,7 @@
 
                                     <div class="col-xl-6">
                                         <div class="form-group">
-                                        <label for="Basement">Basement</label>
+                                        <label for="Basement">Basement      <span style="color:#C693DE;"> <%= Home.Basement %> </span> </label>
                                         <input type="number" min="0"
                                             class="form-control predict" name="Basement" id="Basement" aria-describedby="Basement" placeholder="387">
                                         <small id="Basement" class="form-text text-muted">Help text</small>
@@ -393,10 +406,10 @@
                                 
                                   <div class="col-xl-6">
                                       <div class="form-group">
-                                      <label for="BusStop">Bus Stop</label>
+                                      <label for="BusStop">Bus Stop     <span style="color:#C693DE;"> <%= Home.BusStop %> </span> </label>
                                       <input type="number" min="0"
                                           class="form-control predict" name="BusStop" id="BusStop" aria-describedby="BusStop" placeholder="15">
-                                      <small id="BusStop" class="form-text text-muted">Help text</small>
+                                      <small id="BusStop" class="form-text text-muted">Minutes </small>
                                       </div>
                                     
 
@@ -404,10 +417,10 @@
 
                                   <div class="col-xl-6">
                                       <div class="form-group">
-                                      <label for="SubWay">SubWay</label>
+                                      <label for="SubWay">SubWay      <span style="color:#C693DE;"> <%= Home.Subway %> </span>       </label>
                                       <input  type="number" min="0"
                                           class="form-control predict" name="SubWay" id="SubWay" aria-describedby="SubWay" placeholder="15">
-                                      <small id="SubWay" class="form-text text-muted">Help text</small>
+                                      <small id="SubWay" class="form-text text-muted">Minutes</small>
                                       </div>
                                     
                                   </div>
@@ -435,17 +448,17 @@
                                 
                                   <div class="col-xl-6">
                                       <div class="form-group">
-                                      <label for="Elementary">Elementary</label>
+                                      <label for="Elementary">Elementary    <span style="color:#C693DE;"> <%= Home.Elementary %> </span></label>
                                       <input type="number" min="0"
                                           class="form-control predict" name="Elementary" id="Elementary" aria-describedby="Elementary" placeholder="3">
-                                      <small id="Elementary" class="form-text text-muted">Help text</small>
+                                     
                                       </div>
                                     
                                       <div class="form-group">
-                                      <label for="High">High School</label>
+                                      <label for="High">High School     <span style="color:#C693DE;"> <%= Home.High %> </span> </label>
                                       <input type="number" min="0"
                                           class="form-control predict" name="High" id="High" aria-describedby="High" placeholder="2">
-                                      <small id="High" class="form-text text-muted">Help text</small>
+                                    
                                       </div>
 
                                   </div>
@@ -453,18 +466,18 @@
                                   <div class="col-xl-6">
                                       
                                     <div class="form-group">
-                                        <label for="Middle">Middle</label>
+                                        <label for="Middle">Middle    <span style="color:#C693DE;"> <%= Home.Middle %> </span>   </label>
                                         <input type="number" min="0"
                                             class="form-control predict" name="Middle" id="Middle" aria-describedby="Middle" placeholder="2">
-                                        <small id="Middle" class="form-text text-muted">Help text</small>
+                                      
                                     </div>    
                                     
 
                                       <div class="form-group">
-                                      <label for="University">University</label>
+                                      <label for="University">University     <span style="color:#C693DE;"> <%= Home.University %> </span> </label>
                                       <input type="number" min="0"
                                           class="form-control predict" name="University" id="University" aria-describedby="University" placeholder="2">
-                                      <small id="University" class="form-text text-muted">Help text</small>
+                                   
                                       </div>
 
                                   </div>
@@ -490,12 +503,13 @@
 
                         <!-- price -->
                         <div class="form-group Price">
-                            <label for="Price">Price</label>
+                            <label for="Price">Price     <span style="color:#C693DE;"> <%= Home.Price %> </span></label>
                             <input type="number" min="0"
                                 class="form-control" name="Price" id="Price" aria-describedby="Price" placeholder="">
                             <small id="SalePrice" class="form-text text-muted"> you can refer our suggestion</small>
                             <br>
                             <button type="submit" class="btn btn-primary"> Post</button>    
+                            <button type="submit" class="btn btn-danger"> Delete</button>    
                             <div class="" id="alert">
                               <!-- alert put here -->
                             </div>   

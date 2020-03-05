@@ -8,7 +8,7 @@ const { getUsers, insertUser, updateUserById, getUserByEmail, getUserById } = re
 
 
 
-//auth
+//auth users
 router.get('/login',  (req, res) =>{
 	
 	var userInfor = res.locals ;
@@ -125,15 +125,17 @@ router.post('/register', async  (req, res) =>{
 });
 
 
+// ========================================================================
+
+
 
 // admin
 
-//auth
-// router.get('/admin/login',  (req, res) =>{
+// auth
+router.get('/admin/login',  (req, res) =>{
 	
-
-// 	res.render('Auth/AdminLogin' ,{userInfor:'logout', alert:false});
-// } );
+	res.render('Auth/AdminLogin' ,{userInfor:'logout', alert:false});
+} );
 
 
 // router.post('/admin/login' ,async  (req, res)=> {

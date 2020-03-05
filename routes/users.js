@@ -35,6 +35,7 @@ router.post('/newhome/predict');
 
 
 //Modify Homes'information
+
 router.get('/home/:id',user.getModifyHome);
 router.delete('/home/:id');
 router.put('/home/:id');

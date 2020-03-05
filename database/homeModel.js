@@ -41,6 +41,23 @@ const getHomeByUsersId = (id) => {
     })
 }
 
+
+const getHomeByUsersId_HomeId = (Usersid , HomeId) => {
+    let sql=`select u.FullName ,u.Email , h.* from home h inner join user u on h.UserId= u.UserId  
+                where u.UserId = ? and h.HomeId =?  `
+    return new Promise((resolve,reject) => {
+        pool.query( sql, [Usersid , HomeId],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
 // const updateHomeById = (id ,per = 1) => {
 //     return new Promise((resolve,reject) => {
 //         pool.query( `update news set Permission={per}  where NewsId = ?  `, [id],(err, result)=>{
@@ -92,7 +109,8 @@ module.exports = {
     getHomes:getHomes,
     insertHome:insertHome,
     getHomeById:getHomeById,
-    getHomeByUsersId:getHomeByUsersId
+    getHomeByUsersId:getHomeByUsersId,
+    getHomeByUsersId_HomeId:getHomeByUsersId_HomeId
 };
 
 

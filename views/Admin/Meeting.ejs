@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../public/images/icon/040-home.svg">
+    <link rel="icon" href="/images/icon/040-home.svg">
     
     <title>News</title>
     
     
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../../public/stylesheets/User/Table.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/Table.css">
     <!-- bootstrap  -->
-    <link rel="stylesheet" href="../../public/javascripts/bootstrap/dist/css/bootstrap.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
-
-
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+    
 
 </head>
 <body>
   
+     <!-- header -->
+     <%- include ('../Header.ejs',{userInfor:userInfor} ) %> 
 
 
-
-   <div class="Table">
+   <div class="admin">
         <!-- title -->
         <h3 style="text-align:center"> Your News Post </h3>
          <hr> <br>
         <!-- /title -->
         <div class="WarpTable">
-            <table class="table table-hover table-inverse table-responsive tbl">
+            <table class="table table-hover table-inverse  tbl">
                 <thead class="thead-inverse">
                     <tr>
                         <th class="LeftCol">stt</th>
@@ -69,31 +68,19 @@
    
   
 
+  <!-- footer -->
+  <%- include ('../Footer.ejs') %> 
 
     <!-- include jquery and bootstap -->
-    <script src="../../public/javascripts/jquery/dist/jquery.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../../public/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
 
 
 
     <script type="text/javascript" >
        
-       $(`#Image`).keyup(function(){
-             let link =$(`#Image`).val();
-          $(`#PreviewImage`).attr('src',link); 
-
-         }); 
-
-
-     ClassicEditor
-     .create( document.querySelector( '#editor' ) )
-     .then( editor => {
-            console.log( editor );
-     } ).catch( error => {
-          console.error( error );
-    } );
-           
+     
                                 
                                 
          

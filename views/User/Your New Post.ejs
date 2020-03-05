@@ -57,7 +57,17 @@
                                     <td style="color: red;"> Waiting </td>
                                     <%} %>
                                 
-                                    <td class="RightCol"> <button type="button" class="btn btn-danger">delete</button> </td>
+                                    <td class="RightCol"> 
+                                      
+                                      <a name="" id="" class="btn btn-default" href="#" role="button">
+
+                                         <img class="BigIcon" src="/images/icon/edit.svg" alt="Time"> </img>
+                                      </a>
+                                
+
+                                      <button type="button" class="btn btn-danger">delete</button>
+                                      
+                                    </td>
                                     
                                 </tr>
                             <% }) %>
@@ -72,7 +82,7 @@
 
          <!-- title -->
          <h3 style="text-align:center"> Compose 
-            <a class="btn btn-default" data-toggle="collapse" href="#Compose" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-default" data-toggle="collapse" href="#Compose" role="button" aria-expanded="false" aria-controls="collapseExample" >
               <img class="BigIcon" src="/images/icon/edit.svg" alt="Time"> </img> 
             </a>             
          </h3>
@@ -111,9 +121,13 @@
                               <label for="Brief">Brief</label>
                                    <textarea required class="form-control" name="Brief" id="Brief" rows="10"></textarea>
                             </div>
+                          
                     </div>
     
                 </div>
+
+
+
                  <!-- title -->
                  <h3 style="text-align:center">  Composer site </h3>
                  <hr> <br>
@@ -124,17 +138,17 @@
               <textarea required class="form-control" name="content"  id="editor" rows="">
                 
               </textarea>
-    
+
+              <br> <br>
+              <button  type="button" class="btn btn-primary">submit</button>
             </form>
 
 
           </div>
-
-        
-
+         
    </div>
    
- 
+   <br><br><br><br><br><br><br>
    <!-- foooter -->
    <%- include('../Footer.ejs')  %>
 
@@ -156,6 +170,13 @@
 
      ClassicEditor
      .create( document.querySelector( '#editor' ) )
+     .then( editor => {
+            console.log( editor );
+     } ).catch( error => {
+          console.error( error );
+    } );
+     ClassicEditor
+     .create( document.querySelector( '#modify' ) )
      .then( editor => {
             console.log( editor );
      } ).catch( error => {

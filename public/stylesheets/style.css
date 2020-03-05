@@ -52,7 +52,10 @@ footer{
   padding-left: 15%;
   padding-right: 10%;
   padding-top: 30px;
+ 
+  
 }
+
 
 footer .row .col-lg-6 ul{
   list-style-type: none;
@@ -70,5 +73,13 @@ header .dropdown{
   width: 500px;
   height: 50px;
   text-align: center;
+
+}
+
+
+
+.admin{
+  padding: 50px 10%;
+  height: 800px;
 
 }

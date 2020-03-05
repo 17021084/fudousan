@@ -6,7 +6,7 @@ var dotenv = require('dotenv');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var adminsRouter = require('./routes/admins');
+var adminsRouter = require('./routes/admin');
 var auth = require('./routes/auth');
 var userMiddleware =require('./middlewares/userMiddleware');
 var headerMiddleware =require('./middlewares/headerMiddleware');
@@ -30,7 +30,7 @@ app.set('view engine', 'ejs')
 app.use('/',headerMiddleware , indexRouter);
 app.use('/auth', auth);
 app.use('/users',userMiddleware, usersRouter);
-app.use('/admins', adminsRouter);
+app.use('/admin', adminsRouter);
 
 
 module.exports = app;

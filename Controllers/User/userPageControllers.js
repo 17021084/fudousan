@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
-const { insertHome ,getHomeByUsersId} = require('../../database/homeModel');
+const { insertHome ,getHomeByUsersId_HomeId,getHomeByUsersId} = require('../../database/homeModel');
 const { getNewsByUsersId } =require('../../database/newsModel');
 const { getMeetingsByUserId ,deleteByMeetingId } =require('../../database/meetingModel');
 
@@ -254,11 +254,35 @@ async function getModifyHome(req, res) {
 	try {
 		// header
 		var userInfor = res.locals;
+		var HomeId = req.params.id;
 
-		var id = req.params.id;
-		res.status(200).render('User/Update&Delete', {
-			userInfor: userInfor
-		});
+		var Home = await getHomeByUsersId_HomeId( userInfor._id, HomeId );
+		if(!Home.length ){
+			return res.status(200).render('forbidden', {
+				userInfor: userInfor,
+				
+			});
+		}
+		else{
+			return res.status(200).render('User/ModifyHome', {
+				userInfor: userInfor,
+				Home:Home[0]
+			});
+
+
+		}
+		// lấy id home và id user 
+			console.log(Home)
+
+
+		// res.status(200).render('User/Update&Delete', {
+		// 	userInfor: userInfor
+		// });
+
+
+		
+
+
 	} catch (error) {
 		res.status(400).send(error);
 	}
