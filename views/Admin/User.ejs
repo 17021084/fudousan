@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>User </title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/Table.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    
+</head>
+<body>
+  
+     <!-- header -->
+     <%- include ('../Header.ejs',{userInfor:userInfor} ) %> 
+    
+    
+
+   <div class="admin">
+        <!-- title -->
+        <h3 style="text-align:center"> User table </h3>
+         <hr> <br>
+        <!-- /title -->
+        <div class="WarpTable">
+            <table class="table table-hover table-inverse  tbl">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th class="LeftCol">User Id</th>
+                        <th> Email</th>
+                        <th>Full Name</th>                    
+                        <th>Date Of Birth</th>
+                        <th>Phone</th>
+                        <th>Role</th>                 
+                        <th class="RightCol">Created Date</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <% users.forEach(element => { %>
+                            <tr >
+                                <td scope="row" class="LeftCol" >
+                                  <a ><%= element.UserId %> </a>
+                                 </td>
+                                <td>  <%= element.Email %> </td>
+                                <td><%= element.FullName %></td>
+                              
+                                <td> <%= element.Dob %>   </td>
+                                <td> <%= element.Phone %></td>
+                               <% if( element.Role){ %> 
+                                   
+                                   <td> <span style="color: red;" > Admin</span></td>
+                                <% }else{ %> 
+                                    
+                                    <td> <span style="color: green;" > User</span></td>
+
+                              <%  } %> 
+                             
+                   
+
+
+                                <td class="RightCol">
+                                        
+                                    <%= element.CreatedDate.toString().substr(0,15) %>
+                                </td>
+                                
+                            </tr>
+                            
+                        <% }) %>
+                      
+                        
+                    </tbody>
+            </table>
+    
+
+        </div>
+            <!-- paginate  -->
+            <div class="paginate">
+                <hr>
+                <nav aria-label="...">
+                    <ul class="pagination">
+
+                            <% if(Current ==0){ %> 
+                                <li class="page-item disabled">
+                                    <span style="color: #9818d6;"  class="page-link">Previous</span>
+                                </li>
+                            <% }else{ %> 
+                                <li class="page-item">
+                                    <a style="color: #9818d6;"  class="page-link" href="?page=<%=Current-1%>" >Previous</a>
+                                </li>                        
+                            <% } %> 
+                        
+                            <% for( let index = 0; index < NumOfPage; index++ ) { %>
+                        
+                                <% if( Current === index){ %> 
+                                    <li class="page-item active">
+                                        <a class="page-link" href="?page=<%= Current%>"><%= Current%></a>
+                                    </li>                        
+                                <% }else{ %> 
+
+                                    <li class="page-item">
+                                        <a style="color: #9818d6;" class="page-link" href="?page=<%=index%>"><%=index%></a>
+                                </li>
+                                <% } %> 
+                                
+                    
+                                            
+                            <% } %>
+
+                            <% if(Current ==NumOfPage-1 ){ %> 
+                                <li class="page-item disabled">
+                                    <span style="color: #9818d6;"  class="page-link">Next</span>
+                                </li>
+                            <% }else{ %> 
+                                <li class="page-item">
+                                    <a style="color: #9818d6;"  class="page-link" href="?page=<%=Current+1%>" >Next</a>
+                                </li>                        
+                            <% } %> 
+                    </ul>
+                </nav>
+            </div>
+         <!-- paginate  --> 
+       
+   </div>
+   
+  
+
+  <!-- footer -->
+  <%- include ('../Footer.ejs') %> 
+
+    <!-- include jquery and bootstap -->
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+
+</body>
+</html>

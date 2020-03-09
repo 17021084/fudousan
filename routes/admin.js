@@ -14,11 +14,11 @@ router.delete('/home',admins.deleteHome);
 
 //news
 router.get('/news',admins.getNewspage);
-
-
 router.put('/news',admins.putNews);
 router.delete('/news',admins.deleteNews);
 
+//user
+router.get('/user',admins.getUser);
 
 
 

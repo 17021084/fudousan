@@ -105,6 +105,52 @@
     
 
         </div>   
+        <!-- paginate  -->
+        <div class="paginate">
+            <hr>
+            <nav aria-label="...">
+                <ul class="pagination">
+
+                        <% if(Current ==0){ %> 
+                            <li class="page-item disabled">
+                                <span style="color: #9818d6;"  class="page-link">Previous</span>
+                            </li>
+                        <% }else{ %> 
+                            <li class="page-item">
+                                <a style="color: #9818d6;"  class="page-link" href="?page=<%=Current-1%>" >Previous</a>
+                            </li>                        
+                        <% } %> 
+                    
+                        <% for( let index = 0; index < NumOfPage; index++ ) { %>
+                    
+                            <% if( Current === index){ %> 
+                                <li class="page-item active">
+                                    <a class="page-link" href="?page=<%= Current%>"><%= Current%></a>
+                                </li>                        
+                            <% }else{ %> 
+
+                                <li class="page-item">
+                                    <a style="color: #9818d6;" class="page-link" href="?page=<%=index%>"><%=index%></a>
+                            </li>
+                            <% } %> 
+                            
+                
+                                        
+                        <% } %>
+
+                        <% if(Current ==NumOfPage-1 ){ %> 
+                            <li class="page-item disabled">
+                                <span style="color: #9818d6;"  class="page-link">Next</span>
+                            </li>
+                        <% }else{ %> 
+                            <li class="page-item">
+                                <a style="color: #9818d6;"  class="page-link" href="?page=<%=Current+1%>" >Next</a>
+                            </li>                        
+                        <% } %> 
+                </ul>
+            </nav>
+        </div>
+        <!-- paginate  --> 
 
    </div>
   
