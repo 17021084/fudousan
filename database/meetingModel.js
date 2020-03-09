@@ -3,7 +3,7 @@ const pool = require('./pool');
 const getMeetings = () => {
 	return new Promise((resolve, reject) => {
 		pool.query(
-			'select  h.HomeId , h.HomeName , m.* from meeting m inner join home h on m.HomeId = h.HomeId ',
+			'select  u.Email ,  h.HomeId , h.HomeName , m.* from meeting m inner join home h on m.HomeId = h.HomeId inner join user u on u.UserId = h.UserId ',
 			(err, result) => {
 				if (err) {
 					reject(err);
@@ -78,10 +78,27 @@ const insertMeetings = (arrayBooking, per = 0) => {
 };
 
 
+
+const updatePermissionMeetings = (id ,per = 0) => {
+	let sql=  `update meeting set Permission=?  where MeetingId = ?  `;
+	return new Promise((resolve,reject) => {
+        pool.query(sql, [per , id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
 module.exports = {
 	getMeetings: getMeetings,
 	getMeetingsByUserId: getMeetingsByUserId,
 	// updateNewsById: updateNewsById,
 	deleteByMeetingId: deleteByMeetingId,
-	insertMeetings: insertMeetings
+	insertMeetings: insertMeetings,
+	updatePermissionMeetings:updatePermissionMeetings
 };

@@ -80,6 +80,15 @@ header .dropdown{
 
 .admin{
   padding: 50px 10%;
-  height: 800px;
+  height: 1000px;
+
+}
+
+/* // notify */
+#notify{
+  position: fixed; 
+   top:300px; 
+   left: 0px ; 
+   width :300px;
 
 }

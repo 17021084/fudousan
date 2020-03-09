@@ -69,6 +69,21 @@ const updateNewsById = (id ,per = 0) => {
     })
 }
 
+const updatePermissionNews = (id ,per = 0) => {
+    return new Promise((resolve,reject) => {
+        pool.query( `update news set Permission=${per}  where NewsId = ?  `, [id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
+
 const deleteNewsById = (id) => {
     return new Promise((resolve,reject) => {
         pool.query( "delete from news   where NewsId = ?  ", [id],(err, result)=>{
@@ -93,6 +108,7 @@ module.exports = {
     getNewsByUsersId:getNewsByUsersId,
     getNewsByNewsId:getNewsByNewsId,
     updateNewsById:updateNewsById,
+    updatePermissionNews:updatePermissionNews,
     deleteNewsById:deleteNewsById
 };
 

@@ -102,14 +102,41 @@ const insertHome = ( col, data  ) => {
 }
 
 
-// module.exports = newsModel;
-// exports.getNews = getNews;
+const deleteByHomeId = (HomeId) => {
+    return new Promise((resolve,reject) => {
+        pool.query( " delete from home   where HomeId = ?  ", [HomeId],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
+const updatePermissionHome = (id ,per = 0) => {
+	let sql=  `update home set Permission=?  where HomeId = ?  `;
+	return new Promise((resolve,reject) => {
+        pool.query(sql, [per , id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
 
 module.exports = {
     getHomes:getHomes,
     insertHome:insertHome,
     getHomeById:getHomeById,
     getHomeByUsersId:getHomeByUsersId,
+    deleteByHomeId:deleteByHomeId,
+    updatePermissionHome:updatePermissionHome,
     getHomeByUsersId_HomeId:getHomeByUsersId_HomeId
 };
 

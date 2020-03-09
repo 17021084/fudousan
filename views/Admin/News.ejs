@@ -12,15 +12,22 @@
     <link rel="stylesheet" href="/stylesheets/User/Table.css">
     <!-- bootstrap  -->
     <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    
 </head>
 <body>
 
     <!-- header -->
     <%- include ('../Header.ejs',{userInfor:userInfor} ) %> 
+
+
+    <div id="notify" >   
+        <a style="margin-left: 30%; display: none; margin-bottom: 10px;" name="" id="ClearAll" href="#" > Clear All  </a>     
+        <div id="notifyBox">
+
+        </div>
+    </div>
 
    <div class="admin">
         <!-- title -->
@@ -41,19 +48,43 @@
                     </tr>
                 </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row" class="LeftCol" >1</td>
-                            <td>VIncon Long bien riversite</td>
-                            <td>Thu Thien THudau 1</td>
-                          
-                            <td> 2010</td>
-                            <td> 2010</td>
+                        <% News.forEach(element => { %>                       
+                            <tr id='row<%=element.NewsId%>'>
+                                <td scope="row" class="LeftCol" > <%= element.NewsId%>  </td>
+                                <td>  <%= element.Title %>  </td>
+                                <td>  <%= element.Brief %>  </td>
                             
-                            <td>watting </td>
-                            <td class="RightCol"> <button type="button" class="btn btn-danger">delete</button> </td>
-                            
-                        </tr>
-                        
+                                <td>  <%= element.FullName %>     </td>
+                                <td>  <%= element.CreatedDate.toString().substr(0,10)%>      </td>
+                                
+                              
+                                <% if ( element.Permission ) { %>
+                                    <td style="color: green;" id="status<%=element.NewsId%>" > On </td>
+                                <% } else{ %>
+                                    <td style="color: #ffc107; " id="status<%=element.NewsId%>"> Off </td>
+                                    
+                                <% }%>
+                               
+                                    
+                                     <td class="RightCol" style="display: flex;">
+                                    
+                                            
+                                        <% if ( element.Permission ) { %>
+                                                <input type="checkbox" class="toggle" name="che<%= element.NewsId%>" checked data-toggle="toggle" data-onstyle="outline-success" data-offstyle="outline-warning">
+                                        
+                                        <% } else{ %>
+                                                <input type="checkbox" class="toggle" name="che<%= element.NewsId%>"  data-toggle="toggle" data-onstyle="outline-success" data-offstyle="outline-warning">
+                                                                                                    
+                                        <% }%>
+                                    
+
+                                         <button type="button" class="btn btn-danger" name="del<%= element.NewsId%>"  >X</button>        
+
+                                    
+                                    </td>
+                            </tr>
+
+                        <% }) %>
                     </tbody>
             </table>
     
@@ -74,12 +105,144 @@
     <!-- include jquery and bootstap -->
     <script src="/javascripts/jquery/dist/jquery.js"></script>
     <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
     <script type="text/javascript" >
-       
+                            $('#ClearAll').on('click',function(){
+
+                    $('#notifyBox').children().remove();
+                    $('#ClearAll').hide();
+                    });
+
+
+                    $('input.toggle').on('change',function (){
+                        let that = this;
+                        let id  =  this.name.substr(3); //get id
+                        let url = '/admin/news'
+                        let method = 'put'
+
+                        let isCheck = that.checked;
+                        if(isCheck){
+                            
+                            // console.log("switch is       : on ")
+                            // console.log("status is       : on ")
+                            // console.log("prevouss is     : off ")
+                            axios({
+                                    method: method,
+                                    url: url,
+                                    data: {
+                                        id:id,
+                                        type:'On'
+                                    }
+                                }).then( (res)=>{
+
+                                    // change status
+                                    $(`#status${id}`).css('color','green').html('On');
+                                
+
+                                    $('#notifyBox').append(`
+                                    <div class="alert alert-success alert-dismissible fade show" style="width: 100%" role="alert">
+                                        it just been set : <strong>"On!"</strong> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    `)
+                                        //notify
+                                    if ( $('#notifyBox').children().length!==0) {
+                                        $('#ClearAll').show();
+                                    } else {
+                                        $('#ClearAll').hide();
+                                            
+                                    }
+
+                                    // console.log(res.data)
+                                
+                                    
+                                }).catch(error=>console.log(error));
+
+                            
+                        }else{                                            
+                            // console.log("switch is       : off ")
+                            // console.log("status is       : off ")
+                            // console.log("prevouss is     : on ")
+                            
+                            axios({
+                                method: method,
+                                url: url,
+                                data: {
+                                    id:id,
+                                    type:'Off'
+                                }
+                            }).then( (res)=>{                          
+                                $(`#status${id}`).html('Off').css('color','#ffc107');   
+                            
+                            
+
+                                $('#notifyBox').append(`
+                                    <div class="alert alert-warning alert-dismissible fade show" style="width: 100%" role="alert">
+                                        it just been set : <strong>"Off!"</strong> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    `)
+                                
+                                // Clear All Button
+                                if ( $('#notifyBox').children().length!==0) {
+                                    $('#ClearAll').show();
+                                } else {
+                                $('#ClearAll').hide();                       
+                                }
+
+                            //  console.log(res.data)
+
+                            }).catch(error=>console.log(error));   
+
+                            
+                        }
+                    })
+                        
+                            //button delete
+                    $('button.btn-danger').on('click', function(){
+                        if(!confirm('Are you sure ? ')) return;
+
+
+                        let id  =  this.name.substr(3); //get id
+                        let url = '/admin/news'
+                        let method = 'delete'
+
+                        
+                        axios({
+                            method: method,
+                            url: url,
+                            data: {
+                                id:id,
+                                type:'delete'
+                            }
+                        }).then( (res)=>{
+
+                            $(`#row${id}`).remove();
+                            console.log(res.data)
+                             $('#notifyBox').append(`
+                                <div class="alert alert-success alert-dismissible fade show" style="width: 100%" role="alert">
+                                    <strong>" Delete ! "</strong> 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                        `)
+                         // Clear All Button
+                         if ( $('#notifyBox').children().length!==0) {
+                                $('#ClearAll').show();
+                        } else {
+                            $('#ClearAll').hide();                       
+                         }            
+
+
+                        }).catch(error=>console.log(error));
+                        
+                    })
     
 
     </script>

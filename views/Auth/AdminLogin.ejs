@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/authen.css">
     <!-- bootstrap  -->
     <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
@@ -24,23 +24,39 @@
 
 
    <div class="form">
-        <form action="" id="login">
+        <form action="/auth/admin/login"  method="post" id="login">
             <h4 style="text-align: center;">Admin Login </h4>
             <div class="inputfield">
                 <div class="form-group">
                     <label for="Email">Email</label>
                     <input type="text"
                       class="form-control" name="Email" id="Email" aria-describedby="helpId" placeholder="" required>
-                    <small id="Email" class="form-text text-muted">Help text</small>
+                   
                   </div>
                   <div class="form-group">
                     <label for="Password">Password</label>
                     <input type="password"
-                      class="form-control" name="Password" id="Password" aria-describedby="helpId" placeholder="Password">
-                    <small id="Password" class="form-text text-muted">Help text</small>
+                      class="form-control" name="Password" id="Password" aria-describedby="helpId" placeholder="Password" required>
+                 
                   </div>
                   
-                  <button  style="margin-left:40%;" type="button" class="btn btn-warning">Login</button>
+                  <div class="" id="alert">
+                    <% if(alert) {%>
+                 
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <%= alert %> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+
+
+                    <%}%>
+
+                  </div>
+
+                  <button  style="margin-left:40%;" type="submit" class="btn btn-warning">Login</button>
                   
             </div>
             

@@ -10,6 +10,7 @@ var adminsRouter = require('./routes/admin');
 var auth = require('./routes/auth');
 var userMiddleware =require('./middlewares/userMiddleware');
 var headerMiddleware =require('./middlewares/headerMiddleware');
+var adminMiddleware =require('./middlewares/adminMiddleware');
 
 var app = express();
 
@@ -30,7 +31,7 @@ app.set('view engine', 'ejs')
 app.use('/',headerMiddleware , indexRouter);
 app.use('/auth', auth);
 app.use('/users',userMiddleware, usersRouter);
-app.use('/admin', adminsRouter);
+app.use('/admin', adminMiddleware ,adminsRouter);
 
 
 module.exports = app;
