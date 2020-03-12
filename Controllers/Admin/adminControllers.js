@@ -13,8 +13,21 @@ async function getMeeting(req, res) {
 	try {
         var Meeting = await getMeetings();
         
-        Meeting = paginate(Meeting,RowperPages,0);    
-        var NumOfPage = parseInt(Meeting.length/RowperPages) +1;
+        var NumOfPage;
+       
+        if (Meeting.length % RowperPages === 0 ) {
+            NumOfPage   = parseInt(Meeting.length/RowperPages)  ;
+
+       } else{
+           
+         NumOfPage =   parseInt(Meeting.length/RowperPages) +1;
+       }
+
+
+        Meeting = paginate(Meeting,RowperPages,req.query.page);    
+
+
+
 		res.render('Admin/Meeting', {
 			userInfor: 'admin',
             Meeting: Meeting,
@@ -70,10 +83,20 @@ async function getHome(req, res) {
         
         var home = await getHomes();
 
-        home = paginate(home,RowperPages,req.query.page); 
-        var NumOfPage = parseInt(home.length/RowperPages) +1;
+        var NumOfPage;
+       
+        if (home.length % RowperPages === 0 ) {
+            NumOfPage   =  parseInt(home.length/RowperPages)  ;
 
-        console.log(NumOfPage)
+       } else{
+           
+         NumOfPage =   parseInt(home.length/RowperPages) +1;
+       }
+
+
+        home = paginate(home,RowperPages,req.query.page); 
+
+        
         res.render('Admin/Home', { 
             userInfor: 'admin',
             Home:home ,
@@ -130,9 +153,23 @@ async function deleteHome(req,res) {
 async function getNewspage(req, res) {
     try {
         var news = await getNews();
-        news = paginate(news,RowperPages,0); 
-        var NumOfPage = parseInt(news.length/RowperPages) +1;
+        var RowperPages =5; //overwrite (number of rows / 1 pages 
+      
 
+        var NumOfPage;
+       
+        if (news.length % RowperPages === 0 ) {
+            NumOfPage  = parseInt(news.length/RowperPages)  ;
+
+       } else{
+           
+         NumOfPage = parseInt(news.length/RowperPages) +1;
+       }
+
+
+        news = paginate(news,RowperPages,req.query.page); 
+
+        console.log(news.length)
         res.render('Admin/News', { 
             userInfor: 'admin',
             News :news,
@@ -191,8 +228,19 @@ async function putNews(req,res) {
 async function getUser(req, res) {
     try {
         var users = await getUsers();
-        users = paginate(users,RowperPages,0); 
-        var NumOfPage = parseInt(users.length/RowperPages) +1;
+     
+        var NumOfPage;
+       
+        if (users.length % RowperPages === 0 ) {
+            NumOfPage  =parseInt(users.length/RowperPages) +1 ;
+
+       } else{
+           
+         NumOfPage = parseInt(users.length/RowperPages) +1;
+       }
+
+
+        users = paginate(users,RowperPages,req.query.page); 
 
         res.render('Admin/User', { 
             userInfor: 'admin',

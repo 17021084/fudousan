@@ -6,9 +6,6 @@ var user = require('../Controllers/User/userPageControllers');
 
 
 
-router.get('/rd', (req,res)=>{
-    res.redirect( '/users/');
-} );
 
 //log oute
 router.get('/logout', (req,res)=>{
@@ -49,7 +46,7 @@ router.get('/meeting/delete/:MeetingId',user.deleteMeetingByMeetingId);
 //news
 router.get('/news',user.getNews )
 router.post('/news',user.postNews )// post new
-router.delete('/news',user.deleteNews )// post new
+router.delete('/news',user.deleteNews )// delete new
 
 
 

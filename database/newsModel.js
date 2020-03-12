@@ -31,7 +31,7 @@ const getNews = () => {
 //user Id
 const getNewsByUsersId = (id) => {
     return new Promise((resolve,reject) => {
-        pool.query( "select u.UserId , u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where u.UserId = ?  ", [id],(err, result)=>{
+        pool.query( "select u.UserId , u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where u.UserId = ?  order by CreatedDate desc ", [id],(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -99,6 +99,23 @@ const deleteNewsById = (id) => {
 
 
 
+const insertNews = (news ,per = 0) => {
+
+    return new Promise((resolve,reject) => {
+        let {UserId  , Brief ,Title,Content , Image ,Place} = news;    
+        
+        pool.query( `insert into   news (UserId, Permission , Brief ,Title ,Content , Image ,Place) values (?,?,?,?,?,?,?) `, [UserId ,per , Brief ,Title , Content , Image ,Place],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
 
 // module.exports = newsModel;
 // exports.getNews = getNews;
@@ -109,7 +126,8 @@ module.exports = {
     getNewsByNewsId:getNewsByNewsId,
     updateNewsById:updateNewsById,
     updatePermissionNews:updatePermissionNews,
-    deleteNewsById:deleteNewsById
+    deleteNewsById:deleteNewsById,
+    insertNews:insertNews
 };
 
 

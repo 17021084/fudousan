@@ -7,10 +7,15 @@ const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
 const { insertHome ,getHomeByUsersId_HomeId,getHomeByUsersId} = require('../../database/homeModel');
-const { getNewsByUsersId } =require('../../database/newsModel');
+const { getNewsByUsersId ,insertNews ,deleteNewsById} =require('../../database/newsModel');
 const { getMeetingsByUserId ,deleteByMeetingId } =require('../../database/meetingModel');
 
 
+const paginate = require('../../paginate');
+
+
+
+const RowperPages =7;  // Number of rows in a table on a page
 
 const path = process.env.KOREA_HOME_DATA_PATH  || 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Home_Data.csv';
 
@@ -151,10 +156,24 @@ async function getNews(req, res) {
 		// header
 		let userInfor = res.locals;
 		let news = await getNewsByUsersId (res.locals._id);
-		// console.log(news);
+		let  NumOfPage ;
+
+		if (news.length % RowperPages === 0 ) {
+			 NumOfPage = parseInt(news.length/RowperPages) ;
+
+		} else{
+			
+		  NumOfPage = parseInt(news.length/RowperPages) +1;
+		}
+		
+        news = paginate(news,RowperPages,req.query.page);  
+
 		res.status(200).render('User/Your New Post', {
 			userInfor: userInfor,
-			news :news
+			news :news,
+			
+			NumOfPage:NumOfPage,
+            Current :parseInt(req.query.page)|| 0
 		});
 	} catch (error) {
 		res.status(400).send(error);
@@ -163,9 +182,23 @@ async function getNews(req, res) {
 
 async function postNews(req, res) {
 	try {
-		
+		// header
+		let userInfor = res.locals;
+		let { Title , Place , Image , Brief , Content} =req.body;
+		// 
+		let newsObj ={
+			UserId  : userInfor._id, 
+			Brief :  Brief,
+			Title : Title,
+			Content : Content, 
+			Image : Image,
+			Place :Place 
+			
+		}
 
-
+		await insertNews(newsObj);
+		res.send('Post new News Success')
+	
 
 	} catch (error) {
 		console.log(error);
@@ -174,7 +207,22 @@ async function postNews(req, res) {
 
 
 }
-function deleteNews(req, res) {}
+
+async function deleteNews(req, res) {
+	try {
+		// header
+		let userInfor = res.locals;
+		let {newsId}= req.body;
+		await deleteNewsById(newsId)
+		
+		
+		res.send('complete');
+
+	} catch (error) {
+		console.log(error);
+		res.send(error);
+	}
+}
 // ===========================================
 
 // home & incoming meeting

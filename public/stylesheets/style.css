@@ -84,6 +84,14 @@ header .dropdown{
 
 }
 
+
+.brief_admin{
+  height:50px;
+  width: fit-content;
+  display: block;
+overflow: hidden;
+}
+
 /* // notify */
 #notify{
   position: fixed; 

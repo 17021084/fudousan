@@ -52,7 +52,11 @@
                             <tr id='row<%=element.NewsId%>'>
                                 <td scope="row" class="LeftCol" > <%= element.NewsId%>  </td>
                                 <td>  <%= element.Title %>  </td>
-                                <td>  <%= element.Brief %>  </td>
+                                <td>  
+                                   <div class="brief_admin">
+                                    <%= element.Brief %> 
+                                   </div>
+                                 </td>
                             
                                 <td>  <%= element.FullName %>     </td>
                                 <td>  <%= element.CreatedDate.toString().substr(0,10)%>      </td>

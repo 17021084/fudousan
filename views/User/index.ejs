@@ -56,11 +56,11 @@
     
                             <td><%= element.Price %></td>
                             
-                            <% if (element.Permission!=0 ){ %>
-                                <td> <span style="color: red;">watting</span> </td>
+                            <% if (!element.Permission ){ %>
+                                <td> <span style="color: #ffc107;">Off</span> </td>
                                 
                                 <% }else{ %>
-                              <td> <span style="color: green;">Posting</span> </td>
+                              <td> <span style="color: green;">On</span> </td>
                                     
                             <% } %> 
                             
@@ -114,7 +114,14 @@
                             <td> <%= element.MeetingDate %></td>
                             <td > <%= element.Duration %> </td>
                             <td><%= element.Message %> </td>
-                            <td><%= element.Permission %> </td>
+                            
+                            <% if (!element.Permission ){ %>
+                                <td> <span style="color: #ffc107;">Off</span> </td>
+                                
+                                <% }else{ %>
+                              <td> <span style="color: green;">On</span> </td>
+                                    
+                            <% } %> 
                             
                             <td class="RightCol">
                                 
