@@ -68,7 +68,7 @@
                                 
                                     <td class="RightCol"> 
                                       
-                                      <a name="" id="" class="btn btn-default" href="#" role="button">
+                                      <a name="" id="" class="btn btn-default" href="/users/news/<%=element.NewsId%>" role="button">
 
                                          <img class="BigIcon" src="/images/icon/edit.svg" alt="Time"> </img>
                                       </a>
@@ -231,15 +231,7 @@
      } ).catch( error => {
           console.error( error );
     } );
-     ClassicEditor
-     .create( document.querySelector( '#modify' ) )
-     .then( editor => {
-            console.log( editor );
-     } ).catch( error => {
-          console.error( error );
-    } );
-           
-                                
+          
                                 
         $('#ClearAll').on('click',function(){
           $('#notifyBox').children().remove();

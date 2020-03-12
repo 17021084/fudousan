@@ -7,7 +7,7 @@ const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
 const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
 const { insertHome ,getHomeByUsersId_HomeId,getHomeByUsersId} = require('../../database/homeModel');
-const { getNewsByUsersId ,insertNews ,deleteNewsById} =require('../../database/newsModel');
+const { getNewsByUsersId ,insertNews ,getNewsByNewsId_UserId ,deleteNewsById ,updateNewsById} =require('../../database/newsModel');
 const { getMeetingsByUserId ,deleteByMeetingId } =require('../../database/meetingModel');
 
 
@@ -208,6 +208,60 @@ async function postNews(req, res) {
 
 }
 
+async function getNewsDetails(req, res) {
+	try {
+		// header
+		let userInfor = res.locals;
+		console.log(req.params.NewsId);
+		let NewsId = req.params.NewsId;
+		let News = await getNewsByNewsId_UserId(NewsId,userInfor._id);
+		
+		// IF the News is empty , it has 2 reasion.  
+		//1: News ist exist, New has another author (users) 
+		if(!News.length){				
+			return res.status(200).render('forbidden', {
+				userInfor: userInfor,
+				
+			});
+		}
+
+		console.log(News)
+		res.status(200).render('User/Modify News', {
+			userInfor: userInfor,
+			News :News[0]			
+		});
+
+	} catch (error) {
+		console.log(error);
+		res.send(error);
+	}
+}
+async function putNews(req, res) {
+	try {
+		// // header
+		// let userInfor = res.locals;
+		let { NewsId , Title, Place , Image, Brief, Content } = req.body;
+		let News ={
+			NewsId:NewsId , 
+			Title:Title,
+			Place:Place , 
+			Image : Image, 
+			Brief : Brief,
+			Content:Content
+		}
+		await updateNewsById(News)
+
+		// updateNewsById
+		
+		// console.log(req.body)
+		res.send('sucsses');
+
+	} catch (error) {
+		console.log(error);
+		res.send(error);
+	}
+}
+
 async function deleteNews(req, res) {
 	try {
 		// header
@@ -223,6 +277,10 @@ async function deleteNews(req, res) {
 		res.send(error);
 	}
 }
+
+
+
+
 // ===========================================
 
 // home & incoming meeting
@@ -384,6 +442,8 @@ module.exports = {
 	updatePassWord: updatePassWord,
 	getNews: getNews,
 	postNews: postNews,
+	putNews: putNews,
+	getNewsDetails:getNewsDetails,
 	deleteNews: deleteNews,
 	index: index,
 	getNewHome: getNewHome,

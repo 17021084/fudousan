@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon/040-home.svg">
+    
+    <title>Modify News</title>
+    
+    
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/User/Table.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="/javascripts/bootstrap/dist/css/bootstrap.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+  
+    <!-- header -->
+    
+     <%- include ('../Header.ejs',{userInfor:userInfor}) %>  
+
+     <div id="notify" >   
+        <a style="margin-left: 30%; display:none; margin-bottom: 10px;" name="" id="ClearAll"  href="#" > Clear All  </a>     
+        <div id="notifyBox">
+        
+            
+
+        </div>
+    </div>
+
+   <div class="Table">
+               
+         <h3 style="text-align:center">  Modify your News  </h3>
+        
+          <!-- /title --> 
+         <hr> <br>
+       
+            <form action="/users/news" method ='put' class="form" id="<%= News.NewsId%>" >
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                <label for="Title">Title</label>
+                                <input  type="text" class="form-control" 
+                                name="Title" id="Title" aria-describedby="Title" 
+                                placeholder="<%= News.Title%>" 
+                                value="<%= News.Title%>"
+                                >
+                           
+                                </div>
+                                <div class="form-group">
+                                <label for="Place">Location</label>
+                                <input  type="text" class="form-control" name="Place"
+                                 id="Place" aria-describedby="Location" value="<%= News.Place%>" placeholder="<%= News.Place%>">
+                             
+                                </div>
+                                <div class="form-group">
+                                <label for="Image">Image </label>
+                                <input  type="text" class="form-control" name="Image" id="Image" 
+                                aria-describedby="Image" placeholder="<%= News.Image%>" value="<%= News.Image%>">
+                                
+                                <img id="PreviewImage" style=" height : 200px  ;border-radius: 5%;" 
+                                src="<%= News.Image%>" class="img-thumbnail" 
+                                alt="Responsive image">                                                          
+                                </div>
+                                
+                            </div>
+                            <div class="col-xl-6">
+                                    <div class="form-group">
+                                    <label for="Brief">Brief</label>
+                                        <textarea required class="form-control" name="Brief" id="Brief" rows="10">
+                                            <%= News.Brief%>
+                                        </textarea>
+                                    </div>
+                                
+                            </div>
+            
+                        </div>
+
+                        <!-- title -->
+                        <h3 style="text-align:center">  Composer site </h3>
+                        <hr> <br>
+                        <!-- /title -->
+                        
+                        
+                        
+                    <textarea required class="form-control" name="Content"  id="editor" rows="">
+                        <%= News.Content%>
+                    </textarea>
+
+                    <br> <br>
+                    <button  type="submit"  class="btn btn-primary">submit</button>
+            </form>
+
+
+         
+   </div>
+   
+   <br><br><br><br><br><br><br>
+   <!-- foooter -->
+   <%- include('../Footer.ejs')  %>
+
+    <!-- include jquery and bootstap -->
+    <script src="/javascripts/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/javascripts/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+    <script type="text/javascript" >
+       
+       $(`#Image`).keyup(function(){
+             let link =$(`#Image`).val();
+          $(`#PreviewImage`).attr('src',link); 
+
+         }); 
+
+
+     ClassicEditor
+     .create( document.querySelector( '#editor' ) )
+     .then( editor => {
+            console.log( editor );
+     } ).catch( error => {
+          console.error( error );
+    } );
+                   
+                                
+        $('#ClearAll').on('click',function(){
+          $('#notifyBox').children().remove();
+         $('#ClearAll').hide();
+        });
+    
+                //button delete
+               $('button.btn-danger').on('click', function(){
+                    if(!confirm('Are you sure ? ')) return;
+
+
+                    let id  =  this.name.substr(3); //get id
+                    let url = '/users/news'
+                    let method = 'delete'
+
+                    
+                    axios({
+                        method: method,
+                        url: url,
+                        data: {
+                            id:id,
+                            type:'delete'
+                        }
+                    }).then( (res)=>{
+
+                       
+                        $(`#row${id}`).remove();
+                        console.log(res.data)
+                        $('#notifyBox').append(`
+                                <div class="alert alert-success alert-dismissible fade show" style="width: 100%" role="alert">
+                                    <strong>" Delete ! "</strong> 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                        `)
+                         // Clear All Button
+                         if ( $('#notifyBox').children().length!==0) {
+                                $('#ClearAll').show();
+                        } else {
+                            $('#ClearAll').hide();                       
+                         }            
+
+                    }).catch(error=>console.log(error));
+                    
+                })
+        
+
+       
+       $('form.form').on('submit', function (event) {
+       
+        
+        var that = $(this), //refer to form
+              url = that.attr('action'), //* cai nay bug ne 
+              method = that.attr('method'),
+              data = {};
+            
+            
+              data['NewsId']=that.attr('id');
+
+        that.find('[name]').each(function (index, value) {
+              let that = $(this),
+              name = that.attr('name');
+              value = that.val();
+              data[name] = value;
+        })
+      
+        axios({
+              method: method,
+              url: url,
+              data: data
+        }).then(function (response) {
+           console.log(response.data)
+           $('#notifyBox').append(`
+           <div class="alert alert-success alert-dismissible fade show" style="width: 100%" role="alert">
+             <strong>" Update ! "</strong>
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+                        `)
+            // Clear All Button
+            if ( $('#notifyBox').children().length!==0) {
+                   $('#ClearAll').show();
+           } else {
+               $('#ClearAll').hide();                       
+            }           
+             
+            
+
+          }).catch(error => console.log(error));
+
+
+
+        return false;
+       });         
+
+
+    </script>
+
+
+</body>
+</html>

@@ -22,4 +22,12 @@ router.get('/user',admins.getUser);
 
 
 
+
+//log oute
+router.get('/logout', (req,res)=>{
+    res.clearCookie('admin_auth_token')
+    res.redirect( '/');
+} );
+
+
 module.exports = router;

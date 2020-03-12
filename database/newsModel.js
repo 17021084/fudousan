@@ -56,9 +56,31 @@ const getNewsByNewsId = (id) => {
     })
 }
 
-const updateNewsById = (id ,per = 0) => {
+//NewsId
+/**
+ * 
+ * @param {*} Newsid 
+ * @param {*} UserId 
+ */
+const getNewsByNewsId_UserId = (NewsId , UserId) => {
     return new Promise((resolve,reject) => {
-        pool.query( `update news set Permission=${per}  where NewsId = ?  `, [id],(err, result)=>{
+        pool.query( "select u.UserId , u.FullName , u.Email , n.* from news n inner join user u on u.UserId = n.UserId  where n.NewsId = ? and u.UserId =?  ", [NewsId,UserId],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+               
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
+const updateNewsById = (News ,per = 0) => {
+    let {NewsId , Title, Place , Image, Brief, Content} = News;
+    let sql=`update news set  Title =?, Place =?, Image =?, Brief =?, Content =?  where NewsId = ?  `
+    return new Promise((resolve,reject) => {
+        pool.query( sql,[  Title, Place , Image, Brief, Content ,NewsId   ],(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -125,6 +147,7 @@ module.exports = {
     getNewsByUsersId:getNewsByUsersId,
     getNewsByNewsId:getNewsByNewsId,
     updateNewsById:updateNewsById,
+    getNewsByNewsId_UserId:getNewsByNewsId_UserId,
     updatePermissionNews:updatePermissionNews,
     deleteNewsById:deleteNewsById,
     insertNews:insertNews

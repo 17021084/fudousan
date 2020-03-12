@@ -48,6 +48,9 @@ router.get('/news',user.getNews )
 router.post('/news',user.postNews )// post new
 router.delete('/news',user.deleteNews )// delete new
 
+router.get('/news/:NewsId',user.getNewsDetails )// delete new
+router.put('/news/',user.putNews )// delete new
+
 
 
 //mail
