@@ -28,14 +28,14 @@ router.get('/',user.index);
 router.get('/newhome',user.getNewHome);
 
 router.post('/newhome',user.postNewHome);
-router.post('/newhome/predict');
+// router.post('/newhome/predict');
 
 
 //Modify Homes'information
 
 router.get('/home/:id',user.getModifyHome);
-router.delete('/home/:id');
-router.put('/home/:id');
+router.delete('/home',user.deleteHome);
+router.put('/home',user.putHome);
 
 router.post( '/home/predictSalePrice',user.predictSalePrice);
 

@@ -27,14 +27,14 @@
    <div class="index">
 
         <div class=HomePostTitle>
-            <h1> New Home Post</h1>
+            <h1>  Home </h1>
                 <hr>
         </div>
 
         <div class="row HomePostRow">
             
            
-            <% for( let index = 0; index < end; index++ ) { %>
+            <% for( let index = 0; index < home.length; index++ ) { %>
             
             <!-- Home Block -->
             <div class="col-sm-3 HomeBlock">
@@ -95,14 +95,55 @@
 
 
         </div>
+        <!-- paginate Home  -->
+        <div class="paginate">
+            <hr>
+            <nav >
+                <ul class="pagination">
+                        <% if(Current_Home ==0){ %> 
+                            <li class="page-item disabled">
+                                <span style="color: #9818d6;"  class="page-link">Previous</span>
+                            </li>
+                        <% }else{ %> 
+                            <li class="page-item">
+                                <a style="color: #9818d6;"  class="page-link" href="?home=<%=Current_Home-1%>&&news=<%=Current_News%>" >Previous</a>
+                            </li>                        
+                        <% } %> 
+                    
+                        <% for( let index = 0; index < NumOfPage_Home; index++ ) { %>
+                    
+                            <% if( Current_Home === index){ %> 
+                                <li class="page-item active">
+                                    <a class="page-link" href="?home=<%= Current_Home%>&&news=<%=Current_News%>"><%= Current_Home%></a>
+                                </li>                        
+                            <% }else{ %> 
 
-        <div class="pagination">
-                <button type="button" class="btn btn-light"> <img src="/images/icon/previous.svg" alt="previous"></button>
-                <button type="button" class="btn btn-light"> <img src="/images/icon/next.svg" alt="next"></button>
+                                <li class="page-item">
+                                    <a style="color: #9818d6;" class="page-link" href="?home=<%=index%>&&news=<%=Current_News%>"><%=index%></a>
+                            </li>
+                            <% } %> 
+                            
+                
+                                        
+                        <% } %>
+
+                        <% if(Current_Home ==NumOfPage_Home-1 ){ %> 
+                            <li class="page-item disabled">
+                                <span style="color: #9818d6;"  class="page-link">Next</span>
+                            </li>
+                        <% }else{ %> 
+                            <li class="page-item">
+                                <a style="color: #9818d6;"  class="page-link" href="?home=<%=Current_Home+1%>&&news=<%=Current_News%>" >Next</a>
+                            </li>                        
+                        <% } %> 
+                </ul>
+            </nav>
         </div>
+     <!-- paginate Home --> 
+      
 
         <div class=NewPostTitle>
-            <h1> News  Post</h1>
+            <h1> News  </h1>
                 <hr>
         </div>
 
@@ -111,7 +152,7 @@
         
         <div class="row NewsPostRow">
           
-            <% for( let index = 0; index < 3; index++ ) { %>
+            <% for( let index = 0; index < news.length; index++ ) { %>
             
                 <!-- News Block -->
             <div class="col-sm-3 NewsBlock">
@@ -149,7 +190,52 @@
             
             <% } %>
         </div>
-      
+                <!-- paginate News  -->
+                <div class="paginate">
+                    <hr>
+                    <nav >
+                        <ul class="pagination">
+        
+                                <% if(Current_News ==0){ %> 
+                                    <li class="page-item disabled">
+                                        <span style="color: #9818d6;"  class="page-link">Previous</span>
+                                    </li>
+                                <% }else{ %> 
+                                    <li class="page-item">
+                                        <a style="color: #9818d6;"  class="page-link" href="?home=<%= Current_Home%>&&news=<%=Current_News-1%>" >Previous</a>
+                                    </li>                        
+                                <% } %> 
+                            
+                                <% for( let index = 0; index < NumOfPage_News; index++ ) { %>
+                            
+                                    <% if( Current_News === index){ %> 
+                                        <li class="page-item active">
+                                            <a class="page-link" href="?home=<%= Current_Home%>&&news=<%= Current_News%>"><%= Current_News%></a>
+                                        </li>                        
+                                    <% }else{ %> 
+        
+                                        <li class="page-item">
+                                            <a style="color: #9818d6;" class="page-link" href="?home=<%= Current_Home%>&&news=<%=index%>"><%=index%></a>
+                                    </li>
+                                    <% } %> 
+                                    
+                        
+                                                
+                                <% } %>
+        
+                                <% if(Current_News == NumOfPage_News-1 ){ %> 
+                                    <li class="page-item disabled">
+                                        <span style="color: #9818d6;"  class="page-link">Next</span>
+                                    </li>
+                                <% }else{ %> 
+                                    <li class="page-item">
+                                        <a style="color: #9818d6;"  class="page-link" href="?home=<%= Current_Home%>&&news=<%=Current_News+1%>" >Next</a>
+                                    </li>                        
+                                <% } %> 
+                        </ul>
+                    </nav>
+                </div>
+             <!-- paginate News --> 
 
    </div>
    

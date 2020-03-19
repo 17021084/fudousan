@@ -2,55 +2,97 @@ const builModelFrom = require('../../Regression/Regression');
 const { getNews, getNewsByNewsId } = require('../../database/newsModel');
 const { getHomes, getHomeById } = require('../../database/homeModel');
 const { getMeetings, insertMeetings } = require('../../database/meetingModel');
+const paginate = require('../../paginate');
+const permission = require('../../permission');
 
 const path = process.env.CREDIT_DATA_PATH || 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Credit_Data.csv';
 
-// :/   ->ok
+
 async function index(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 
-		let home = await getHomes();
-		let news = await getNews();
+		var home = await getHomes();
+		var news = await getNews();
+
+		// filter by permission
+		home = permission(home);
+		news = permission(news);
 
 		//paginate
-		// let p = req.query.page;
+		var NumOfPage_Home, NumOfPage_News; // number page
+		var ItemPerPage_Home = 6;
+		var ItemPerPage_News = 6;
+		//Home
+		if (home.length % ItemPerPage_Home === 0) {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home);
+		} else {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home) + 1;
+		}
+		home = paginate(home, ItemPerPage_Home, req.query.home);
 
-		//pagination
-		let start = 0;
-		let end = 6;
+		//News
+		if (news.length % ItemPerPage_News === 0) {
+			NumOfPage_News = parseInt(news.length / ItemPerPage_News);
+		} else {
+			NumOfPage_News = parseInt(news.length / ItemPerPage_News) + 1;
+		}
+		news = paginate(news, ItemPerPage_News, req.query.news);
 
 		res.render('HomePage/index', {
 			userInfor: userInfor,
 			home: home,
-			start: start,
-			end: end,
-			news: news
+			NumOfPage_Home: NumOfPage_Home,
+			Current_Home: parseInt(req.query.home) || 0,
+
+			news: news,
+			NumOfPage_News: NumOfPage_News,
+			Current_News: parseInt(req.query.news) || 0
 		});
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-// /homelist  ->ok
+
 async function homeList(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 		console.log(userInfor);
 		let home = await getHomes();
-		res.status(200).render('HomePage/Home list.ejs', { userInfor: userInfor, home: home });
+		
+		// filter by permission
+		home = permission(home);
+	
+		//paginate
+		var NumOfPage_Home; // number page
+		var ItemPerPage_Home = 6;
+		//Home
+		if (home.length % ItemPerPage_Home === 0) {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home);
+		} else {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home) + 1;
+		}
+		home = paginate(home, ItemPerPage_Home, req.query.home);
+
+		res.status(200).render('HomePage/Home list.ejs', { 
+			userInfor: userInfor,
+			home: home,
+			NumOfPage_Home: NumOfPage_Home,
+			Current_Home: parseInt(req.query.home) || 0,
+		 });
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-// /homelist/:id  ->ok
+
 async function homeDetails(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 		let home = await getHomeById(req.params.id);
 		//check valid ?
 
@@ -61,11 +103,11 @@ async function homeDetails(req, res) {
 	// res.render('HomePage/Home details');
 }
 
-// /news/:id   ->bug query
+
 async function newsDetails(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
 		let newsById = await getNewsByNewsId(req.params.id); // News Id
 		let news = await getNews(); // othernews
 
@@ -74,22 +116,36 @@ async function newsDetails(req, res) {
 			newsById: newsById[0],
 			news: news
 		});
-		
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-// /news   ->ok
 async function newsList(req, res) {
 	try {
 		// header
-		var userInfor = res.locals ;
+		var userInfor = res.locals;
+		var news = await getNews();
+		
+		// filter by permission
+		news = permission(news);
 
-		let news = await getNews();
+		//paginate
+		var NumOfPage_News; // number page
+		var ItemPerPage_News = 4;
+	
+
+		if (news.length % ItemPerPage_News === 0) {
+			NumOfPage_News = parseInt(news.length / ItemPerPage_News);
+		} else {
+			NumOfPage_News = parseInt(news.length / ItemPerPage_News) + 1;
+		}
+		news = paginate(news, ItemPerPage_News, req.query.news);
 
 		res.status(200).render('HomePage/News List', {
 			userInfor: userInfor,
+			NumOfPage_News: NumOfPage_News,
+			Current_News: parseInt(req.query.news) || 0,
 			news: news
 		});
 	} catch (error) {
@@ -97,7 +153,6 @@ async function newsList(req, res) {
 	}
 }
 
-// asyn   ->ok
 async function predictMaxOpenCredit(req, res) {
 	try {
 		console.log('1');
@@ -122,9 +177,8 @@ async function predictMaxOpenCredit(req, res) {
 			data.CreditBalance
 		];
 
-		console.log("income", average);
+		console.log('income', average);
 
-		
 		// let result = model.predict(average) ;
 		// console.log('Quang day .....')
 
@@ -158,27 +212,22 @@ async function predictMaxOpenCredit(req, res) {
 	}
 }
 
-// post  /homelist/booking  ->ok
 async function booking(req, res) {
 	try {
 		var { HomeId, date, Email, Duration, Message } = req.body;
 
-		
-		var arrayBooking = [ HomeId, date, Email, Duration , Message  ];
+		var arrayBooking = [ HomeId, date, Email, Duration, Message ];
 		// res.send(arrayBooking);
 
 		var insert = await insertMeetings(arrayBooking);
 
-		res.status(200).send( {
-			success:true
+		res.status(200).send({
+			success: true
 		});
-	
-		
 	} catch (error) {
 		console.log(error);
 		res.status(200).send({
-			success:false
-
+			success: false
 		});
 	}
 }
@@ -186,10 +235,6 @@ async function booking(req, res) {
 function find(req, res) {
 	res.send('hello');
 }
-
-
-
-
 
 module.exports = {
 	index: index,
@@ -199,6 +244,5 @@ module.exports = {
 	newsList: newsList,
 	predictMaxOpenCredit: predictMaxOpenCredit,
 	booking: booking,
-	find: find,
-	
+	find: find
 };

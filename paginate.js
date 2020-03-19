@@ -2,7 +2,7 @@
  * 
  * @param {*} array : Which will be slice 
  * @param {*} item : number of item per one page
- * @param {*} current : current page in sequecy  / defaut =0 (start couting from 0)
+ * @param {*} current : current page in sequency  / defaut =0 (start couting from 0)
  * 
  * @return Array
  * 

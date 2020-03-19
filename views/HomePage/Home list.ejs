@@ -289,7 +289,51 @@
                   </div>
               </div>
          <% } %>        
+                 <!-- paginate Home  -->
+        <div class="paginate">
+          <hr>
+          <nav >
+              <ul class="pagination">
+                      <% if(Current_Home ==0){ %> 
+                          <li class="page-item disabled">
+                              <span style="color: #9818d6;"  class="page-link">Previous</span>
+                          </li>
+                      <% }else{ %> 
+                          <li class="page-item">
+                              <a style="color: #9818d6;"  class="page-link" href="?home=<%=Current_Home-1%>" >Previous</a>
+                          </li>                        
+                      <% } %> 
+                  
+                      <% for( let index = 0; index < NumOfPage_Home; index++ ) { %>
+                  
+                          <% if( Current_Home === index){ %> 
+                              <li class="page-item active">
+                                  <a class="page-link" href="?home=<%= Current_Home%>"><%= Current_Home%></a>
+                              </li>                        
+                          <% }else{ %> 
 
+                              <li class="page-item">
+                                  <a style="color: #9818d6;" class="page-link" href="?home=<%=index%>"><%=index%></a>
+                          </li>
+                          <% } %> 
+                          
+              
+                                      
+                      <% } %>
+
+                      <% if(Current_Home ==NumOfPage_Home-1 ){ %> 
+                          <li class="page-item disabled">
+                              <span style="color: #9818d6;"  class="page-link">Next</span>
+                          </li>
+                      <% }else{ %> 
+                          <li class="page-item">
+                              <a style="color: #9818d6;"  class="page-link" href="?home=<%=Current_Home+1%>" >Next</a>
+                          </li>                        
+                      <% } %> 
+              </ul>
+          </nav>
+      </div>
+   <!-- paginate Home --> 
    </div>
    
 

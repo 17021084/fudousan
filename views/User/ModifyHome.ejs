@@ -29,7 +29,7 @@
          <hr> <br>
         <!-- /title -->
 
-        <form action="/users/" method="post" class="form"  id="form">
+        <form action="/users/home" method="put" class="form"  id="<%=Home.HomeId%>">
                 <div class="form-group HomeName">
                     <h4 style="text-align: center;">
                        <label for="HomeName">Your Home Name : </label> 
@@ -80,7 +80,7 @@
                                           <span style="color:#C693DE;"> <%= Home.HallWay %> </span>
                                         </label>
                                         <input type="text" value="<%= Home.HallWay %>"
-                                            class="form-control" name="HallWay" id="HallWay" aria-describedby="HallWay" placeholder="">
+                                            class="form-control" name="HallWay" id="HallWay" aria-describedby="HallWay" >
                                         
                                         </div>
                                         <div class="form-group">
@@ -91,7 +91,7 @@
                                         <input type="text"
                                             class="form-control" name="ApartmentType"
                                             value="<%= Home.Type %>"
-                                             id="ApartmentType" aria-describedby="ApartmentType" placeholder="">
+                                             id="ApartmentType" aria-describedby="ApartmentType">
                                       
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                           <span style="color:#C693DE;"> <%= Home.Heating %> </span>
                                         </label>
                                         <input type="text" value="<%= Home.Heating %>"
-                                            class="form-control" name="Heating" id="Heating" aria-describedby="Heating" placeholder="">
+                                            class="form-control" name="Heating" id="Heating" aria-describedby="Heating" >
                                        
                                         </div>
                                         <div class="form-group">
@@ -113,7 +113,7 @@
                                         <input type="text"
                                             class="form-control"
                                             value="<%= Home.SubwayStation %>"
-                                             name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="">
+                                             name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" >
                                         
                                         </div>
 
@@ -149,7 +149,7 @@
                                                   <label for="Image1">Image 1:</label>
                                                     <input type="text" class="form-control" 
                                                     value="<%= Home.Image1 %>"
-                                                    name="Image1" id="Image1"  placeholder="">
+                                                    name="Image1" id="Image1"  >
                                                   
                                               </div>              
                                               <img id="PreviewImage1" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image1 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -162,7 +162,7 @@
                                                   <label for="Image2">Image 2:</label>
                                                     <input type="text" class="form-control"
                                                     value="<%= Home.Image2 %>"
-                                                    name="Image2" id="Image2"  placeholder="">
+                                                    name="Image2" id="Image2"  >
                                                     
                                               </div>              
                                               <img id="PreviewImage2" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image2 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -175,7 +175,7 @@
                                                   <label for="Image3">Image 3:</label>
                                                     <input type="text" class="form-control"
                                                     value="<%= Home.Image3 %>"
-                                                    name="Image3" id="Image3"  placeholder="">
+                                                    name="Image3" id="Image3"  >
                                                   
                                               </div>              
                                               <img id="PreviewImage3" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image3 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -188,7 +188,7 @@
                                                   <label for="Image4">Image 4:</label>
                                                     <input type="text" class="form-control"
                                                     value="<%= Home.Image4 %>"
-                                                     name="Image4" id="Image4"  placeholder="">
+                                                     name="Image4" id="Image4"  >
                                                     
                                               </div>              
                                               <img id="PreviewImage4" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image4 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -201,7 +201,7 @@
                                                   <label for="Image5">Image 5:</label>
                                                     <input type="text" class="form-control" 
                                                     value="<%= Home.Image5 %>"
-                                                    name="Image5" id="Image5"  placeholder="">
+                                                    name="Image5" id="Image5"  >
                                               
                                               </div>              
                                               <img id="PreviewImage5" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image5 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -214,7 +214,7 @@
                                                   <label for="Image6">Image 6:</label>
                                                     <input type="text" class="form-control"
                                                     value="<%= Home.Image6 %>"
-                                                    name="Image6" id="Image6"  placeholder="">
+                                                    name="Image6" id="Image6"  >
                                                   
                                               </div>              
                                               <img id="PreviewImage6" style=" height : 200px  ;border-radius: 5%;" src="<%= Home.Image6 %>" class="img-thumbnail" alt="Responsive image">                  
@@ -250,13 +250,13 @@
                                     <div class="form-group">
                                       <label for="YearBuilt">Year Built:    <span style="color:#C693DE;"> <%= Home.YearBuilt %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.YearBuilt %>"
-                                        class="form-control predict"   name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="2002">
+                                        class="form-control predict"   name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" >
                                   
                                     </div>
                                     <div class="form-group">
                                       <label for="Elevators">Elevators:    <span style="color:#C693DE;"> <%= Home.Elevetors %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.Elevetors %>"
-                                        class="form-control predict" name="Elevators" id="Elevators" aria-describedby="Elevators" placeholder="8">
+                                        class="form-control predict" name="Elevators" id="Elevators" aria-describedby="Elevators" >
                                      
                                     </div>
                 
@@ -266,13 +266,13 @@
                                     <div class="form-group">
                                       <label for="Area">Area:     <span style="color:#C693DE;"> <%= Home.Area %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.Area %>"
-                                        class="form-control predict" name="Area" id="Area" aria-describedby="Area" placeholder="774">
+                                        class="form-control predict" name="Area" id="Area" aria-describedby="Area"   >
                                       <small id="Area" class="form-text text-muted"> square meters </small>
                                     </div>
                                     <div class="form-group">
                                       <label for="Manager">Managers:    <span style="color:#C693DE;"> <%= Home.Manager %> </span></label>
                                       <input type="number" min="0" value="<%= Home.Manager %>"
-                                        class="form-control predict" name="Manager" id="Manager" aria-describedby="Manager" placeholder="6">
+                                        class="form-control predict" name="Manager" id="Manager" aria-describedby="Manager"   >
                                       <small id="Manager" class="form-text text-muted">Number of managers</small>
                                     </div>   
                                 </div>
@@ -281,13 +281,13 @@
                                     <div class="form-group">
                                       <label for="Floor">Floors:    <span style="color:#C693DE;"> <%= Home.Floor %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.Floor %>"
-                                        class="form-control predict" name="Floor" id="Floor" aria-describedby="Floor" placeholder="10">
+                                        class="form-control predict" name="Floor" id="Floor" aria-describedby="Floor"     >
                                  
                                     </div>
                                     <div class="form-group">
                                       <label for="Apt">Building:    <span style="color:#C693DE;"> <%= Home.Apt %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.Apt %>"
-                                        class="form-control predict" name="Apt" id="Apt" aria-describedby="Apt" placeholder="5">
+                                        class="form-control predict" name="Apt" id="Apt" aria-describedby="Apt" >
                                       <small id="Apt" class="form-text text-muted">Number of buiding in complex</small>
                                     </div>   
                                 </div>
@@ -321,13 +321,13 @@
                                         <div class="form-group">
                                           <label for="PublicOffice">Public Office:     <span style="color:#C693DE;"> <%= Home.PublicOffice %> </span>  </label>
                                           <input type="number" min="0" value="<%= Home.PublicOffice %>"
-                                            class="form-control predict" name="PublicOffice" id="PublicOffice" aria-describedby="PublicOffice" placeholder="4">
+                                            class="form-control predict" name="PublicOffice" id="PublicOffice" aria-describedby="PublicOffice"   >
                                    
                                         </div>
                                         <div class="form-group">
                                           <label for="Mall">Mall:     <span style="color:#C693DE;"> <%= Home.Mall %> </span> </label>
                                           <input type="number" min="0" value="<%= Home.Mall %>"
-                                            class="form-control predict" name="Mall" id="Mall" aria-describedby="Mall" placeholder="1">
+                                            class="form-control predict" name="Mall" id="Mall" aria-describedby="Mall"    >
                                         
                                         </div>
                     
@@ -337,13 +337,13 @@
                                         <div class="form-group">
                                           <label for="Hospital">Hospital:    <span style="color:#C693DE;"> <%= Home.Hospital %> </span>  </label>
                                           <input type="number" min="0" value="<%= Home.Hospital %>"
-                                            class="form-control predict" name="Hospital" id="Hospital" aria-describedby="Hospital" placeholder="1">
+                                            class="form-control predict" name="Hospital" id="Hospital" aria-describedby="Hospital"   >
                                         
                                         </div>
                                         <div class="form-group">
                                           <label for="Park">Park:     <span style="color:#C693DE;"> <%= Home.Park %> </span>     </label>
                                           <input type="number" min="0" value="<%= Home.Park %>"
-                                            class="form-control predict" name="Park" id="Park" aria-describedby="Park" placeholder="1">
+                                            class="form-control predict" name="Park" id="Park" aria-describedby="Park"  >
                                           
                                         </div>   
                                     </div>
@@ -352,13 +352,13 @@
                                         <div class="form-group">
                                           <label for="DepartmentStore">DepartmentStore:     <span style="color:#C693DE;"> <%= Home.DepartmentStore %> </span> </label>
                                           <input type="number" min="0" value="<%= Home.DepartmentStore %>"
-                                            class="form-control predict" name="DepartmentStore" id="DepartmentStore" aria-describedby="DepartmentStore" placeholder="1">
+                                            class="form-control predict" name="DepartmentStore" id="DepartmentStore" aria-describedby="DepartmentStore"      >
                                       
                                         </div>
                                         <div class="form-group">
                                           <label for="Other">Other:     <span style="color:#C693DE;"> <%= Home.Other %> </span>  </label>
                                           <input type="number" min="0" value="<%= Home.Other %>"
-                                            class="form-control predict" name="Other" id="Other" aria-describedby="Other" placeholder="4">
+                                            class="form-control predict" name="Other" id="Other" aria-describedby="Other"  >
                                           <small id="Apt" class="form-text text-muted">swimming pool, gym, play ground ...</small>
                                         </div>   
                                     </div>
@@ -390,7 +390,7 @@
                                         <div class="form-group">
                                         <label for="Ground">Ground:     <span style="color:#C693DE;"> <%= Home.Ground %> </span> </label>
                                         <input type="number" min="0" value="<%= Home.Ground %>"
-                                            class="form-control predict" name="Ground" id="Ground" aria-describedby="Ground" placeholder="206">
+                                            class="form-control predict" name="Ground" id="Ground" aria-describedby="Ground"   >
                                        
                                         </div>
                                       
@@ -401,7 +401,7 @@
                                         <div class="form-group">
                                         <label for="Basement">Basement:      <span style="color:#C693DE;"> <%= Home.Basement %> </span> </label>
                                         <input type="number" min="0" value="<%= Home.Basement %>"
-                                            class="form-control predict" name="Basement" id="Basement" aria-describedby="Basement" placeholder="387">
+                                            class="form-control predict" name="Basement" id="Basement" aria-describedby="Basement"  >
                               
                                         </div>
                                       
@@ -433,7 +433,7 @@
                                       <div class="form-group">
                                       <label for="BusStop">Bus Stop:     <span style="color:#C693DE;"> <%= Home.BusStop %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.BusStop %>"
-                                          class="form-control predict" name="BusStop" id="BusStop" aria-describedby="BusStop" placeholder="15">
+                                          class="form-control predict" name="BusStop" id="BusStop" aria-describedby="BusStop" >
                                       <small id="BusStop" class="form-text text-muted">Minutes </small>
                                       </div>
                                     
@@ -444,7 +444,7 @@
                                       <div class="form-group">
                                       <label for="SubWay">SubWay:      <span style="color:#C693DE;"> <%= Home.Subway %> </span>       </label>
                                       <input  type="number" min="0" value="<%= Home.Subway %>"
-                                          class="form-control predict" name="SubWay" id="SubWay" aria-describedby="SubWay" placeholder="15">
+                                          class="form-control predict" name="SubWay" id="SubWay" aria-describedby="SubWay" >
                                       <small id="SubWay" class="form-text text-muted">Minutes</small>
                                       </div>
                                     
@@ -475,14 +475,14 @@
                                       <div class="form-group">
                                       <label for="Elementary">Elementary:    <span style="color:#C693DE;"> <%= Home.Elementary %> </span></label>
                                       <input type="number" min="0"  value ="<%= Home.Elementary %>"
-                                          class="form-control predict" name="Elementary" id="Elementary" aria-describedby="Elementary" placeholder="3">
+                                          class="form-control predict" name="Elementary" id="Elementary" aria-describedby="Elementary" >
                                      
                                       </div>
                                     
                                       <div class="form-group">
                                       <label for="High">High School:     <span style="color:#C693DE;"> <%= Home.High %> </span> </label>
                                       <input type="number" min="0" value ="<%= Home.High %>"
-                                          class="form-control predict" name="High" id="High" aria-describedby="High" placeholder="2">
+                                          class="form-control predict" name="High" id="High" aria-describedby="High" >
                                     
                                       </div>
 
@@ -493,7 +493,7 @@
                                     <div class="form-group">
                                         <label for="Middle">Middle  : <span style="color:#C693DE;"> <%= Home.Middle %> </span>   </label>
                                         <input type="number" min="0" value="<%= Home.Middle %>"
-                                            class="form-control predict" name="Middle" id="Middle" aria-describedby="Middle" placeholder="2">
+                                            class="form-control predict" name="Middle" id="Middle" aria-describedby="Middle" >
                                       
                                     </div>    
                                     
@@ -501,7 +501,7 @@
                                       <div class="form-group">
                                       <label for="University">University  :  <span style="color:#C693DE;"> <%= Home.University %> </span> </label>
                                       <input type="number" min="0" value="<%= Home.University %>"
-                                          class="form-control predict" name="University" id="University" aria-describedby="University" placeholder="2">
+                                          class="form-control predict" name="University" id="University" aria-describedby="University" >
                                    
                                       </div>
 
@@ -517,24 +517,19 @@
                 
 
                  <div class="row">
-                     <div class="col-xl-6">
-                         <br><br>
-                         <button  type="button" id ='predict' class="btn btn-warning">Predict</button>
-                         <br><br>
-                        <h5 style="color: black ; "> The suitable Saleprices : <span id="predictPrice" style="color: red;"></span></h5>
-                  
-                     </div>
+                
                      <div class="col-xl-6">
 
                         <!-- price -->
                         <div class="form-group Price">
                             <label for="Price">Price :   <span style="color:#C693DE;"> <%= Home.Price %> </span></label>
-                            <input type="number" min="0" value="<%= Home.Price %> "
+                            <input type="number" min="0" value="<%= Home.Price %>"
                                 class="form-control" name="Price" id="Price" aria-describedby="Price" placeholder="">
-                            <small id="SalePrice" class="form-text text-muted"> you can refer our suggestion</small>
+                         
                             <br>
                             <button type="submit" class="btn btn-primary"> Post</button>    
-                            <button type="submit" class="btn btn-danger"> Delete</button>    
+
+                            <button type="button" id ="delete" class="btn btn-danger"> Delete</button>    
                             <div class="" id="alert">
                               <!-- alert put here -->
                             </div>   
@@ -580,6 +575,8 @@
               nameArr =[],
               valueArr=[];
 
+            
+
             that.find('[name]').each(function (index, value) {
               let that = $(this),
                 name = that.attr('name');
@@ -614,7 +611,8 @@
            
             objData= {
               nameArr:nameArr,
-              valueArr:valueArr
+              valueArr:valueArr,
+              HomeId:that.attr('id')
             }
            
 
@@ -651,31 +649,35 @@
           });           
     
 
-        //predict
-        $('#predict').on('click',function(event) {
-          let data =[] ,name=[] ;     
+        $('#delete').on('click',function(event) {
+            if(!confirm("Are You Sure ?"))return;          
 
-            $("input[class ~= 'predict']").each(function(index , value){
-              let that = $(this);
-                name.push(that.attr('name'))
-                value = that.val();
-                data.push(value);
-            });
-
-            console.log(data)
-            console.log(name)
-           
             axios({
-              method: 'post',
-              url: '/users/home/predictSalePrice',
-              data: {data:data}
+              method: 'delete',
+              url: '/users/home',
+              data: { HomeId:$('form.form').attr('id')}
             }).then(function (response) {                    
-              console.log(response.data)   
-               $('#predictPrice').html(`${parseInt(response.data[0]).toLocaleString('en-US', {
-                            style: 'currency',
-                            currency: 'USD',
-                          }) }$`
-                   )                
+              
+              let { alert, success } = response.data;
+              // console.log(response.data.alert);          
+              if (alert) {
+                $('#alert').html(`  
+              <div class="alert alert-danger alert" role="alert" >
+                   got some problem - check console log
+                   
+              </div>`)
+              console.log(alert)
+
+              } else {
+                $('#alert').html(`  
+              <div class="alert alert-success" role="alert">
+                Deleted Successfully
+                
+              </div>`)
+              console.log(success)
+              }
+             
+                        
             }).catch(error => console.log(error));
 
 

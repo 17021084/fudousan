@@ -115,11 +115,9 @@ const deleteByHomeId = (HomeId) => {
     })
 }
 
-
-const updatePermissionHome = (id ,per = 0) => {
-	let sql=  `update home set Permission=?  where HomeId = ?  `;
-	return new Promise((resolve,reject) => {
-        pool.query(sql, [per , id],(err, result)=>{
+const deleteHomebyHomeId_UserId = (HomeId,UserId) => {
+    return new Promise((resolve,reject) => {
+        pool.query( " delete from home   where HomeId = ? and UserId=? ", [HomeId ,UserId],(err, result)=>{
             if(err) {
                  reject(err);
             }else{
@@ -130,14 +128,48 @@ const updatePermissionHome = (id ,per = 0) => {
     })
 }
 
+
+const updatePermissionHome = (id ,per = 0) => {
+	let sql=  `update home set Permission=?  where HomeId = ?  `;
+	return new Promise((resolve,reject) => {
+        pool.query(sql, [per , id],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+                 resolve(result);
+            }
+        });
+    })
+}
+
+const updateHomebyHomeId_UserId = (SqlUpdate,HomeId,UserId) => {
+
+    let sql=  `update home set ${SqlUpdate} where UserId = ${UserId} and HomeId=${HomeId}`;
+    // console.log( 'sql',sql);
+	return new Promise((resolve,reject) => {
+        pool.query(sql,(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{                
+                 resolve(result);
+            }
+        });
+    })
+}
+
+
+
+
 module.exports = {
     getHomes:getHomes,
     insertHome:insertHome,
     getHomeById:getHomeById,
     getHomeByUsersId:getHomeByUsersId,
     deleteByHomeId:deleteByHomeId,
+    deleteHomebyHomeId_UserId:deleteHomebyHomeId_UserId,
     updatePermissionHome:updatePermissionHome,
-    getHomeByUsersId_HomeId:getHomeByUsersId_HomeId
+    getHomeByUsersId_HomeId:getHomeByUsersId_HomeId,
+    updateHomebyHomeId_UserId:updateHomebyHomeId_UserId
 };
 
 

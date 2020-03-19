@@ -45,6 +45,22 @@ const getMeetingsByUserId = (Userid) => {
 // }
 
 
+const deleteByMeetingId_UserId = (UserId,MeetingId) => {
+
+	let sql = " delete from meeting  where HomeId in ( select HomeId from home where UserId =?   ) and MeetingId =? "
+
+	return new Promise((resolve,reject) => {
+		
+		pool.query( sql, [UserId, MeetingId ],(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+
+                 resolve(result);
+            }
+        });
+    })
+}
 const deleteByMeetingId = (meetingId) => {
     return new Promise((resolve,reject) => {
         pool.query( " delete from meeting   where MeetingId = ?  ", [meetingId],(err, result)=>{
@@ -99,6 +115,7 @@ module.exports = {
 	getMeetingsByUserId: getMeetingsByUserId,
 	// updateNewsById: updateNewsById,
 	deleteByMeetingId: deleteByMeetingId,
+	deleteByMeetingId_UserId:deleteByMeetingId_UserId,
 	insertMeetings: insertMeetings,
 	updatePermissionMeetings:updatePermissionMeetings
 };

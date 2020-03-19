@@ -5,17 +5,17 @@ const jwt = require('jsonwebtoken');
 
 const builModelFrom = require('../../Regression/Regression');
 const { loginValidation, registerValidation } = require('../../validation');
-const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById } = require('../../database/userModel');
-const { insertHome ,getHomeByUsersId_HomeId,getHomeByUsersId} = require('../../database/homeModel');
+const { getUsers, insertUser, updateProfileById,updatePasswordById  , getUserByEmail, getUserById ,} = require('../../database/userModel');
+const { insertHome ,getHomeByUsersId_HomeId,getHomeByUsersId ,updateHomebyHomeId_UserId ,deleteHomebyHomeId_UserId } = require('../../database/homeModel');
 const { getNewsByUsersId ,insertNews ,getNewsByNewsId_UserId ,deleteNewsById ,updateNewsById} =require('../../database/newsModel');
-const { getMeetingsByUserId ,deleteByMeetingId } =require('../../database/meetingModel');
+const { getMeetingsByUserId ,deleteByMeetingId_UserId } =require('../../database/meetingModel');
 
 
 const paginate = require('../../paginate');
 
 
 
-const RowperPages =7;  // Number of rows in a table on a page
+const RowperPages =5;  // Number of rows in a table on a page
 
 const path = process.env.KOREA_HOME_DATA_PATH  || 'C:/Users/Admin/Desktop/fudousanApp/Regression/data/Home_Data.csv';
 
@@ -291,12 +291,36 @@ async function index(req, res) {
 
 		var home = await getHomeByUsersId(userInfor._id);
 		var meeting = await getMeetingsByUserId( userInfor._id);
+		var  NumOfRows_Home,NumOfRows_Meeting ;
+		
+		
+		if (home.length % RowperPages === 0 ) {
+			NumOfRows_Home = parseInt(home.length/RowperPages) ;
+		} else{		
+			NumOfRows_Home = parseInt(home.length/RowperPages) +1;
+		}
+		
+		home = paginate(home,RowperPages,req.query.home);  
+	
+		if (meeting.length % RowperPages === 0 ) {
+			NumOfRows_Meeting = parseInt(meeting.length/RowperPages) ;
+		} else{		
+			NumOfRows_Meeting = parseInt(meeting.length/RowperPages) +1;
+		}
+		
+		meeting = paginate(meeting,RowperPages,req.query.home);  
 
 
+
+		console.log(home.length)
 		res.status(200).render('User/index', {
 			userInfor: userInfor,
 			meeting :meeting,
-			home:home
+			home:home,
+			NumOfRows_Home:NumOfRows_Home,
+			NumOfRows_Meeting:NumOfRows_Meeting,
+			CurrentHome :parseInt(req.query.home) || 0,
+			CurrentMeeting:parseInt(req.query.meeting)||0
 		});
 
 
@@ -306,12 +330,12 @@ async function index(req, res) {
 	}
 }
 // /users/meeting/delete/:MeetingId  _. bug
+
 async function deleteMeetingByMeetingId(req, res) {
 	try {
-		
-		 let deleteMeeting = await deleteByMeetingId( req.params.meetingId );
-		 console.log( deleteMeeting )
-		 console.log( req.params.MeetingId )
+		var userInfor = res.locals;	
+		await deleteByMeetingId_UserId( userInfor._id,req.params.MeetingId  );
+	
 		 res.redirect('/users/');
 	} catch (error) {
 		console.log(error)
@@ -377,22 +401,53 @@ async function getModifyHome(req, res) {
 
 
 		}
-		// lấy id home và id user 
-			console.log(Home)
-
-
-		// res.status(200).render('User/Update&Delete', {
-		// 	userInfor: userInfor
-		// });
-
-
 		
-
-
 	} catch (error) {
 		res.status(400).send(error);
 	}
 }
+
+async function putHome(req, res) {
+	try {
+		//get UserId
+		let userInfor = res.locals;
+		let { nameArr, valueArr ,HomeId} = req.body;
+		for (let index = 0; index < nameArr.length; ++index ) {
+			nameArr[index]+=`=\"${valueArr[index]}\"`
+			
+		}
+
+		let sqlHome=nameArr.toString();
+				
+			
+		await updateHomebyHomeId_UserId(sqlHome, HomeId ,userInfor._id);
+	
+		res.send('oke');
+		
+	} catch (error) {
+		console.log(error) 
+		res.status(400).send({ alert: error.sqlMessage });
+	}
+}
+async function deleteHome(req, res) {
+	try {
+		//get UserId
+		let userInfor = res.locals;
+		let {HomeId}=req.body;
+		
+
+			
+		await deleteHomebyHomeId_UserId( HomeId ,userInfor._id);
+		// console.log('delete',HomeId)
+		res.send('oke');
+		
+	} catch (error) {
+		console.log(error) 
+		res.status(400).send({ alert: error.sqlMessage });
+	}
+}
+
+
 
 
 //just predict Sale Price, 
@@ -401,6 +456,7 @@ async function predictSalePrice(req, res) {
 		let { model, average } = await builModelFrom(path);
 		let {data} = req.body;
 
+		
 		// // console.log(average[20])
 		// average.pop();
 
@@ -412,7 +468,7 @@ async function predictSalePrice(req, res) {
 			}
 		}
 
-
+		
 		let result = model.predict(data)	
 		console.log(result);
 		console.log(model.toJSON())
@@ -424,6 +480,7 @@ async function predictSalePrice(req, res) {
 		res.send(result);
 	
 	} catch (error) {
+		console.log(error)
 		res.status(400).send(error);
 	}
 }
@@ -448,8 +505,12 @@ module.exports = {
 	index: index,
 	getNewHome: getNewHome,
 	postNewHome: postNewHome,
+	putHome:putHome,
+	deleteHome:deleteHome,
 	getModifyHome: getModifyHome,
 	predictSalePrice:predictSalePrice,
 	deleteMeetingByMeetingId:deleteMeetingByMeetingId
+
+
 	
 };
