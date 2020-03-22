@@ -32,207 +32,113 @@
     </div>
     <div class="Find">
      
-        <!--    YearBuilt	            Area	                        Floor	                   Parkinglot(Basement)         	                          
-                	TimeToBusStop	                TimeToSubway	                     APT	                                Manager		
-                Parkinglot(Ground)      FacilitiesNearBy(PublicOffice)   	 FacilitiesNearBy(Hospital)	            FacilitiesNearBy(Dpartmentstore)	
-                FacilitiesNearBy(Mall)	FacilitiesNearBy(ETC)	        FacilitiesNearBy(Park)	            
-                
-                SchoolNearBy(Elementary)	            SchoolNearBy(Middle)
-                SchoolNearBy(High)	    SchoolNearBy(University)	    FacilitiesInApt     	  
-                           FacilitiesNearBy(Total)	            
-                           SchoolNearBy(Total)
-                 Elevators
-               
-                
-            
-             AptManageType	
-            HeatingType
-            SubwayStation
-            HallwayType
-
-
-            SalePrice 
-            -->
-
-
-
-        <form action="FindForm">
+        <form action="/filter" method="POST" class="FindForm" >
             <div class="row">
-                <!-- 1st col -->
-                    <div class="col-md-2">                     
-                        
-                        <label for="YearBuilt">Year Built</label>
-                          <input type="text"
-                            class="form-control" name="YearBuilt" id="YearBuilt" aria-describedby="YearBuilt" placeholder="2000">
-                          <small id="YearBuilt" class="form-text text-muted">Help text</small>
-                        
-                          <label for="HeatingType">HeatingType</label>
-                          <input type="text"
-                            class="form-control" name="HeatingType" id="HeatingType" aria-describedby="HeatingType" placeholder="1000">
-                          <small id="HeatingType" class="form-text text-muted">Help text</small>
-                         
-                          <label for="SchoolNearBy(University)">SchoolNearBy</label>
-                          <input type="text"
-                            class="form-control" name="SchoolNearBy(University)" id="SchoolNearBy(University)" aria-describedby="SchoolNearBy(University)" placeholder="1000">
-                          <small id="SchoolNearBy(University)" class="form-text text-muted">University</small>                
-                       
-                          <label for="Parkinglot(Basement)">Parkinglot</label>
-                          <input type="text"
-                            class="form-control" name="Parkinglot(Basement)" id="Parkinglot(Basement)" aria-describedby="Parkinglot(Basement)" placeholder="Parkinglot(Basement)">
-                          <small id="Parkinglot(Basement)" class="form-text text-muted">Basement</small>
-                                     
-                          <button type="button" class="btn btn-danger">Find !!</button>
+              <!-- col1 -->
+
+               <div class="col-lg-6">
+                
+                  <div class="form-group">
+                    <label for="Address">Address :</label>
+                    <input type="text"
+                      class="form-control" name="Address" id="Address" aria-describedby="helpId" placeholder="Address">
+                  </div>
+            
+                  Purpose :<br>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="Purpose"  name="ForRent" value="ForRent">
+                    <label class="form-check-label" for="inlineCheckbox1"> For Rent </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="ForSale" value="ForSale">
+                    <label class="form-check-label" for="inlineCheckbox2">For Sale </label>
+                  </div>
+                   <br>
+                  <label class="form-check-label" for="YearBuilt">YearBuilt: </label>
+                  <div class="form-row">
+                    <div class="col-sm">
+                      <input type="number" class="form-control" id="YearBuilt" name="YearBuiltFrom"  placeholder="From" min="1900">
                     </div>
-                 <!-- 2nd col  -->
-                 <div class="col-md-2">                     
-                        
-                  
-                      <label for="APT">APT</label>
-                      <input type="text"
-                        class="form-control" name="APT" id="APT" aria-describedby="APT" placeholder="100">
-                      <small id="APT" class="form-text text-muted">Help text</small>
-                      <label for="HallwayType">HallwayType</label>
-                      <input type="text"
-                        class="form-control" name="HallwayType" id="HallwayType" aria-describedby="HallwayType" placeholder="10">
-                      <small id="HallwayType" class="form-text text-muted">Help text</small>
-                      <label for="SchoolNearBy(Middle)">SchoolNearBy</label>
-                      <input type="text"
-                        class="form-control" name="SchoolNearBy(Middle)" id="SchoolNearBy(Middle)" aria-describedby="SchoolNearBy(Middle)" placeholder="100">
-                      <small id="SchoolNearBy(Middle)" class="form-text text-muted">Middle</small>
-                    
-                      <label for="Parkinglot(Ground)">Parkinglot</label>
-                      <input type="text"
-                        class="form-control" name="Parkinglot(Ground)" id="Parkinglot(Ground)" aria-describedby="Parkinglot(Ground)" placeholder="1000">
-                      <small id="Parkinglot(Ground)" class="form-text text-muted">Ground</small>
-                   
-                      <label for="FacilitiesNearBy(Park)">FacilitiesNearBy<br> </label>
-                    <input type="text"
-                        class="form-control" name="FacilitiesNearBy(Park)" id="FacilitiesNearBy(Park)" aria-describedby="FacilitiesNearBy(Park)" placeholder="3123">
-                    <small id="FacilitiesNearBy(Park)" class="form-text text-muted">Park</small>
-                                            
-                </div>   
+                    <div class="col-sm">
+                      <input type="number" class="form-control" name="YearBuiltTo" placeholder="To" min="1900">
+                    </div>            
+                  </div>
 
-                <!-- 3rd col  -->
-                <div class="col-md-2">                     
-                                      
-                    <label for="Area">Area</label>
-                    <input type="text"
-                      class="form-control" name="Area" id="Area" aria-describedby="Area" placeholder="100">
-                    <small id="Area" class="form-text text-muted">Help text</small>
-                    <label for="AptManageType">AptManageType</label>
-                    <input type="text"
-                      class="form-control" name="AptManageType" id="AptManageType" aria-describedby="AptManageType" placeholder="100">
-                    <small id="AptManageType" class="form-text text-muted">Help text</small>
-                  
-                    
-                    
-                    <label for="FacilitiesNearBy(Mall)">FacilitiesNearBy(Mall)</label>
-                    <input type="text"
-                        class="form-control" name="FacilitiesNearBy(Mall)" id="FacilitiesNearBy(Mall)" aria-describedby="FacilitiesNearBy(Mall)" placeholder="1000">
-                    <small id="FacilitiesNearBy(Mall)" class="form-text text-muted">Help text</small>
-                    
-                    <label for="FacilitiesNearBy(ETC)">FacilitiesNearBy</label>
-                    <input type="text"
-                        class="form-control" name="FacilitiesNearBy(ETC)" id="FacilitiesNearBy(ETC)" aria-describedby="FacilitiesNearBy(ETC)" placeholder="1000">
-                    <small id="FacilitiesNearBy(ETC)" class="form-text text-muted">ETC</small>
+                  <label class="form-check-label" for="Area"> Area: </label>
+                  <div class="form-row">
+                    <div class="col-sm">
+                      <input type="number" class="form-control"  id = "Area" name="AreaFrom"  placeholder="From" min="0">
+                    </div>
+                    <div class="col-sm">
+                      <input type="number" class="form-control" name="AreaTo" placeholder="To" min="0">
+                    </div>            
+                  </div>
+
+
+               </div>
+
+               
+              <!-- col2 -->
+               <div class="col-lg-6">
+
+                 <label class="form-check-label" for="Area"> Number of Facilites: </label>
+                <div class="form-row">
+                  <div class="col-sm">
+                    <input type="number" class="form-control"  name="FacilitesFrom"  placeholder="From" min="0">
+                  </div>
+                  <div class="col-sm">
+                    <input type="number" class="form-control" name="FacilitesTo" placeholder="To" min="0">
+                  </div>            
+                </div>
                 
-                   
-                </div>   
-                  <!-- 4th col -->
-                  <div class="col-md-2">                     
-                    <label for="Manager">Manager</label>
-                    <input type="text"
-                      class="form-control" name="Manager" id="Manager" aria-describedby="Manager" placeholder="1000">
-                    <small id="Manager" class="form-text text-muted">Help text</small>
-                  
-                    <label for="FacilitiesInApt">FacilitiesInApt</label>
-                      <input type="text"
-                        class="form-control" name="FacilitiesInApt" id="FacilitiesInApt" aria-describedby="FacilitiesInApt" placeholder="10">
-                      <small id="FacilitiesInApt" class="form-text text-muted">Help text</small>
-                      
-                      <label for=" SchoolNearBy(Elementary)"> SchoolNearBy </label>
-                      <input type="text"
-                        class="form-control" name=" SchoolNearBy(Elementary)" id=" SchoolNearBy(Elementary)" aria-describedby=" SchoolNearBy(Elementary)" placeholder="2000">
-                      <small id=" SchoolNearBy(Elementary)" class="form-text text-muted">Elementary</small>
-                     
-                     
-                    
-                     
-                      <label for="FacilitiesNearBy(Total)">FacilitiesNearBy</label>
-                      <input type="text"
-                        class="form-control" name="FacilitiesNearBy(Total)" id="FacilitiesNearBy(Total)" aria-describedby="FacilitiesNearBy(Total)" placeholder="10">
-                      <small id="FacilitiesNearBy(Total)" class="form-text text-muted">Total</small>
-                   
-                                             
-                </div>    
-                 <!-- 5th col -->
-                 <div class="col-md-2">                     
-                  
-                    <label for="Floor">Floor</label>
-                    <input type="text"
-                      class="form-control" name="Floor" id="Floor" aria-describedby="Floor" placeholder="1000">
-                    <small id="Floor" class="form-text text-muted">Help text</small>
-                    <label for="SubwayStation">SubwayStation</label>
-                    <input type="text"
-                      class="form-control" name="SubwayStation" id="SubwayStation" aria-describedby="SubwayStation" placeholder="10">
-                    <small id="SubwayStation" class="form-text text-muted">Help text</small>
-                    
-                    <label for="SchoolNearBy(Total)">SchoolNearBy</label>
-                      <input type="text"
-                        class="form-control" name="SchoolNearBy(Total)" id="SchoolNearBy(Total)" aria-describedby="SchoolNearBy(Total)" placeholder="2000">
-                      <small id="SchoolNearBy(Total)" class="form-text text-muted">Total</small>
-                    
-                     
-                     
-                      <label for="FacilitiesNearBy(Dpartmentstore)">FacilitiesNearBy </label>
-                      <input type="text"
-                          class="form-control" name="FacilitiesNearBy(Dpartmentstore)" id="FacilitiesNearBy(Dpartmentstore)" aria-describedby="FacilitiesNearBy(Dpartmentstore)" placeholder="100">
-                      <small id="FacilitiesNearBy(Dpartmentstore)" class="form-text text-muted">Dpartmentstore</small>
-                      
-                     
-                     
-                   
-                    
-                                             
+                <label class="form-check-label" for="Area">Time To Go Public Tranpostation point: </label>
+                <div class="form-row">
+                  <div class="col-sm">
+                    <input type="number" class="form-control"  name="TranpostationFrom"  placeholder="From" min="0">
+                  </div>
+                  <div class="col-sm">
+                    <input type="number" class="form-control" name="TranpostationTo" placeholder="To" min="0" >
+                  </div>            
+                </div>
+                <label class="form-check-label" for="Area">Paking lot : </label>
+                <div class="form-row">
+                  <div class="col-sm">
+                    <input type="number" class="form-control"  name="ParkingLotFrom"  placeholder="From" min="0">
+                  </div>
+                  <div class="col-sm">
+                    <input type="number" class="form-control" name="ParkingLotTo" placeholder="To"  min="0">
+                  </div>            
+                </div>
+                <label class="form-check-label" for="Area"> Number of School Nearby: </label>
+                <div class="form-row">
+                  <div class="col-sm">
+                    <input type="number" class="form-control"  name="SchoolFrom"  placeholder="From" min="0" > 
+                  </div>
+                  <div class="col-sm">
+                    <input type="number" class="form-control" name="SchoolTo" placeholder="To"  min="0" >
+                  </div>            
                 </div>
 
-                 <!-- 6th col -->
-                 <div class="col-md-2">                     
-                    <label for="TimeToBusStop">TimeToBusStop</label>
-                    <input type="text"
-                      class="form-control" name="TimeToBusStop" id="TimeToBusStop" aria-describedby="TimeToBusStop" placeholder="10">
-                    <small id="TimeToBusStop" class="form-text text-muted">Help text</small>   
-                    <label for="TimeToSubway">TimeToSubway</label>
-                    <input type="text"
-                      class="form-control" name="TimeToSubway" id="TimeToSubway" aria-describedby="TimeToSubway" placeholder="2">
-                    <small id="TimeToSubway" class="form-text text-muted">Help text</small>
-                    <label for="FacilitiesNearBy(Hospital)">FacilitiesNearBy</label>
-                    <input type="text"
-                        class="form-control" name="FacilitiesNearBy(Hospital)" id="FacilitiesNearBy(Hospital)" aria-describedby="FacilitiesNearBy(Hospital)" placeholder="2">
-                    <small id="FacilitiesNearBy(Hospital)" class="form-text text-muted">Hospital</small>
-                    <label for="FacilitiesNearBy(PublicOffice)">FacilitiesNearBy   </label>
-                    <input type="text"
-                      class="form-control" name="FacilitiesNearBy(PublicOffice)" id="FacilitiesNearBy(PublicOffice)" aria-describedby="FacilitiesNearBy(PublicOffice)" placeholder="">
-                    <small id="FacilitiesNearBy(PublicOffice)" class="form-text text-muted">PublicOffice</small>
-                                               
-                 
-                  
-                </div>
-
-                
+               </div>
+               
+               
+               
             </div>
-           
+            <br>
+            <button type="submit" class="btn btn-danger">Search</button>
         </form>
 
     </div>
 
+    <br><br><hr>
     <!-- list  -->
         <div class=NewPostTitle>
             <h1>   List </h1>
                 <hr>
         </div>
         <!-- for tam 3 cai -->
-        <% for( let index = 0; index < 3; index++ ) { %>
+        <% for( let index = 0; index < home.length; index++ ) { %>
         
        
               <div style="margin-bottom:  30px;" class="information">

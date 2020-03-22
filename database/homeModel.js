@@ -58,31 +58,64 @@ const getHomeByUsersId_HomeId = (Usersid , HomeId) => {
 }
 
 
-// const updateHomeById = (id ,per = 1) => {
-//     return new Promise((resolve,reject) => {
-//         pool.query( `update news set Permission={per}  where NewsId = ?  `, [id],(err, result)=>{
-//             if(err) {
-//                  reject(err);
-//             }else{
-               
-//                  resolve(result);
-//             }
-//         });
-//     })
-// }
+const filterHome = (data) => {
+    
+    let min=0, max=100000000000;
 
-// const getHomesById = (id) => {
-//     return new Promise((resolve,reject) => {
-//         pool.query( "delete from news   where NewsId = ?  ", [id],(err, result)=>{
-//             if(err) {
-//                  reject(err);
-//             }else{
-               
-//                  resolve(result);
-//             }
-//         });
-//     })
-// }
+    let { Address , ForRent ,ForSale , YearBuiltFrom , YearBuiltTo , AreaFrom , AreaTo , FacilitesFrom ,FacilitesTo , TranpostationFrom , TranpostationTo  ,ParkingLotFrom,ParkingLotTo,SchoolFrom,SchoolTo } = data
+   
+    YearBuiltFrom = YearBuiltFrom || min;
+    YearBuiltTo = YearBuiltTo|| max;
+    AreaFrom = AreaFrom||min;
+    AreaTo = AreaTo ||max;
+    FacilitesFrom = FacilitesFrom||min;
+    FacilitesTo =FacilitesTo||max ;
+    TranpostationFrom= TranpostationFrom ||min ;
+    TranpostationTo = TranpostationTo || max;
+    ParkingLotFrom = ParkingLotFrom||min;
+    ParkingLotTo = ParkingLotTo ||max;
+    SchoolFrom= SchoolFrom||min;
+    SchoolTo=SchoolTo ||max;    
+    let Purpose;
+    if (ForRent && ForSale) { Purpose =' '}
+    else if (ForSale){
+        Purpose=`Purpose = "ForSale"`;
+    }else{
+        Purpose=`Purpose = "ForRent"`;
+    }
+    if( Address ){
+        Address = ` Address= "${Address}" `;
+    }else{
+        Address = `  ${true} `;
+    }
+    
+
+    let sql = `select u.FullName ,u.Email , h.* from home h inner join user u on h.UserId= u.UserId
+            where        
+             YearBuilt >= ${YearBuiltFrom}   and  YearBuilt <= ${YearBuiltTo}   and
+             Area      >= ${AreaFrom}   and  Area      <= ${AreaTo}   and           
+             (DepartmentStore +Mall +PublicOffice +Other +Hospital +Park) >= ${FacilitesFrom}    and    (DepartmentStore +Mall +PublicOffice +Other +Hospital +Park) <= ${FacilitesTo}   and
+             ( BusStop + Subway) >= ${TranpostationFrom}   and  ( BusStop + Subway) <= ${TranpostationTo}   and
+             (Ground + Basement) >= ${ParkingLotFrom}    and  (Ground + Basement) <= ${ParkingLotTo}   and
+             (Middle + University + High + Elementary) >= ${SchoolFrom}    and  (Middle + University + High + Elementary) <= ${SchoolTo} and
+             ${Address} and
+             ${Purpose}
+
+    `;
+        
+    // console.log(sql);
+
+    return new Promise((resolve,reject) => {
+        pool.query(sql ,(err, result)=>{
+            if(err) {
+                 reject(err);
+            }else{
+                
+                 resolve(result);
+            }
+        });
+    })
+}
 
 
 const insertHome = ( col, data  ) => {
@@ -162,6 +195,7 @@ const updateHomebyHomeId_UserId = (SqlUpdate,HomeId,UserId) => {
 
 module.exports = {
     getHomes:getHomes,
+    filterHome:filterHome,
     insertHome:insertHome,
     getHomeById:getHomeById,
     getHomeByUsersId:getHomeByUsersId,

@@ -1,6 +1,6 @@
 const builModelFrom = require('../../Regression/Regression');
 const { getNews, getNewsByNewsId } = require('../../database/newsModel');
-const { getHomes, getHomeById } = require('../../database/homeModel');
+const { getHomes, getHomeById ,filterHome} = require('../../database/homeModel');
 const { getMeetings, insertMeetings } = require('../../database/meetingModel');
 const paginate = require('../../paginate');
 const permission = require('../../permission');
@@ -60,7 +60,7 @@ async function homeList(req, res) {
 	try {
 		// header
 		var userInfor = res.locals;
-		console.log(userInfor);
+		
 		let home = await getHomes();
 		
 		// filter by permission
@@ -95,7 +95,11 @@ async function homeDetails(req, res) {
 		var userInfor = res.locals;
 		let home = await getHomeById(req.params.id);
 		//check valid ?
-
+		if( home.length==0 || home[0].Permission ==0 ){
+			
+			return res.status(200).render('forbidden', { userInfor: userInfor });
+		}
+	
 		res.status(200).render('HomePage/Home details', { userInfor: userInfor, home: home[0] });
 	} catch (error) {
 		console.log(error);
@@ -236,6 +240,44 @@ function find(req, res) {
 	res.send('hello');
 }
 
+async function  filter(req,res){
+	try {
+		// header
+		var userInfor = res.locals;
+		var home = await filterHome(req.body);
+				
+		// filter by permission
+		home = permission(home);
+	
+		//paginate
+		var NumOfPage_Home; // number page
+		var ItemPerPage_Home = 6;
+		//Home
+		if (home.length % ItemPerPage_Home === 0) {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home);
+		} else {
+			NumOfPage_Home = parseInt(home.length / ItemPerPage_Home) + 1;
+		}
+		home = paginate(home, ItemPerPage_Home, req.query.home);
+
+		res.status(200).render('HomePage/Home list.ejs', { 
+			userInfor: userInfor,
+			home: home,
+			NumOfPage_Home: NumOfPage_Home,
+			Current_Home: parseInt(req.query.home) || 0,
+		 });
+
+
+
+	} catch (error) {
+
+		console.log(error);
+		res.send(error);
+		
+	}
+
+}
+
 module.exports = {
 	index: index,
 	homeList: homeList,
@@ -244,5 +286,6 @@ module.exports = {
 	newsList: newsList,
 	predictMaxOpenCredit: predictMaxOpenCredit,
 	booking: booking,
-	find: find
+	find: find,
+	filter:filter
 };

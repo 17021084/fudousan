@@ -12,7 +12,7 @@ const { getMeetingsByUserId ,deleteByMeetingId_UserId } =require('../../database
 
 
 const paginate = require('../../paginate');
-
+const permission = require('../../permission');
 
 
 const RowperPages =5;  // Number of rows in a table on a page
@@ -291,6 +291,8 @@ async function index(req, res) {
 
 		var home = await getHomeByUsersId(userInfor._id);
 		var meeting = await getMeetingsByUserId( userInfor._id);
+		meeting=permission(meeting);
+		
 		var  NumOfRows_Home,NumOfRows_Meeting ;
 		
 		

@@ -19,6 +19,9 @@ router.post('/homelist/booking', homePageControllers.booking);
 
 router.post('/homelist/predictOpentCredit', homePageControllers.predictMaxOpenCredit);
 
+router.post('/filter', homePageControllers.filter)
+// router.get('/filter', homePageControllers.filter)
+
 
 
 //News  routes
