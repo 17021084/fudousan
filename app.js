@@ -33,5 +33,4 @@ app.use('/auth', auth);
 app.use('/users',userMiddleware, usersRouter);
 app.use('/admin', adminMiddleware ,adminsRouter);
 
-
 module.exports = app;

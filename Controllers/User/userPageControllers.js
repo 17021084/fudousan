@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+var dotenv = require('dotenv');
+dotenv.config();
 
 
 const builModelFrom = require('../../Regression/Regression');
