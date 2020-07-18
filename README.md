@@ -3,6 +3,8 @@
 This is Real estate web's application. It  find Real Estate and Real Estate s'News. 
 ##### Function
 
+[Design in figma ](https://www.figma.com/file/KKvp3xu63mEhMaE1fpCjFp/Fudousan)
+
 * Reserve deal 
 * Manage properties
 * Manage News
